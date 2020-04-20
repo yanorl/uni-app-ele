@@ -25,7 +25,25 @@
 
 		, {
 			"path": "pages/tabBar/user/user",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#f06c7a",
+				"backgroundTextStyle": "light",
+				"backgroundColorTop": "#f06c7a",
+				"navigationBarTextStyle": "white"
+			}
+		}, {
+			"path": "pages/city/city",
 			"style": {}
+		}, {
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "选择收货地址",
+				"navigationBarBackgroundColor": "#009eef",
+				"backgroundTextStyle": "light",
+				"backgroundColorTop": "#009eef",
+				"navigationBarTextStyle": "white"
+			}
 		}
 	],
 	"globalStyle": {

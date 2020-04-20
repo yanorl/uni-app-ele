@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "选择收货地址",
+  "navigationBarBackgroundColor": "#009eef",
+  "backgroundTextStyle": "light",
+  "backgroundColorTop": "#009eef",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "location": "/components/location/location"
+  }
+}

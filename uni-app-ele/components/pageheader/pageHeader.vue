@@ -6,9 +6,9 @@
 		<view class="header">
 			<view class="header-wraper">
 				<!-- 定位城市 -->
-				<view class="addr">
+				<view class="addr" @tap="handleCity">
 					<view class="icon iconfont">&#xe650;</view>
-					{{ address.city }}
+					{{ city }}
 				</view>
 				<!-- 搜索框 -->
 				<view class="input-box">
@@ -24,33 +24,27 @@
 
 <script>
 	import pageStatus from '../status/status.vue';
+	import { mapGetters } from 'vuex'
 	
 export default {
 	data() {
 		return {
-			address: {
-				'city': "广州市"
-			}
 		};
 	},
-	beforeCreate() {
-		let _this = this;
-		//#ifdef APP-PLUS
-		plus.geolocation.getCurrentPosition(
-			function(position) {
-				// console.log(position)
-				// plus.nativeUI.alert(JSON.stringify(position.address.city));
-				_this.address = position.address;
-			},
-			function(e) {
-				plus.nativeUI.alert('获取定位位置信息失败：' + e.message);
-			},
-			{ geocode: true }
-		);
-		//#endif
+  computed:{
+		...mapGetters([
+		  'city'
+		])
 	},
 	components:{
 		pageStatus
+	},
+	methods:{
+		handleCity() {
+			uni.navigateTo({
+				url: '../../address/address'
+			});
+		}
 	}
 };
 </script>
