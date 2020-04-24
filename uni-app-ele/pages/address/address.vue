@@ -14,7 +14,7 @@
 		</view>
 
 		<!-- 搜索结果 -->
-		<view class="area-box">
+		<scroll-view scroll-y="true" class="area-box">
 			<view class="area-list" v-for="(item, index) in areaList" :key="index">
 				<view class="area-item">
 					<view class="title">{{ item.name }}</view>
@@ -24,7 +24,7 @@
 					</text>
 				</view>
 			</view>
-		</view>
+		</scroll-view>
 	</view>
 </template>
 
@@ -33,6 +33,7 @@ import location from '../../components/location/location.vue';
 import amapFile from '../../common/amap-wx.js';
 import { mapGetters } from 'vuex';
 import { key } from '../../common/config.js';
+import { debounce } from '../../utils/index.js';
 
 export default {
 	data() {
@@ -43,11 +44,19 @@ export default {
 		};
 	},
 	watch: {
-		searchValue() {
-			this.searchPlace();
-		}
+		// searchValue() {
+		// 	this.searchPlace();
+		// }
 	},
 	onLoad() {},
+	created() {
+		this.$watch(
+			'searchValue',
+			debounce(newValue => {
+				this.searchPlace();
+			}, 1000)
+		);
+	},
 	computed: {
 		...mapGetters(['city', 'locationAddr'])
 	},
@@ -67,7 +76,14 @@ export default {
 				// #ifdef H5
 				this.apph5();
 				// #endif
+				
+				// #ifdef APP-PLUS
+				this.appMap();
+				// #endif
 			}
+		},
+		appMap() {
+			this.areaList = [{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"},{name: "测试标题", district: "测试详细地址1234567890"}]
 		},
 		appWeiXing() {
 			var that = this;
@@ -122,6 +138,7 @@ export default {
 		padding: 20rpx 4%;
 		color: #333;
 		width: 92%;
+		margin-bottom: 30rpx;
 
 		.search {
 			background-color: #eee;
@@ -151,8 +168,16 @@ export default {
 	.area-box {
 		width: 92%;
 		padding: 0 4%;
-		margin-top: 30rpx;
 		background-color: #ffffff;
+		position: absolute;
+		/*  #ifdef  H5 */
+		height: calc(100vh - 240rpx - 88rpx - 30rpx);
+		/*  #endif  */
+
+		/*  #ifdef  APP-PLUS || MP */
+		height: calc(100vh - 240rpx - 30rpx);
+		/*  #endif  */
+
 		.area-list {
 			border-bottom: 1px solid #eeeeee;
 			padding: 20rpx 30rpx;

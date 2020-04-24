@@ -108,6 +108,11 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function _interopRequireDefault(
 
 
 
+
+
+
+
+
   },
   onShow: function onShow() {
     console.log('App Show');
@@ -120,6 +125,10 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function _interopRequireDefault(
     setCity: 'SET_CITY',
     setLocationAddr: 'SET_LOCATIONADDR' }), {
 
+    appMap: function appMap() {
+      this.setCity('广州');
+      this.setLocationAddr('App 没有申请高德地图的api! 因此没有定位功能');
+    },
     appWeiXing: function appWeiXing() {
       var that = this;
       var amapIfle = new _amapWx.default.AMapWX({ key: _config.key });

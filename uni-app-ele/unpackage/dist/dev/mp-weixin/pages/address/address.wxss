@@ -32,6 +32,7 @@
     padding: 20rpx 4%;
     color: #333;
     width: 92%;
+    margin-bottom: 30rpx;
 }
 .address-box .city-search .search {
       background-color: #eee;
@@ -66,8 +67,9 @@
 .address-box .area-box {
     width: 92%;
     padding: 0 4%;
-    margin-top: 30rpx;
     background-color: #ffffff;
+    position: absolute;
+    height: calc(100vh - 240rpx - 30rpx);
 }
 .address-box .area-box .area-list {
       border-bottom: 1px solid #eeeeee;

@@ -12,6 +12,11 @@ export default {
 		// #ifdef H5
 		this.apph5();
 		// #endif
+		
+		// #ifdef APP-PLUS
+		this.appMap();
+		// #endif
+		
 	},
 	onShow: function() {
 		console.log('App Show');
@@ -24,6 +29,10 @@ export default {
 			setCity: 'SET_CITY',
 			setLocationAddr: 'SET_LOCATIONADDR'
 		}),
+		appMap() {
+			this.setCity('广州');
+			this.setLocationAddr('App 没有申请高德地图的api! 因此没有定位功能');
+		},
 		appWeiXing() {
 			var that = this;
 			var amapIfle = new amapFile.AMapWX({ key });
