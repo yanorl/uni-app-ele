@@ -1993,12 +1993,55 @@ var render = function() {
         ],
         1
       ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
-        [_c("alphabet", { ref: "allcity", attrs: { _i: 11 } })],
-        1
-      )
+      _vm._$g(10, "i")
+        ? _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
+            [
+              _c("alphabet", {
+                ref: "allcity",
+                attrs: { _i: 11 },
+                on: {
+                  selectItem: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              })
+            ],
+            1
+          )
+        : _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
+            [
+              _c(
+                "ul",
+                { attrs: { _i: 13 } },
+                _vm._l(_vm._$g(14, "f"), function(item, index, $20, $30) {
+                  return _c(
+                    "li",
+                    {
+                      key: item,
+                      attrs: { _i: "14-" + $30 },
+                      on: {
+                        click: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("v-uni-text", { attrs: { _i: "15-" + $30 } }, [
+                        _vm._v(_vm._$g("15-" + $30, "t0-0"))
+                      ])
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
+            ],
+            1
+          )
     ],
     1
   )
@@ -2337,9 +2380,18 @@ var render = function() {
                             "li",
                             { key: item, attrs: { _i: "6-" + $30 } },
                             [
-                              _c("v-uni-text", { attrs: { _i: "7-" + $30 } }, [
-                                _vm._v(_vm._$g("7-" + $30, "t0-0"))
-                              ])
+                              _c(
+                                "v-uni-text",
+                                {
+                                  attrs: { _i: "7-" + $30 },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.$handleViewEvent($event)
+                                    }
+                                  }
+                                },
+                                [_vm._v(_vm._$g("7-" + $30, "t0-0"))]
+                              )
                             ],
                             1
                           )
@@ -2382,7 +2434,12 @@ var render = function() {
                               "li",
                               {
                                 key: city,
-                                attrs: { _i: "11-" + $31 + "-" + $32 }
+                                attrs: { _i: "11-" + $31 + "-" + $32 },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
                               },
                               [
                                 _c(
@@ -2416,17 +2473,7 @@ var render = function() {
             [
               _c(
                 "ul",
-                {
-                  attrs: { id: "toch", _i: 14 },
-                  on: {
-                    touchstart: function($event) {
-                      return _vm.$handleViewEvent($event, { stop: true })
-                    },
-                    touchmove: function($event) {
-                      return _vm.$handleViewEvent($event, { stop: true })
-                    }
-                  }
-                },
+                { attrs: { _i: 14 } },
                 [
                   _c(
                     "li",
@@ -2676,7 +2723,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 20);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.city-box {\n  margin-top: var(--status-bar-height);\n}\n.city-box .city-search {\n    background-color: #fff;\n    padding: 20rpx 4%;\n    color: #333;\n    width: 92%;\n    height: 200rpx;\n    z-index: 2;\n    position: relative;\n}\n.city-box .city-search .city-search-wrap {\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n      -webkit-justify-content: space-around;\n              justify-content: space-around;\n}\n.city-box .city-search .city-search-wrap .back {\n        font-size: 20px;\n}\n.city-box .city-search .city-search-wrap .search {\n        background-color: #eee;\n        height: 80rpx;\n        line-height: 80rpx;\n        border-radius: 20rpx;\n        padding: 0 20rpx;\n        box-sizing: border-box;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: flex;\n        -webkit-box-align: center;\n        -webkit-align-items: center;\n                align-items: center;\n        -webkit-box-flex: 1;\n        -webkit-flex-grow: 1;\n                flex-grow: 1;\n        margin: 0 20rpx;\n}\n.city-box .city-search .city-search-wrap .search .city {\n          padding-right: 20rpx;\n}\n.city-box .city-search .city-search-wrap .search .city .icon {\n            margin: 0 20rpx;\n}\n.city-box .city-search .city-search-wrap .search uni-input {\n          -webkit-box-flex: 2;\n          -webkit-flex-grow: 2;\n                  flex-grow: 2;\n          margin-left: 20rpx;\n          background-color: #eee;\n          outline: none;\n          border: none;\n          font-size: 14px;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.city-box {\n  margin-top: var(--status-bar-height);\n}\n.city-box .city-search {\n    background-color: #fff;\n    padding: 20rpx 4%;\n    color: #333;\n    width: 92%;\n    height: 200rpx;\n    z-index: 2;\n    position: relative;\n}\n.city-box .city-search .city-search-wrap {\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n      -webkit-justify-content: space-around;\n              justify-content: space-around;\n}\n.city-box .city-search .city-search-wrap .back {\n        font-size: 20px;\n}\n.city-box .city-search .city-search-wrap .search {\n        background-color: #eee;\n        height: 80rpx;\n        line-height: 80rpx;\n        border-radius: 20rpx;\n        padding: 0 20rpx;\n        box-sizing: border-box;\n        display: -webkit-box;\n        display: -webkit-flex;\n        display: flex;\n        -webkit-box-align: center;\n        -webkit-align-items: center;\n                align-items: center;\n        -webkit-box-flex: 1;\n        -webkit-flex-grow: 1;\n                flex-grow: 1;\n        margin: 0 20rpx;\n}\n.city-box .city-search .city-search-wrap .search .city {\n          padding-right: 20rpx;\n}\n.city-box .city-search .city-search-wrap .search .city .icon {\n            margin: 0 20rpx;\n}\n.city-box .city-search .city-search-wrap .search uni-input {\n          -webkit-box-flex: 2;\n          -webkit-flex-grow: 2;\n                  flex-grow: 2;\n          margin-left: 20rpx;\n          background-color: #eee;\n          outline: none;\n          border: none;\n          font-size: 14px;\n}\n.city-box .search-list ul li uni-text {\n    padding: 20rpx 40rpx;\n    border-bottom: 1px solid #eee;\n    background: #fff;\n    display: block;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -2828,7 +2875,12 @@ var render = function() {
             {
               key: item,
               staticClass: _vm._$g("9-" + $30, "sc"),
-              attrs: { _i: "9-" + $30 }
+              attrs: { _i: "9-" + $30 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
             },
             [
               _c(

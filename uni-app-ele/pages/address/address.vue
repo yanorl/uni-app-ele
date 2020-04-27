@@ -15,7 +15,7 @@
 
 		<!-- 搜索结果 -->
 		<scroll-view scroll-y="true" class="area-box">
-			<view class="area-list" v-for="(item, index) in areaList" :key="index">
+			<view class="area-list" v-for="(item, index) in areaList" :key="index" @tap="selectItem(item.name, item.district,  item.address)">
 				<view class="area-item">
 					<view class="title">{{ item.name }}</view>
 					<text>
@@ -130,6 +130,17 @@ export default {
 			uni.navigateTo({
 				url: '../city/city'
 			});
+		},
+		selectItem (title, add, addDes) {
+			console.log(title, add, addDes)
+			uni.showToast({
+				title: '地址设置成功',
+			})
+			setTimeout(function() {
+				uni.switchTab({
+					url:'../tabBar/home/home'
+				})
+			}, 1500)
 		}
 	}
 };

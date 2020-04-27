@@ -167,8 +167,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _citys = _interopRequireDefault(__webpack_require__(/*! ../../mock/citys.json */ 59));
 
+
+
+
+
+
+
+
+var _citys = _interopRequireDefault(__webpack_require__(/*! ../../mock/citys.json */ 59));
 var _vuex = __webpack_require__(/*! vuex */ 14);
 var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/interfaces.js */ 60));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var pageStatus = function pageStatus() {__webpack_require__.e(/*! require.ensure | components/status/status */ "components/status/status").then((function () {return resolve(__webpack_require__(/*! ../../components/status/status.vue */ 93));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var location = function location() {__webpack_require__.e(/*! require.ensure | components/location/location */ "components/location/location").then((function () {return resolve(__webpack_require__(/*! ../../components/location/location.vue */ 79));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var alphabet = function alphabet() {__webpack_require__.e(/*! require.ensure | components/alphabet/alphabet */ "components/alphabet/alphabet").then((function () {return resolve(__webpack_require__(/*! ../../components/alphabet/alphabet.vue */ 86));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
@@ -202,7 +209,21 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/int
     this.showback = false;
 
   },
-  methods: {
+  watch: {
+    inputValue: function inputValue() {
+      this.searchCity();
+    } },
+
+  methods: _objectSpread({},
+  (0, _vuex.mapMutations)({
+    setCity: 'SET_CITY' }), {
+
+    selectItem: function selectItem(name) {
+      this.setCity(name);
+      uni.navigateTo({
+        url: '../../pages/address/address' });
+
+    },
     initData: function initData() {var _this = this;
       this.request({
         url: _interfaces.default.getCityData,
@@ -217,6 +238,15 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/int
           _this.keys.pop();
           // keys 排序
           _this.keys.sort();
+
+          // 存储所有城市, 用来搜索过滤
+          _this.keys.forEach(function (key) {
+            // console.log(key);
+            _this.cityInfo[key].forEach(function (city) {
+              // console.log(city);
+              _this.allCities.push(city);
+            });
+          });
         } });
 
     },
@@ -230,7 +260,20 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/int
       uni.navigateTo({
         url: '../address/address' });
 
-    } } };exports.default = _default;
+    },
+    searchCity: function searchCity() {var _this2 = this;
+      console.log(this.inputValue);
+      if (!this.inputValue) {
+        // 如果搜索框为空, 数组置空
+        this.searchList = [];
+      } else {
+        // 根据输入框的关键字检索城市 并存入到searchList数组中
+        this.searchList = this.allCities.filter(function (item) {
+          return item.name.indexOf(_this2.inputValue) != -1;
+        });
+        console.log(this.searchList);
+      }
+    } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

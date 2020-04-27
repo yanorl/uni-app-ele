@@ -173,6 +173,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default2 =
 {
   data: function data() {
@@ -277,6 +278,9 @@ var _default2 =
   },
   mounted: function mounted() {},
   methods: {
+    selectItem: function selectItem(name) {
+      this.$emit('selectItem', name);
+    },
     scroll: function scroll(e) {
       // console.log(e.detail.scrollTop);
       this.scrollY = e.detail.scrollTop;
@@ -324,9 +328,11 @@ var _default2 =
     },
     onShortcutTouchSart: function onShortcutTouchSart(e) {
       console.log(e);
-      var anchorIndex = e.target.dataset.index;
+      // let anchorIndex = e.target.dataset.index;
       var firstTouch = e.touches[0];
       this.touch.y1 = firstTouch.pageY;
+      var anchorIndex = Math.round((parseInt(this.touch.y1) - e.target.offsetTop) / this.keyHeight); //获取触碰开始时是第几个
+      console.log(anchorIndex);
       this.touch.anchorIndex = anchorIndex;
       this.scrollInto = "item-".concat(anchorIndex);
       console.log(this.scrollInto);

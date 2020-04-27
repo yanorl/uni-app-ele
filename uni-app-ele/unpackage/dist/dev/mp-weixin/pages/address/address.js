@@ -267,6 +267,17 @@ var _index = __webpack_require__(/*! ../../utils/index.js */ 69);function _inter
       uni.navigateTo({
         url: '../city/city' });
 
+    },
+    selectItem: function selectItem(title, add, addDes) {
+      console.log(title, add, addDes);
+      uni.showToast({
+        title: '地址设置成功' });
+
+      setTimeout(function () {
+        uni.switchTab({
+          url: '../tabBar/home/home' });
+
+      }, 1500);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

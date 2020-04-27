@@ -80,4 +80,10 @@
         border: none;
         font-size: 14px;
 }
+.city-box .search-list ._ul ._li text {
+  padding: 20rpx 40rpx;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  display: block;
+}
 

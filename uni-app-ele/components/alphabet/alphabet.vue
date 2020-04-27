@@ -8,7 +8,7 @@
 					<view class="title">热门城市</view>
 					<ul>
 						<li v-for="(item, index) in cityInfo.hotCities" :key="index">
-							<text>{{ item.name }}</text>
+							<text @tap="selectItem(item.name)">{{ item.name }}</text>
 						</li>
 					</ul>
 				</view>
@@ -17,7 +17,7 @@
 					<view class="title">{{ item }}</view>
 					<!-- 根据字母key展示城市名 -->
 					<ul>
-						<li v-for="(city, index) in cityInfo[item]" :key="index">
+						<li v-for="(city, index) in cityInfo[item]" :key="index" @tap="selectItem(city.name)">
 							<text>{{ city.name }}</text>
 						</li>
 					</ul>
@@ -26,9 +26,10 @@
 		</scroll-view>
 
 		<view class="area-keys">
-			<ul @touchstart.stop="onShortcutTouchSart" @touchmove.stop="onShortcutTouchMove" id="toch">
+			<!-- <ul @touchstart.stop="onShortcutTouchSart" @touchmove.stop="onShortcutTouchMove" id="toch"> -->
+			<ul>
 				<li class="key" :class="{ current: currentIndex === 0 }" data-index="0" @tap="leftTap">热</li>
-				<li v-for="(item, index) in keys" :key="index" :data-index="index + 1" :class="{ current: currentIndex === index + 1 }" @tap="leftTap">{{ item }}</li>
+				<li v-for="(item, index) in keys" :key="index" :data-index="index + 1" :class="{ current: currentIndex === index + 1 }"  @tap="leftTap">{{ item }}</li>
 			</ul>
 		</view>
 
@@ -142,6 +143,9 @@ export default {
 	},
 	mounted() {},
 	methods: {
+		selectItem (name) {
+			this.$emit('selectItem', name)
+		},
 		scroll(e) {
 			// console.log(e.detail.scrollTop);
 			this.scrollY = e.detail.scrollTop;
@@ -189,9 +193,11 @@ export default {
 		},
 		onShortcutTouchSart(e) {
 			console.log(e);
-			let anchorIndex = e.target.dataset.index;
+			// let anchorIndex = e.target.dataset.index;
 			let firstTouch = e.touches[0];
 			this.touch.y1 = firstTouch.pageY;
+			let anchorIndex = Math.round((parseInt(this.touch.y1) - e.target.offsetTop) / this.keyHeight) ;  //获取触碰开始时是第几个
+			console.log(anchorIndex);
 			this.touch.anchorIndex = anchorIndex;
 			this.scrollInto = `item-${anchorIndex}`;
 			console.log(this.scrollInto);

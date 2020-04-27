@@ -18,7 +18,15 @@
 		</view>
 
 		<!-- 城市列表 -->
-		<view class="city-lists"><alphabet ref="allcity" :cityInfo="cityInfo" :keys="keys" /></view>
+		<view class="city-lists" v-if="searchList.length == 0"><alphabet ref="allcity" :cityInfo="cityInfo" :keys="keys" @selectItem="selectItem"/></view>
+		<!-- 搜索列表 -->
+		<view class="search-list" v-else>
+			<ul>
+				<li @tap="selectItem(item.name)" v-for="(item, index) in searchList" :key="index">
+				<text>{{ item.name }}</text>
+				</li>
+			</ul>
+		</view>
 	</view>
 </template>
 
@@ -28,8 +36,7 @@ import location from '../../components/location/location.vue';
 import alphabet from '../../components/alphabet/alphabet.vue';
 
 import citys from '../../mock/citys.json';
-
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 import interfaces from '../../utils/interfaces.js';
 
 export default {
@@ -62,7 +69,21 @@ export default {
 		this.showback = false;
 		// #endif
 	},
+	watch: {
+		inputValue() {
+			this.searchCity();
+		}
+	},
 	methods: {
+		...mapMutations({
+			setCity: 'SET_CITY'
+		}),
+		selectItem (name) {
+			this.setCity(name);
+			uni.navigateTo({
+				url:'../../pages/address/address'
+			})
+		},
 		initData() {
 			this.request({
 				url: interfaces.getCityData,
@@ -77,6 +98,15 @@ export default {
 					this.keys.pop();
 					// keys 排序
 					this.keys.sort();
+
+					// 存储所有城市, 用来搜索过滤
+					this.keys.forEach(key => {
+						// console.log(key);
+						this.cityInfo[key].forEach(city => {
+							// console.log(city);
+							this.allCities.push(city);
+						});
+					});
 				}
 			});
 		},
@@ -90,6 +120,19 @@ export default {
 			uni.navigateTo({
 				url: '../address/address'
 			});
+		},
+		searchCity() {
+			console.log(this.inputValue);
+			if (!this.inputValue) {
+				// 如果搜索框为空, 数组置空
+				this.searchList = [];
+			} else {
+				// 根据输入框的关键字检索城市 并存入到searchList数组中
+				this.searchList = this.allCities.filter(item => {
+					return item.name.indexOf(this.inputValue) != -1;
+				});
+				console.log(this.searchList);
+			}
 		}
 	}
 };
@@ -108,7 +151,7 @@ export default {
 		height: 200rpx;
 		z-index: 2;
 		position: relative;
-		 
+
 		.city-search-wrap {
 			display: flex;
 			align-items: center;
@@ -140,6 +183,19 @@ export default {
 					outline: none;
 					border: none;
 					font-size: 14px;
+				}
+			}
+		}
+	}
+	
+	.search-list {
+		ul {
+			li {
+				text {
+					padding: 20rpx 40rpx;
+					border-bottom: 1px solid #eee;
+					background: #fff;
+					display: block;
 				}
 			}
 		}
