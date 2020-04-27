@@ -17,7 +17,7 @@ module.exports = (param) => {
 	// 发起请求 加载动画
 	if (!param.hideLoading) {
 		uni.showLoading({
-			title: "加载中..."
+			// title: "加载中..."
 		})
 	}
 

@@ -104,11 +104,11 @@
 /******/
 /******/
 /******/ 		// mini-css-extract-plugin CSS loading
-/******/ 		var cssChunks = {"components/pageheader/pageHeader":1,"components/status/status":1,"components/location/location":1};
+/******/ 		var cssChunks = {"components/pageheader/pageHeader":1,"components/alphabet/alphabet":1,"components/location/location":1,"components/status/status":1};
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/pageheader/pageHeader":"components/pageheader/pageHeader","components/status/status":"components/status/status","components/location/location":"components/location/location"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/pageheader/pageHeader":"components/pageheader/pageHeader","components/alphabet/alphabet":"components/alphabet/alphabet","components/location/location":"components/location/location","components/status/status":"components/status/status"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {

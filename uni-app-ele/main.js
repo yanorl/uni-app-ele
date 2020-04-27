@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App'
 import store from './store/index.js'
+import http from './utils/https.js'
+
+Vue.prototype.request = http
 
 Vue.config.productionTip = false
 

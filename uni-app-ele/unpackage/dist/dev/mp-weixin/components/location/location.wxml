@@ -1,1 +1,1 @@
-<view class="location-box"><view class="title">当前定位</view><view class="location-addr"><view class="fa fa-location-arrow _i"></view><text class="addr">{{address}}</text></view></view>
+<view class="location-box"><view class="title">{{locationText}}</view><view class="location-addr"><view class="fa fa-location-arrow _i"></view><text class="addr">{{address}}</text></view></view>

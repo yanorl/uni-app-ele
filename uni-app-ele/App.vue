@@ -57,7 +57,6 @@ export default {
 			const self = this;
 			
 			var script = document.createElement('script');
-			console.log(key);
 			script.src = `https://webapi.amap.com/maps?v=1.4.15&key=${key}&callback=mapInit`;
 			document.body.appendChild(script);
 
@@ -132,5 +131,10 @@ export default {
 page {
 	position: relative;
 	background-color: #f1f1f1;
+	font-size: 14px;
 }
+ul{
+		padding: 0;
+		list-style: none;
+	}
 </style>

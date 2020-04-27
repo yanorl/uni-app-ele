@@ -1,7 +1,8 @@
-const domain = "https://uniapp-interface.herokuapp.com/";
+const domain = "https://ele-interface.herokuapp.com/api/";
+
 const interfaces = {
-	// 获取首页数据
-	getMallData: domain + "api/profiles/mall_list",
+	// 获取城市数据
+	getCityData: domain + "posts/cities",
 	// 获取分类数据
 	getCategory: domain + "api/profiles/category",
 	// 获取商品列表数据

@@ -24,19 +24,60 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.city-box .search-wrap {
-  position: fixed;
-  top: 0;
-  height: 90rpx;
-  width: 100%;
-  background: #fff;
-  box-sizing: border-box;
-  padding: 6rpx 32rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
+.city-box .city-search {
+  background-color: #fff;
+  padding: 20rpx 4%;
+  color: #333;
+  width: 92%;
+  height: 200rpx;
+  z-index: 2;
+  position: relative;
+}
+.city-box .city-search .city-search-wrap {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: space-around;
+            justify-content: space-around;
+}
+.city-box .city-search .city-search-wrap .back {
+      font-size: 20px;
+}
+.city-box .city-search .city-search-wrap .search {
+      background-color: #eee;
+      height: 80rpx;
+      line-height: 80rpx;
+      border-radius: 20rpx;
+      padding: 0 20rpx;
+      box-sizing: border-box;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+              flex-grow: 1;
+      margin: 0 20rpx;
+}
+.city-box .city-search .city-search-wrap .search .city {
+        padding-right: 20rpx;
+}
+.city-box .city-search .city-search-wrap .search .city .icon {
+          margin: 0 20rpx;
+}
+.city-box .city-search .city-search-wrap .search input {
+        -webkit-box-flex: 2;
+        -webkit-flex-grow: 2;
+                flex-grow: 2;
+        margin-left: 20rpx;
+        background-color: #eee;
+        outline: none;
+        border: none;
+        font-size: 14px;
 }
 

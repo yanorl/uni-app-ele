@@ -1,6 +1,6 @@
 <template>
 	<view class="location-box">
-		<view class="title">当前定位</view>
+		<view class="title">{{locationText}}</view>
 		<view class="location-addr">
 			<i class="fa fa-location-arrow"></i>
 			<text class="addr">{{ address }}</text>
@@ -17,6 +17,10 @@ export default {
 		address: {
 			type: String,
 			default: ''
+		},
+		locationText: {
+			type: String,
+			default: '当前定位'
 		}
 	},
 	methods: {}

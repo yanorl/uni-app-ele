@@ -2,7 +2,7 @@
 	<view class="address-box">
 		<view class="city-search">
 			<view class="search">
-				<view class="city">
+				<view class="city" @tap="handleCity">
 					{{ city }}
 					<view class="icon fa fa-angle-down"></view>
 				</view>
@@ -124,6 +124,11 @@ export default {
 					console.log(result);
 					self.areaList = result.tips;
 				});
+			});
+		},
+		handleCity () {
+			uni.navigateTo({
+				url: '../city/city'
 			});
 		}
 	}

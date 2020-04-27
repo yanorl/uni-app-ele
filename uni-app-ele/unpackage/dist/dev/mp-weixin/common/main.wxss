@@ -124,7 +124,6 @@
 
 
 
-
 /*每个页面公共css */
 /*!
  *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
@@ -2581,5 +2580,10 @@ font-family: 'FontAwesome';
 page {
 	position: relative;
 	background-color: #f1f1f1;
+	font-size: 14px;
+}
+._ul{
+		padding: 0;
+		list-style: none;
 }
 
