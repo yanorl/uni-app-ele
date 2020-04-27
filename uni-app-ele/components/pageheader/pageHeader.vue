@@ -12,7 +12,7 @@
 				</view>
 				<!-- 搜索框 -->
 				<view class="input-box">
-					<input type="text" placeholder="some words" placeholder-style="color:#c0c0c0" />
+					<input type="text" placeholder="搜索商家 商家名称" placeholder-style="color:#c0c0c0" />
 					<view class="icon iconfont">&#xe65c;</view>
 				</view>
 				<!-- 提示信息 -->

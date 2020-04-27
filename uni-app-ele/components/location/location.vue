@@ -1,7 +1,7 @@
 <template>
 	<view class="location-box">
 		<view class="title">{{locationText}}</view>
-		<view class="location-addr">
+		<view class="location-addr" @tap="selectItem(address)">
 			<i class="fa fa-location-arrow"></i>
 			<text class="addr">{{ address }}</text>
 		</view>
@@ -23,7 +23,11 @@ export default {
 			default: '当前定位'
 		}
 	},
-	methods: {}
+	methods: {
+		selectItem(name) {
+			this.$emit('selectItem', name)
+		}
+	}
 };
 </script>
 

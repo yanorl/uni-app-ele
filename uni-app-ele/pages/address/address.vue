@@ -10,7 +10,7 @@
 				<input class="uni-input" confirm-type="search" placeholder="小区/写字楼/学校等" @input="onKeyInput" />
 			</view>
 			<!-- 当前定位 -->
-			<location :address="locationAddr"></location>
+			<location :address="locationAddr" @selectItem="selectItem"></location>
 		</view>
 
 		<!-- 搜索结果 -->
