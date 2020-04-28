@@ -148,7 +148,7 @@ export default {
 
 <style lang="scss">
 .address-box {
-	font-size: 14px;
+	font-size: 28rpx;
 	.city-search {
 		background-color: #fff;
 		padding: 20rpx 4%;
@@ -177,7 +177,7 @@ export default {
 				background-color: #eee;
 				outline: none;
 				border: none;
-				font-size: 14px;
+				font-size: 28rpx;
 			}
 		}
 	}

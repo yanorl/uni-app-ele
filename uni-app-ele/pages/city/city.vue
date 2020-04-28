@@ -157,7 +157,7 @@ export default {
 			align-items: center;
 			justify-content: space-around;
 			.back {
-				font-size: 20px;
+				font-size: 40rpx;
 			}
 			.search {
 				background-color: #eee;
@@ -182,7 +182,7 @@ export default {
 					background-color: #eee;
 					outline: none;
 					border: none;
-					font-size: 14px;
+					font-size: 28rpx;
 				}
 			}
 		}

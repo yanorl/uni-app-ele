@@ -35,7 +35,7 @@ export default {
 .location-box {
 	.title {
 		margin: 20rpx 0;
-		font-size: 14px;
+		font-size: 28rpx;
 	}
 	.location-addr {
 		display: flex;

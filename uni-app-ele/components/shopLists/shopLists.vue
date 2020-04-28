@@ -88,20 +88,20 @@ export default {
 				overflow: hidden;
 				flex-direction: column;
 				padding-left: 20rpx;
-				font-size: 12px;
+				font-size: 24rpx;
 				flex-grow: 1;
 				.shop-list-name {
 					align-items: center;
 					color: #333;
 					font-weight: 700;
-					font-size: 14px;
+					font-size: 28rpx;
 					i {
 						background: #ffe800;
 						margin-right: 10rpx;
 						padding: 2rpx 5rpx;
 						text-align: center;
 						white-space: nowrap;
-						font-size: 12px;
+						font-size: 24rpx;
 						font-style: normal;
 						display: inline-block;
 					}
@@ -125,7 +125,7 @@ export default {
 					.delivery {
 						display: flex;
 						align-items: center;
-						font-size: 12px;
+						font-size: 24rpx;
 						margin-left: 10rpx;
 						.icon-hollow {
 							color: #fff;

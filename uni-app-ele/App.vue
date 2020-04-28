@@ -131,7 +131,7 @@ export default {
 page {
 	position: relative;
 	background-color: #f1f1f1;
-	font-size: 14px;
+	font-size: 28rpx;
 }
 ul{
 		padding: 0;

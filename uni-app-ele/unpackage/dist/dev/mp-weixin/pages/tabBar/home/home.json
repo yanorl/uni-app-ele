@@ -2,6 +2,7 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "page-header": "/components/pageheader/pageHeader",
+    "filter-view": "/components/filterView/filterView",
     "shop-lists": "/components/shopLists/shopLists"
   }
 }

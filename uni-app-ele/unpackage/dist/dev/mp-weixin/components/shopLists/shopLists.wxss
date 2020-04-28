@@ -67,7 +67,7 @@
       -webkit-flex-direction: column;
               flex-direction: column;
       padding-left: 20rpx;
-      font-size: 12px;
+      font-size: 24rpx;
       -webkit-box-flex: 1;
       -webkit-flex-grow: 1;
               flex-grow: 1;
@@ -78,7 +78,7 @@
                 align-items: center;
         color: #333;
         font-weight: 700;
-        font-size: 14px;
+        font-size: 28rpx;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-name ._i {
           background: #ffe800;
@@ -86,7 +86,7 @@
           padding: 2rpx 5rpx;
           text-align: center;
           white-space: nowrap;
-          font-size: 12px;
+          font-size: 24rpx;
           font-style: normal;
           display: inline-block;
 }
@@ -117,7 +117,7 @@
           -webkit-box-align: center;
           -webkit-align-items: center;
                   align-items: center;
-          font-size: 12px;
+          font-size: 24rpx;
           margin-left: 10rpx;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-rate .delivery .icon-hollow {

@@ -297,7 +297,7 @@ export default {
 		right: 0;
 		top: 25%;
 		color: #ffffff;
-		font-size: 12px;
+		font-size: 24rpx;
 		line-height: 1.5;
 		text-align: center;
 		background: rgba(0, 0, 0, 0.3);

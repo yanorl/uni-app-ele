@@ -1,41 +1,47 @@
 <template>
-	<view class="home-box">
+	<view class="page-section">
 		<!-- 自定义导航 -->
 		<pageHeader />
-		<!-- swiper banner -->
-		<view class="page-section swiper-box">
-			<swiper class="swiper" :circular="circular" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-				<swiper-item v-for="(item, index) in swipeImgs" :key="index"><image :src="item"></image></swiper-item>
-			</swiper>
-		</view>
+		<view class="page-home">
+			
+		<scroll-view class="home-box" scroll-y="true" @scroll="scroll" @scrolltolower="scrolltolower">
+			<!-- swiper banner -->
+			<view class="page-section swiper-box">
+				<swiper class="swiper" :circular="circular" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+					<swiper-item v-for="(item, index) in swipeImgs" :key="index"><image :src="item"></image></swiper-item>
+				</swiper>
+			</view>
 
-		<!-- 分类  -->
-		<view class="page-section entries-box">
-			<swiper class="swiper" :circular="circular">
-				<swiper-item v-for="(entry, i) in entries" :key="i">
-					<view class="entries-wrap" v-for="(item, index) in entry" :key="index">
-						<view class="img-wrap"><image :src="item.image" mode="widthFix"></image></view>
-						<text>{{ item.name }}</text>
-					</view>
-				</swiper-item>
-			</swiper>
-		</view>
+			<!-- 分类  -->
+			<view class="page-section entries-box">
+				<swiper class="swiper" :circular="circular">
+					<swiper-item v-for="(entry, i) in entries" :key="i">
+						<view class="entries-wrap" v-for="(item, index) in entry" :key="index">
+							<view class="img-wrap"><image :src="item.image" mode="widthFix"></image></view>
+							<text>{{ item.name }}</text>
+						</view>
+					</swiper-item>
+				</swiper>
+			</view>
 
-		<!-- 商家推荐 -->
-		<view class="page-section shop-box">
-			<view class="title">推荐商家</view>
+			<!-- 商家推荐 -->
+			<view class="page-section shop-box">
+				<view class="title">推荐商家</view>
 
-			<!-- 导航 -->
-			<view class="filter-section"></view>
+				<!-- 导航 筛选-->
+				<view class="filter-section" id="filterSection"><filter-view :filterData="filterData" @update="update" ref="filterViews"></filter-view></view>
 
-			<!-- 商家信息列表 -->
-			<view class="shop-list-section"><shop-lists v-for="(item, index) in shopList" :key="index" :shopList="item.restaurant"></shop-lists></view>
+				<!-- 商家信息列表 -->
+				<view class="shop-list-section"><shop-lists v-for="(item, index) in shopList" :key="index" :shopList="item.restaurant"></shop-lists></view>
+			</view>
+		</scroll-view>
 		</view>
 	</view>
 </template>
 
 <script>
 import pageHeader from '../../../components/pageheader/pageHeader.vue';
+import filterView from '../../../components/filterView/filterView.vue';
 import shopLists from '../../../components/shopLists/shopLists.vue';
 import interfaces from '../../../utils/interfaces.js';
 
@@ -45,6 +51,7 @@ export default {
 			swipeImgs: [],
 			entries: [],
 			shopList: [],
+			filterData: {},
 			indicatorDots: true,
 			autoplay: true,
 			interval: 2000,
@@ -52,25 +59,63 @@ export default {
 			circular: true,
 			page: 1,
 			size: 5,
-			allLoaded: false
+			allLoaded: false,
+			postData: null,
+			upDate: false,
+			scrollY: 0,
+			filterTop: null
 		};
 	},
 	onLoad() {
-		this.initData();
+		this.getBanner();
 		this.shopLists();
+		this.getFilter();
 	},
 	components: {
 		pageHeader,
+		filterView,
 		shopLists
 	},
-	onReachBottom() {
-		if (!this.allLoaded) {
-			this.page++;
-			this.shopLists();
+	// onReachBottom() {
+	// 	if (!this.allLoaded) {
+	// 		this.page++;
+	// 		this.upDate = false;
+	// 		this.shopLists();
+	// 	}
+	// },
+	watch: {
+		scrollY(newY) {
+			console.log(newY);
+			console.log(this.filterTop);
+			if (newY >= this.filterTop) {
+				this.$refs.filterViews.fatherScrollShow();
+			} else {
+				this.$refs.filterViews.fatherScrollHide();
+			}
 		}
 	},
+	mounted() {
+		this.$nextTick(function() {
+			uni
+				.createSelectorQuery()
+				.in(this)
+				.select('#filterSection')
+				.boundingClientRect(data => {
+					console.log(data);
+					this.filterTop = data.top;
+				})
+				.exec();
+		});
+	},
 	methods: {
-		initData() {
+		scrolltolower() {
+			if (!this.allLoaded) {
+				this.page++;
+				this.upDate = false;
+				this.shopLists();
+			}
+		},
+		getBanner() {
 			this.request({
 				url: interfaces.getBanner,
 				success: res => {
@@ -80,35 +125,63 @@ export default {
 				}
 			});
 		},
+		getFilter() {
+			this.request({
+				url: interfaces.getfilter,
+				success: res => {
+					// console.log(res);
+					this.filterData = res;
+				}
+			});
+		},
 		shopLists() {
 			this.allLoaded = false;
 
 			this.request({
 				url: interfaces.getShoplists + '/' + this.page + '/' + this.size,
 				// url: interfaces.getShoplists,
-				data: {
-					page: this.page,
-					size: this.size
-				},
+				data: this.postData,
 				method: 'POST',
 				success: res => {
 					console.log(res);
 					// this.shopList = res;
-					if (res.length >= this.size) {
-						res.forEach(item => {
-							this.shopList.push(item);
-						})
+					if (!this.upDate) {
+						if (res.length >= this.size) {
+							res.forEach(item => {
+								this.shopList.push(item);
+							});
+						} else {
+							this.allLoaded = true;
+						}
 					} else {
-						this.allLoaded = true;
+						this.shopList = res;
 					}
 				}
 			});
+		},
+		update(condation) {
+			// console.log(condation);
+			this.postData = condation;
+			this.page = 1;
+			this.upDate = true;
+			this.shopLists();
+		},
+		scroll(e) {
+			// console.log(e.detail.scrollTop);
+			this.scrollY = e.detail.scrollTop;
+			// console.log(this.scrollY)
 		}
 	}
 };
 </script>
 
 <style lang="scss">
+.home-box {
+	height: calc(100vh - var(--window-bottom) - 100rpx);
+	/*  #ifdef  APP-PLUS  */
+	height: calc(100vh - var(--window-bottom) - var(--status-bar-height) - 100rpx);
+	/*  #endif  */
+}
 .swiper-box {
 	width: 100%;
 	height: 200rpx;
@@ -153,7 +226,7 @@ export default {
 			text {
 				display: block;
 				color: #666;
-				font-size: 12px;
+				font-size: 24rpx;
 			}
 		}
 	}
@@ -161,13 +234,16 @@ export default {
 
 /* 推荐商家 */
 .shop-box {
+	.filter-section {
+		min-height: 81rpx;
+	}
 	.title {
 		display: flex;
 		align-items: flex;
 		justify-content: center;
 		height: 80rpx;
 		line-height: 80rpx;
-		font-size: 16px;
+		font-size: 32rpx;
 		color: #333;
 		background: #fff;
 

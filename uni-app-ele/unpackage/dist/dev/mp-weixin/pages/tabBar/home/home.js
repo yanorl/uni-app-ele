@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -170,7 +170,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageHeader = function pageHeader() {Promise.all(/*! require.ensure | components/pageheader/pageHeader */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pageheader/pageHeader")]).then((function () {return resolve(__webpack_require__(/*! ../../../components/pageheader/pageHeader.vue */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopLists = function shopLists() {__webpack_require__.e(/*! require.ensure | components/shopLists/shopLists */ "components/shopLists/shopLists").then((function () {return resolve(__webpack_require__(/*! ../../../components/shopLists/shopLists.vue */ 81));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
+var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageHeader = function pageHeader() {Promise.all(/*! require.ensure | components/pageheader/pageHeader */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pageheader/pageHeader")]).then((function () {return resolve(__webpack_require__(/*! ../../../components/pageheader/pageHeader.vue */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var filterView = function filterView() {__webpack_require__.e(/*! require.ensure | components/filterView/filterView */ "components/filterView/filterView").then((function () {return resolve(__webpack_require__(/*! ../../../components/filterView/filterView.vue */ 81));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopLists = function shopLists() {__webpack_require__.e(/*! require.ensure | components/shopLists/shopLists */ "components/shopLists/shopLists").then((function () {return resolve(__webpack_require__(/*! ../../../components/shopLists/shopLists.vue */ 88));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   data: function data() {
@@ -178,6 +184,7 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
       swipeImgs: [],
       entries: [],
       shopList: [],
+      filterData: {},
       indicatorDots: true,
       autoplay: true,
       interval: 2000,
@@ -185,58 +192,119 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
       circular: true,
       page: 1,
       size: 5,
-      allLoaded: false };
+      allLoaded: false,
+      postData: null,
+      upDate: false,
+      scrollY: 0,
+      filterTop: null };
 
   },
   onLoad: function onLoad() {
-    this.initData();
+    this.getBanner();
     this.shopLists();
+    this.getFilter();
   },
   components: {
     pageHeader: pageHeader,
+    filterView: filterView,
     shopLists: shopLists },
 
-  onReachBottom: function onReachBottom() {
-    if (!this.allLoaded) {
-      this.page++;
-      this.shopLists();
-    }
+  // onReachBottom() {
+  // 	if (!this.allLoaded) {
+  // 		this.page++;
+  // 		this.upDate = false;
+  // 		this.shopLists();
+  // 	}
+  // },
+  watch: {
+    scrollY: function scrollY(newY) {
+      console.log(newY);
+      console.log(this.filterTop);
+      if (newY >= this.filterTop) {
+        this.$refs.filterViews.fatherScrollShow();
+      } else {
+        this.$refs.filterViews.fatherScrollHide();
+      }
+    } },
+
+  mounted: function mounted() {
+    this.$nextTick(function () {var _this = this;
+      uni.
+      createSelectorQuery().
+      in(this).
+      select('#filterSection').
+      boundingClientRect(function (data) {
+        console.log(data);
+        _this.filterTop = data.top;
+      }).
+      exec();
+    });
   },
   methods: {
-    initData: function initData() {var _this = this;
+    scrolltolower: function scrolltolower() {
+      if (!this.allLoaded) {
+        this.page++;
+        this.upDate = false;
+        this.shopLists();
+      }
+    },
+    getBanner: function getBanner() {var _this2 = this;
       this.request({
         url: _interfaces.default.getBanner,
         success: function success(res) {
           // console.log(res);
-          _this.swipeImgs = res.swipeImgs;
-          _this.entries = res.entries;
+          _this2.swipeImgs = res.swipeImgs;
+          _this2.entries = res.entries;
         } });
 
     },
-    shopLists: function shopLists() {var _this2 = this;
+    getFilter: function getFilter() {var _this3 = this;
+      this.request({
+        url: _interfaces.default.getfilter,
+        success: function success(res) {
+          // console.log(res);
+          _this3.filterData = res;
+        } });
+
+    },
+    shopLists: function shopLists() {var _this4 = this;
       this.allLoaded = false;
 
       this.request({
         url: _interfaces.default.getShoplists + '/' + this.page + '/' + this.size,
         // url: interfaces.getShoplists,
-        data: {
-          page: this.page,
-          size: this.size },
-
+        data: this.postData,
         method: 'POST',
         success: function success(res) {
           console.log(res);
           // this.shopList = res;
-          if (res.length >= _this2.size) {
-            res.forEach(function (item) {
-              _this2.shopList.push(item);
-            });
+          if (!_this4.upDate) {
+            if (res.length >= _this4.size) {
+              res.forEach(function (item) {
+                _this4.shopList.push(item);
+              });
+            } else {
+              _this4.allLoaded = true;
+            }
           } else {
-            _this2.allLoaded = true;
+            _this4.shopList = res;
           }
         } });
 
+    },
+    update: function update(condation) {
+      // console.log(condation);
+      this.postData = condation;
+      this.page = 1;
+      this.upDate = true;
+      this.shopLists();
+    },
+    scroll: function scroll(e) {
+      // console.log(e.detail.scrollTop);
+      this.scrollY = e.detail.scrollTop;
+      // console.log(this.scrollY)
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
