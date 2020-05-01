@@ -50,8 +50,7 @@ export default {
 			currentSort: 0,
 			isSort: false,
 			isScreen: false,
-			filterTop: false,
-			filterBoolean: false
+			filterTop: false
 		};
 	},
 	props: {
@@ -116,9 +115,9 @@ export default {
 			this.$emit('update', { condition: item.code });
 		},
 		hideView() {
-			if(!this.filterBoolean) {
+			// if(!this.filterBoolean) {
 				this.filterTop = false;
-			}
+			// }
 			this.isSort = false;
 			this.isScreen = false;
 		},
@@ -161,18 +160,9 @@ export default {
 				});
 				screenData[screen.id] = mpiStr.join();
 			});
-			console.log(mpiStr.join());
+			// console.log(mpiStr.join());
 			this.$emit('update', { condition: screenData });
-
 			this.hideView();
-		},
-		fatherScrollShow() {
-			this.filterTop = true
-			this.filterBoolean = true
-		},
-		fatherScrollHide() {
-			this.filterTop = false
-			this.filterBoolean = false
 		},
 		moveHandle() {}
 	}

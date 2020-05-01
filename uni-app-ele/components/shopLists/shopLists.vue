@@ -1,6 +1,6 @@
 <template>
 		<view class="shop-list">
-			<view class="shop-list-info">
+			<view class="shop-list-info" @tap="selectShop(shopList.name)">
 				<!-- 左侧图片 -->
 				<view class="shop-list-logo"><image :src="shopList.image_path"></image></view>
 				<!-- 右侧内容 -->
@@ -54,6 +54,13 @@ export default {
 	},
 	components:{
 		rating
+	},
+	methods:{
+		selectShop(name) {
+			uni.navigateTo({
+				url: '../../../pages/shops/shops?name=' + name
+			});
+		}
 	}
 };
 </script>

@@ -5,7 +5,8 @@
     "pages/tabBar/category/category",
     "pages/tabBar/user/user",
     "pages/city/city",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/shops/shops"
   ],
   "subPackages": [],
   "window": {
@@ -51,5 +52,6 @@
       "desc": "定位"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap32.json"
 }

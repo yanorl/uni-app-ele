@@ -4,7 +4,7 @@
 		<pageHeader />
 		<view class="page-home">
 			
-		<scroll-view class="home-box" scroll-y="true" @scroll="scroll" @scrolltolower="scrolltolower">
+		<scroll-view class="home-box" scroll-y="true"  @scrolltolower="scrolltolower">
 			<!-- swiper banner -->
 			<view class="page-section swiper-box">
 				<swiper class="swiper" :circular="circular" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
@@ -25,15 +25,16 @@
 			</view>
 
 			<!-- 商家推荐 -->
-			<view class="page-section shop-box">
+			<view class="page-section shop-box" id="filterSection">
 				<view class="title">推荐商家</view>
 
 				<!-- 导航 筛选-->
-				<view class="filter-section" id="filterSection"><filter-view :filterData="filterData" @update="update" ref="filterViews"></filter-view></view>
+				<view class="filter-section"><filter-view :filterData="filterData" @update="update" ref="filterViews"></filter-view></view>
 
 				<!-- 商家信息列表 -->
 				<view class="shop-list-section"><shop-lists v-for="(item, index) in shopList" :key="index" :shopList="item.restaurant"></shop-lists></view>
 			</view>
+			
 		</scroll-view>
 		</view>
 	</view>
@@ -61,9 +62,7 @@ export default {
 			size: 5,
 			allLoaded: false,
 			postData: null,
-			upDate: false,
-			scrollY: 0,
-			filterTop: null
+			upDate: false
 		};
 	},
 	onLoad() {
@@ -84,28 +83,19 @@ export default {
 	// 	}
 	// },
 	watch: {
-		scrollY(newY) {
-			console.log(newY);
-			console.log(this.filterTop);
-			if (newY >= this.filterTop) {
-				this.$refs.filterViews.fatherScrollShow();
-			} else {
-				this.$refs.filterViews.fatherScrollHide();
-			}
-		}
 	},
 	mounted() {
-		this.$nextTick(function() {
-			uni
-				.createSelectorQuery()
-				.in(this)
-				.select('#filterSection')
-				.boundingClientRect(data => {
-					console.log(data);
-					this.filterTop = data.top;
-				})
-				.exec();
-		});
+		// this.$nextTick(function() {
+		// 	uni
+		// 		.createSelectorQuery()
+		// 		.in(this)
+		// 		.select('#filterSection')
+		// 		.boundingClientRect(data => {
+		// 			console.log(data);
+		// 			this.filterTop = data.top;
+		// 		})
+		// 		.exec();
+		// });
 	},
 	methods: {
 		scrolltolower() {
@@ -165,11 +155,6 @@ export default {
 			this.page = 1;
 			this.upDate = true;
 			this.shopLists();
-		},
-		scroll(e) {
-			// console.log(e.detail.scrollTop);
-			this.scrollY = e.detail.scrollTop;
-			// console.log(this.scrollY)
 		}
 	}
 };
@@ -235,6 +220,9 @@ export default {
 /* 推荐商家 */
 .shop-box {
 	.filter-section {
+		position: sticky;
+		top:0;
+		z-index: 9;
 		min-height: 81rpx;
 	}
 	.title {

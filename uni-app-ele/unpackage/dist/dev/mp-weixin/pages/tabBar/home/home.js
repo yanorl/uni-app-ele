@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -176,7 +176,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageHeader = function pageHeader() {Promise.all(/*! require.ensure | components/pageheader/pageHeader */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pageheader/pageHeader")]).then((function () {return resolve(__webpack_require__(/*! ../../../components/pageheader/pageHeader.vue */ 74));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var filterView = function filterView() {__webpack_require__.e(/*! require.ensure | components/filterView/filterView */ "components/filterView/filterView").then((function () {return resolve(__webpack_require__(/*! ../../../components/filterView/filterView.vue */ 81));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopLists = function shopLists() {__webpack_require__.e(/*! require.ensure | components/shopLists/shopLists */ "components/shopLists/shopLists").then((function () {return resolve(__webpack_require__(/*! ../../../components/shopLists/shopLists.vue */ 88));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageHeader = function pageHeader() {Promise.all(/*! require.ensure | components/pageheader/pageHeader */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/pageheader/pageHeader")]).then((function () {return resolve(__webpack_require__(/*! ../../../components/pageheader/pageHeader.vue */ 82));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var filterView = function filterView() {__webpack_require__.e(/*! require.ensure | components/filterView/filterView */ "components/filterView/filterView").then((function () {return resolve(__webpack_require__(/*! ../../../components/filterView/filterView.vue */ 89));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopLists = function shopLists() {__webpack_require__.e(/*! require.ensure | components/shopLists/shopLists */ "components/shopLists/shopLists").then((function () {return resolve(__webpack_require__(/*! ../../../components/shopLists/shopLists.vue */ 96));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   data: function data() {
@@ -194,9 +195,7 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
       size: 5,
       allLoaded: false,
       postData: null,
-      upDate: false,
-      scrollY: 0,
-      filterTop: null };
+      upDate: false };
 
   },
   onLoad: function onLoad() {
@@ -216,29 +215,20 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
   // 		this.shopLists();
   // 	}
   // },
-  watch: {
-    scrollY: function scrollY(newY) {
-      console.log(newY);
-      console.log(this.filterTop);
-      if (newY >= this.filterTop) {
-        this.$refs.filterViews.fatherScrollShow();
-      } else {
-        this.$refs.filterViews.fatherScrollHide();
-      }
-    } },
+  watch: {},
 
   mounted: function mounted() {
-    this.$nextTick(function () {var _this = this;
-      uni.
-      createSelectorQuery().
-      in(this).
-      select('#filterSection').
-      boundingClientRect(function (data) {
-        console.log(data);
-        _this.filterTop = data.top;
-      }).
-      exec();
-    });
+    // this.$nextTick(function() {
+    // 	uni
+    // 		.createSelectorQuery()
+    // 		.in(this)
+    // 		.select('#filterSection')
+    // 		.boundingClientRect(data => {
+    // 			console.log(data);
+    // 			this.filterTop = data.top;
+    // 		})
+    // 		.exec();
+    // });
   },
   methods: {
     scrolltolower: function scrolltolower() {
@@ -248,26 +238,26 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
         this.shopLists();
       }
     },
-    getBanner: function getBanner() {var _this2 = this;
+    getBanner: function getBanner() {var _this = this;
       this.request({
         url: _interfaces.default.getBanner,
         success: function success(res) {
           // console.log(res);
-          _this2.swipeImgs = res.swipeImgs;
-          _this2.entries = res.entries;
+          _this.swipeImgs = res.swipeImgs;
+          _this.entries = res.entries;
         } });
 
     },
-    getFilter: function getFilter() {var _this3 = this;
+    getFilter: function getFilter() {var _this2 = this;
       this.request({
         url: _interfaces.default.getfilter,
         success: function success(res) {
           // console.log(res);
-          _this3.filterData = res;
+          _this2.filterData = res;
         } });
 
     },
-    shopLists: function shopLists() {var _this4 = this;
+    shopLists: function shopLists() {var _this3 = this;
       this.allLoaded = false;
 
       this.request({
@@ -278,16 +268,16 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
         success: function success(res) {
           console.log(res);
           // this.shopList = res;
-          if (!_this4.upDate) {
-            if (res.length >= _this4.size) {
+          if (!_this3.upDate) {
+            if (res.length >= _this3.size) {
               res.forEach(function (item) {
-                _this4.shopList.push(item);
+                _this3.shopList.push(item);
               });
             } else {
-              _this4.allLoaded = true;
+              _this3.allLoaded = true;
             }
           } else {
-            _this4.shopList = res;
+            _this3.shopList = res;
           }
         } });
 
@@ -298,13 +288,7 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
       this.page = 1;
       this.upDate = true;
       this.shopLists();
-    },
-    scroll: function scroll(e) {
-      // console.log(e.detail.scrollTop);
-      this.scrollY = e.detail.scrollTop;
-      // console.log(this.scrollY)
     } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

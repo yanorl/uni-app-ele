@@ -8527,7 +8527,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页" }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类" }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white" }, "pages/city/city": { "navigationBarTitleText": "选择城市" }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "Yan", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页" }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类" }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white" }, "pages/city/city": { "navigationBarTitleText": "选择城市" }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white" }, "pages/shops/shops": { "navigationBarTitleText": "商家" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "Yan", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -9821,12 +9821,14 @@ var domain = "https://ele-interface.herokuapp.com/api/";
 var interfaces = {
   // 获取城市数据
   getCityData: domain + "posts/cities",
-  // 获取分类数据
+  // 获取banner数据
   getBanner: domain + "profile/shopping",
-  // 获取商品列表数据
+  // 获取商家列表筛选数据
   getfilter: domain + 'profile/filter',
-  // 商品详情信息
-  getShoplists: domain + "profile/restaurants" };
+  // 商家列表详情信息
+  getShoplists: domain + "profile/restaurants",
+  //商家详情信息
+  getShops: domain + 'profile/batch_shop' };
 
 module.exports = interfaces;
 
