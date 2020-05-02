@@ -214,7 +214,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageStatus = function pageStatus() {__webpack_require__.e(/*! require.ensure | components/status/status */ "components/status/status").then((function () {return resolve(__webpack_require__(/*! ../../components/status/status.vue */ 117));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopsHeader = function shopsHeader() {__webpack_require__.e(/*! require.ensure | pages/shops/shopsHeader */ "pages/shops/shopsHeader").then((function () {return resolve(__webpack_require__(/*! ./shopsHeader.vue */ 124));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var infoModel = function infoModel() {__webpack_require__.e(/*! require.ensure | pages/shops/infoModel */ "pages/shops/infoModel").then((function () {return resolve(__webpack_require__(/*! ./infoModel.vue */ 131));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var activity = function activity() {__webpack_require__.e(/*! require.ensure | pages/shops/activity */ "pages/shops/activity").then((function () {return resolve(__webpack_require__(/*! ./activity.vue */ 138));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goods = function goods() {Promise.all(/*! require.ensure | pages/shops/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goods")]).then((function () {return resolve(__webpack_require__(/*! ./goods.vue */ 145));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsLists = function goodsLists() {Promise.all(/*! require.ensure | pages/shops/goodsLists */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goodsLists")]).then((function () {return resolve(__webpack_require__(/*! ./goodsLists.vue */ 153));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageStatus = function pageStatus() {__webpack_require__.e(/*! require.ensure | components/status/status */ "components/status/status").then((function () {return resolve(__webpack_require__(/*! ../../components/status/status.vue */ 117));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopsHeader = function shopsHeader() {__webpack_require__.e(/*! require.ensure | pages/shops/shopsHeader */ "pages/shops/shopsHeader").then((function () {return resolve(__webpack_require__(/*! ./shopsHeader.vue */ 124));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var infoModel = function infoModel() {__webpack_require__.e(/*! require.ensure | pages/shops/infoModel */ "pages/shops/infoModel").then((function () {return resolve(__webpack_require__(/*! ./infoModel.vue */ 131));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var activity = function activity() {__webpack_require__.e(/*! require.ensure | pages/shops/activity */ "pages/shops/activity").then((function () {return resolve(__webpack_require__(/*! ./activity.vue */ 138));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goods = function goods() {Promise.all(/*! require.ensure | pages/shops/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goods")]).then((function () {return resolve(__webpack_require__(/*! ./goods.vue */ 145));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsLists = function goodsLists() {Promise.all(/*! require.ensure | pages/shops/goodsLists */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goodsLists")]).then((function () {return resolve(__webpack_require__(/*! ./goodsLists.vue */ 153));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopCart = function shopCart() {__webpack_require__.e(/*! require.ensure | pages/shops/shopCart */ "pages/shops/shopCart").then((function () {return resolve(__webpack_require__(/*! ./shopCart.vue */ 191));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   data: function data() {
@@ -255,6 +257,7 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/int
 
 
 
+
   },
   components: {
     pageStatus: pageStatus,
@@ -262,7 +265,8 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/int
     infoModel: infoModel,
     activity: activity,
     goods: goods,
-    goodsLists: goodsLists },
+    goodsLists: goodsLists,
+    shopCart: shopCart },
 
   onPageScroll: function onPageScroll(e) {
 
@@ -274,7 +278,6 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/int
       this.request({
         url: _interfaces.default.getShops,
         success: function success(res) {
-          console.log(res);
           _this.shopInfo = res;
         } });
 

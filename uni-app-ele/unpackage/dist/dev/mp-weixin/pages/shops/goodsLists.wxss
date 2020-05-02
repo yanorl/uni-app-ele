@@ -25,7 +25,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 .scrollHeight {
-  height: calc(100vh - 82rpx);
+  height: calc(100vh - 82rpx - 96rpx);
 }
 .list_box {
   display: -webkit-box;

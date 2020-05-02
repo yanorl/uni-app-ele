@@ -6,6 +6,7 @@
     "info-model": "/pages/shops/infoModel",
     "activity": "/pages/shops/activity",
     "goods": "/pages/shops/goods",
-    "goods-lists": "/pages/shops/goodsLists"
+    "goods-lists": "/pages/shops/goodsLists",
+    "shop-cart": "/pages/shops/shopCart"
   }
 }

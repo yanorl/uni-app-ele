@@ -178,13 +178,6 @@ var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 150);function _i
 
   mixins: [_mixins.cartControlMixin],
   created: function created() {
-    // uni.getSystemInfo({
-    // 	success: res => {
-    // 		/* 设置当前滚动容器的高，若非窗口的告诉，请自行修改 */
-    // 		this.scrollHeight = `${res.windowHeight}px`;
-    // 		console.log('gaodu', res.windowHeight);
-    // 	}
-    // });
   },
   computed: {},
   mounted: function mounted() {var _this = this;
@@ -225,14 +218,14 @@ var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 150);function _i
     },
     /* 获取元素顶部信息 */
     getElementTop: function getElementTop() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var p_arr, i, resu;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                console.log(_this3.mainArray);
+                // console.log(this.mainArray);
                 /* Promise 对象数组 */
                 p_arr = [];
 
                 /* 遍历数据，创建相应的 Promise 数组数据 */
-                i = 0;case 3:if (!(i < _this3.mainArray.length)) {_context.next = 11;break;}_context.next = 6;return (
-                  _this3.getScrollTop("#item-".concat(i)));case 6:resu = _context.sent;
-                p_arr.push(resu);case 8:i++;_context.next = 3;break;case 11:
+                i = 0;case 2:if (!(i < _this3.mainArray.length)) {_context.next = 10;break;}_context.next = 5;return (
+                  _this3.getScrollTop("#item-".concat(i)));case 5:resu = _context.sent;
+                p_arr.push(resu);case 7:i++;_context.next = 2;break;case 10:
 
 
                 // console.log('p_arr', p_arr)
@@ -241,11 +234,11 @@ var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 150);function _i
                 _this3.getScrollTop('#scroll-el').then(function (res) {
                   /* 所有节点信息返回后调用该方法 */
                   Promise.all(p_arr).then(function (data) {
-                    console.log('滚动', data);
+                    // console.log('滚动', data);
                     _this3.tipsTop = "".concat(data, "px");
                     _this3.topArr = data;
                   });
-                });case 12:case "end":return _context.stop();}}}, _callee);}))();
+                });case 11:case "end":return _context.stop();}}}, _callee);}))();
     },
 
     /* 主区域滚动监听 */
@@ -264,8 +257,8 @@ var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 150);function _i
         });
       }
       this.leftIndex = index < 0 ? 0 : index;
-      console.log(top);
-      console.log(this.leftIndex);
+      // console.log(top);
+      // console.log(this.leftIndex);
     },
     /* 主区域触摸 */
     mainTouch: function mainTouch() {
@@ -279,7 +272,7 @@ var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 150);function _i
       this.scrollInto = "item-".concat(index);
     },
     touchStart: function touchStart(e) {
-      console.log(e);
+      // console.log(e);
     } } };exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

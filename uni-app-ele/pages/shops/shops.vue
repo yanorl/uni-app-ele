@@ -1,13 +1,11 @@
 <template>
 	<view class="page-section" v-if="shopInfo">
 		<!-- 状态栏 -->
-		<view v-show="showStatus">
-			<page-status></page-status>
-		</view>
+		<view v-show="showStatus"><page-status></page-status></view>
 		<view class="shops-box">
 			<shopsHeader />
 			<!-- <scroll-view class="shops-wrap" scroll-y="true" @scroll="scroll"> -->
-			<view class="shops-wrap">
+			<view class="shops-wrap" >
 				<!-- 头部 -->
 				<view class="header-nav">
 					<view class="header-bg"><image :src="shopInfo.rst.scheme" mode=""></image></view>
@@ -57,11 +55,14 @@
 
 					<view class="tab-item" v-show="currentIndex == 2">aaa</view>
 				</view>
-				
+
 				<!--  -->
 				<!-- </scroll-view> -->
 			</view>
 		</view>
+
+		<!-- 购物车 -->
+		<view class="shop-cart-wrap"><shop-cart :shopInfo="shopInfo" /></view>
 	</view>
 </template>
 
@@ -72,6 +73,7 @@ import infoModel from './infoModel.vue';
 import activity from './activity.vue';
 import goods from './goods.vue';
 import goodsLists from './goodsLists.vue';
+import shopCart from './shopCart.vue';
 import interfaces from '../../utils/interfaces.js';
 
 export default {
@@ -99,19 +101,20 @@ export default {
 	watch: {
 		// #ifdef APP-PLUS
 		scrollTop(newValue) {
-			if(newValue >= this.statusBarHeight) {
-				this.showStatus = true
+			if (newValue >= this.statusBarHeight) {
+				this.showStatus = true;
 			} else {
-				this.showStatus = false
+				this.showStatus = false;
 			}
 		}
 		// #endif
 	},
 	mounted() {
 		// #ifdef APP-PLUS
-		this.$nextTick(function(){
-			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight
-		})
+		let that = this;
+		that.$nextTick(function() {
+			that.statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
+		});
 		// #endif
 	},
 	components: {
@@ -120,11 +123,12 @@ export default {
 		infoModel,
 		activity,
 		goods,
-		goodsLists
+		goodsLists,
+		shopCart
 	},
-	onPageScroll (e){
+	onPageScroll(e) {
 		// #ifdef APP-PLUS
-		this.scrollTop = e.scrollTop
+		this.scrollTop = e.scrollTop;
 		// #endif
 	},
 	methods: {
@@ -132,7 +136,6 @@ export default {
 			this.request({
 				url: interfaces.getShops,
 				success: res => {
-					console.log(res);
 					this.shopInfo = res;
 				}
 			});
@@ -146,11 +149,11 @@ export default {
 </script>
 
 <style lang="scss">
-	// .showStatus{
-	// 	/*  #ifdef  APP-PLUS  */
-	// 	margin-top: var(--status-bar-height);
-	// 	/*  #endif  */
-	// }
+// .showStatus{
+// 	/*  #ifdef  APP-PLUS  */
+// 	margin-top: var(--status-bar-height);
+// 	/*  #endif  */
+// }
 .shops-box {
 	height: 100%;
 
@@ -230,7 +233,7 @@ export default {
 			top: 0px;
 			/*  #ifdef  APP-PLUS  */
 			top: var(--status-bar-height);
-						/*  #endif  */
+			/*  #endif  */
 			z-index: 10;
 			ul {
 				display: flex;
@@ -254,5 +257,9 @@ export default {
 			}
 		}
 	}
+}
+.shop-cart-wrap {
+	width: 100%;
+	height: 96rpx;
 }
 </style>

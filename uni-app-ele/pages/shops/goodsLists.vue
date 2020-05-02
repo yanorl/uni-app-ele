@@ -62,13 +62,6 @@ export default {
 	},
 	mixins: [cartControlMixin],
 	created() {
-		// uni.getSystemInfo({
-		// 	success: res => {
-		// 		/* 设置当前滚动容器的高，若非窗口的告诉，请自行修改 */
-		// 		this.scrollHeight = `${res.windowHeight}px`;
-		// 		console.log('gaodu', res.windowHeight);
-		// 	}
-		// });
 	},
 	computed: {},
 	mounted() {
@@ -109,7 +102,7 @@ export default {
 		},
 		/* 获取元素顶部信息 */
 		async getElementTop() {
-			console.log(this.mainArray);
+			// console.log(this.mainArray);
 			/* Promise 对象数组 */
 			let p_arr = [];
 
@@ -125,7 +118,7 @@ export default {
 			this.getScrollTop('#scroll-el').then(res => {
 				/* 所有节点信息返回后调用该方法 */
 				Promise.all(p_arr).then(data => {
-					console.log('滚动', data);
+					// console.log('滚动', data);
 					this.tipsTop = `${data}px`;
 					this.topArr = data;
 				});
@@ -148,8 +141,8 @@ export default {
 				});
 			}
 			this.leftIndex = index < 0 ? 0 : index;
-			console.log(top);
-			console.log(this.leftIndex);
+			// console.log(top);
+			// console.log(this.leftIndex);
 		},
 		/* 主区域触摸 */
 		mainTouch() {
@@ -163,7 +156,7 @@ export default {
 			this.scrollInto = `item-${index}`;
 		},
 		touchStart(e) {
-			console.log(e);
+			// console.log(e);
 		}
 	}
 };
@@ -171,9 +164,9 @@ export default {
 
 <style lang="scss">
 .scrollHeight {
-	height: calc(100vh - 82rpx);
+	height: calc(100vh - 82rpx - 96rpx);  //82 tabNav高度， 96购物车高度
 	/*  #ifdef  APP-PLUS  */
-	height: calc(100vh - var(--status-bar-height) - 82rpx);
+	height: calc(100vh - var(--status-bar-height) - 82rpx - 96rpx);
 	/*  #endif  */
 }
 .list_box {
