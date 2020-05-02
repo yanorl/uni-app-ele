@@ -24,10 +24,34 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.cart-Control-box .cart-decrease {
+  display: none;
+  opacity: 0;
+  -webkit-transform: translate3d(20rpx, 0, 0);
+          transform: translate3d(20rpx, 0, 0);
+}
+.cart-Control-box .cart-decrease ._i {
+    -webkit-transition: all 0.4s linear;
+    transition: all 0.4s linear;
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+}
+.cart-Control-box .cart-decrease.move {
+    display: inline-block;
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+.cart-Control-box .cart-decrease.move ._i {
+      -webkit-transform: rotate(0);
+              transform: rotate(0);
+}
 .cart-Control-box .cart-decrease,
 .cart-Control-box .cart-add {
   display: inline-block;
   padding: 16rpx;
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
 }
 .cart-Control-box .cart-decrease ._i,
   .cart-Control-box .cart-add ._i {

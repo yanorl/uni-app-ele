@@ -2534,6 +2534,98 @@ var index_esm = {
 
 /***/ }),
 
+/***/ 150:
+/*!********************************************************************************!*\
+  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/mixins.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.cartControlMixin = void 0;var cartControlMixin = {
+  methods: {
+    add: function add(item, count) {
+      this.joinCart(item, count);
+      // this.sum();
+    },
+    sub: function sub(item, count) {
+      if (count <= 0) {
+        // 更新storage
+        uni.getStorage({
+          key: "goodsList",
+          success: function success(res) {
+            var goodsList = res.data;
+            // 本地删除选中商品
+            goodsList.forEach(function (goods, index) {
+              if (goods.food_id == item.specfoods[0].food_id) {
+                goodsList.splice(index, 1);
+              }
+            });
+            uni.setStorageSync("goodsList", goodsList);
+          } });
+
+      } else {
+        this.joinCart(item, count);
+      }
+      // this.sum();
+    },
+    joinCart: function joinCart(item, count) {var _this = this;
+      var parm = {
+        'food_id': item.specfoods[0].food_id,
+        'food_name': item.specfoods[0].name,
+        'food_img': item.image_path,
+        'foot_count': count,
+        'food_price': item.specfoods[0].price };
+
+      // 1.先去本地存储中取
+      uni.getStorage({
+        key: "goodsList",
+        success: function success(res) {
+          // 拿数据
+          var goodsList = res.data;
+          // 查找商品是否存在
+          var isExist = false;
+          goodsList.forEach(function (goods) {
+            if (goods.food_id == parm.food_id) {
+              // 如果存在  修改商品数量
+              goods.foot_count = Number(parm.foot_count);
+              isExist = true;
+            }
+          });
+          if (!isExist) {// 不存在，存入数组
+            goodsList.push(parm);
+          }
+          _this.setGoodsList(goodsList);
+        },
+        fail: function fail(err) {// 没有得到数据,那么就存
+          // console.log("加入失败")
+          var goodsList = [];
+          goodsList.push(parm);
+
+          // 往本地存储中存储数据
+          _this.setGoodsList(goodsList);
+        } });
+
+
+    },
+    setGoodsList: function setGoodsList(goodsList) {
+      // console.log("存储到本地存储中")
+      // 存储到本地存储中
+      uni.setStorage({
+        key: 'goodsList',
+        data: goodsList,
+        success: function success() {
+          // uni.showToast({
+          // 	icon:"success",
+          // 	title:"添加购物车成功"
+          // })
+        } });
+
+    } } };exports.cartControlMixin = cartControlMixin;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 17:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -2702,98 +2794,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   locationAddr: '' };var _default =
 
 state;exports.default = _default;
-
-/***/ }),
-
-/***/ 192:
-/*!********************************************************************************!*\
-  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/mixins.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.cartControlMixin = void 0;var cartControlMixin = {
-  methods: {
-    add: function add(item, count) {
-      this.joinCart(item, count);
-      // this.sum();
-    },
-    sub: function sub(item, count) {
-      if (count <= 0) {
-        // 更新storage
-        uni.getStorage({
-          key: "goodsList",
-          success: function success(res) {
-            var goodsList = res.data;
-            // 本地删除选中商品
-            goodsList.forEach(function (goods, index) {
-              if (goods.food_id == item.specfoods[0].food_id) {
-                goodsList.splice(index, 1);
-              }
-            });
-            uni.setStorageSync("goodsList", goodsList);
-          } });
-
-      } else {
-        this.joinCart(item, count);
-      }
-      // this.sum();
-    },
-    joinCart: function joinCart(item, count) {var _this = this;
-      var parm = {
-        'food_id': item.specfoods[0].food_id,
-        'food_name': item.specfoods[0].name,
-        'food_img': item.image_path,
-        'foot_count': count,
-        'food_price': item.specfoods[0].price };
-
-      // 1.先去本地存储中取
-      uni.getStorage({
-        key: "goodsList",
-        success: function success(res) {
-          // 拿数据
-          var goodsList = res.data;
-          // 查找商品是否存在
-          var isExist = false;
-          goodsList.forEach(function (goods) {
-            if (goods.food_id == parm.food_id) {
-              // 如果存在  修改商品数量
-              goods.foot_count = Number(parm.foot_count);
-              isExist = true;
-            }
-          });
-          if (!isExist) {// 不存在，存入数组
-            goodsList.push(parm);
-          }
-          _this.setGoodsList(goodsList);
-        },
-        fail: function fail(err) {// 没有得到数据,那么就存
-          // console.log("加入失败")
-          var goodsList = [];
-          goodsList.push(parm);
-
-          // 往本地存储中存储数据
-          _this.setGoodsList(goodsList);
-        } });
-
-
-    },
-    setGoodsList: function setGoodsList(goodsList) {
-      // console.log("存储到本地存储中")
-      // 存储到本地存储中
-      uni.setStorage({
-        key: 'goodsList',
-        data: goodsList,
-        success: function success() {
-          // uni.showToast({
-          // 	icon:"success",
-          // 	title:"添加购物车成功"
-          // })
-        } });
-
-    } } };exports.cartControlMixin = cartControlMixin;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
@@ -10719,7 +10719,7 @@ module.exports = {"S":[{"id":1,"name":"上海","abbr":"SH","area_code":"021","so
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页", "usingComponents": { "page-header": "/components/pageheader/pageHeader", "filter-view": "/components/filterView/filterView", "shop-lists": "/components/shopLists/shopLists" }, "usingAutoImportComponents": {} }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": { "page-status": "/components/status/status", "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" }, "usingAutoImportComponents": { "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" } }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white", "usingComponents": { "location": "/components/location/location" }, "usingAutoImportComponents": { "location": "/components/location/location" } }, "pages/shops/shops": { "navigationBarTitleText": "商家", "usingComponents": { "page-status": "/components/status/status", "shops-header": "/pages/shops/shopsHeader", "info-model": "/pages/shops/infoModel", "activity": "/pages/shops/activity", "goods": "/pages/shops/goods", "goods-lists": "/pages/shops/goodsLists" }, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "Yan", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页" }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类" }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white" }, "pages/city/city": { "navigationBarTitleText": "选择城市" }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white" }, "pages/shops/shops": { "navigationBarTitleText": "商家" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "Yan", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 

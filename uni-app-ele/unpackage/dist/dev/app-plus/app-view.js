@@ -5734,22 +5734,21 @@ var render = function() {
     "v-uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
-      _vm._$g(1, "i")
-        ? _c(
-            "v-uni-view",
-            {
-              staticClass: _vm._$g(1, "sc"),
-              attrs: { _i: 1 },
-              on: {
-                click: function($event) {
-                  return _vm.$handleViewEvent($event, { stop: true })
-                }
-              }
-            },
-            [_c("i", { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } })],
-            1
-          )
-        : _vm._e(),
+      _c(
+        "v-uni-view",
+        {
+          staticClass: _vm._$g(1, "sc"),
+          class: _vm._$g(1, "c"),
+          attrs: { _i: 1 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event, { stop: true })
+            }
+          }
+        },
+        [_c("i", { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } })],
+        1
+      ),
       _vm._$g(3, "i")
         ? _c(
             "v-uni-view",
@@ -5863,7 +5862,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 20);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.cart-Control-box .cart-decrease,\n.cart-Control-box .cart-add {\n  display: inline-block;\n  padding: 16rpx;\n}\n.cart-Control-box .cart-decrease i,\n  .cart-Control-box .cart-add i {\n    display: inline-block;\n    line-height: 36rpx;\n    font-size: 36rpx;\n    color: #00a0dc;\n    -webkit-transition: all 0.4s linear;\n    transition: all 0.4s linear;\n}\n.cart-Control-box .cart-decrease.move-enter-active, .cart-Control-box .cart-decrease.move-leave-active, .cart-Control-box .cart-add.move-enter-active, .cart-Control-box .cart-add.move-leave-active {\n    -webkit-transition: all 0.4s linear;\n    transition: all 0.4s linear;\n}\n.cart-Control-box .cart-decrease.move-enter, .cart-Control-box .cart-decrease.move-leave-to, .cart-Control-box .cart-add.move-enter, .cart-Control-box .cart-add.move-leave-to {\n    opacity: 0;\n    -webkit-transform: translate3d(36rpx, 0, 0);\n            transform: translate3d(36rpx, 0, 0);\n}\n.cart-Control-box .cart-decrease.move-enter i, .cart-Control-box .cart-decrease.move-leave-to i, .cart-Control-box .cart-add.move-enter i, .cart-Control-box .cart-add.move-leave-to i {\n      -webkit-transform: rotate(180deg);\n              transform: rotate(180deg);\n}\n.cart-Control-box .cart-count {\n  display: inline-block;\n  width: 36rpx;\n  line-height: 36rpx;\n  text-align: center;\n  font-size: 28rpx;\n  color: #93999f;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.cart-Control-box .cart-decrease {\n  display: none;\n  opacity: 0;\n  -webkit-transform: translate3d(20rpx, 0, 0);\n          transform: translate3d(20rpx, 0, 0);\n}\n.cart-Control-box .cart-decrease i {\n    -webkit-transition: all 0.4s linear;\n    transition: all 0.4s linear;\n    -webkit-transform: rotate(180deg);\n            transform: rotate(180deg);\n}\n.cart-Control-box .cart-decrease.move {\n    display: inline-block;\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n.cart-Control-box .cart-decrease.move i {\n      -webkit-transform: rotate(0);\n              transform: rotate(0);\n}\n.cart-Control-box .cart-decrease,\n.cart-Control-box .cart-add {\n  display: inline-block;\n  padding: 16rpx;\n  -webkit-transition: all 0.4s linear;\n  transition: all 0.4s linear;\n}\n.cart-Control-box .cart-decrease i,\n  .cart-Control-box .cart-add i {\n    display: inline-block;\n    line-height: 36rpx;\n    font-size: 36rpx;\n    color: #00a0dc;\n    -webkit-transition: all 0.4s linear;\n    transition: all 0.4s linear;\n}\n.cart-Control-box .cart-decrease.move-enter-active, .cart-Control-box .cart-decrease.move-leave-active, .cart-Control-box .cart-add.move-enter-active, .cart-Control-box .cart-add.move-leave-active {\n    -webkit-transition: all 0.4s linear;\n    transition: all 0.4s linear;\n}\n.cart-Control-box .cart-decrease.move-enter, .cart-Control-box .cart-decrease.move-leave-to, .cart-Control-box .cart-add.move-enter, .cart-Control-box .cart-add.move-leave-to {\n    opacity: 0;\n    -webkit-transform: translate3d(36rpx, 0, 0);\n            transform: translate3d(36rpx, 0, 0);\n}\n.cart-Control-box .cart-decrease.move-enter i, .cart-Control-box .cart-decrease.move-leave-to i, .cart-Control-box .cart-add.move-enter i, .cart-Control-box .cart-add.move-leave-to i {\n      -webkit-transform: rotate(180deg);\n              transform: rotate(180deg);\n}\n.cart-Control-box .cart-count {\n  display: inline-block;\n  width: 36rpx;\n  line-height: 36rpx;\n  text-align: center;\n  font-size: 28rpx;\n  color: #93999f;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

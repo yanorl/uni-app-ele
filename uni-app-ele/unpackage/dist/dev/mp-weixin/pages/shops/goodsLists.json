@@ -1,6 +1,6 @@
 {
+  "component": true,
   "usingComponents": {
     "cart-control": "/components/cartControl/cartControl"
-  },
-  "component": true
+  }
 }
