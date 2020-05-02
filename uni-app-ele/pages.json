@@ -57,7 +57,8 @@
 					"titleNView": false
 				},
 				"app-plus": {
-					"titleNView": false
+					"titleNView": false,
+					"bounce": "none"
 				}
 			}
 		}

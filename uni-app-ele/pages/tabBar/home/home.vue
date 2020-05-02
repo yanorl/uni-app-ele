@@ -16,7 +16,7 @@
 			<view class="page-section entries-box">
 				<swiper class="swiper" :circular="circular">
 					<swiper-item v-for="(entry, i) in entries" :key="i">
-						<view class="entries-wrap" v-for="(item, index) in entry" :key="index">
+						<view class="entries-wrap" v-for="(item, index) in entry" :key="index" @tap="selectCategory(item.name)">
 							<view class="img-wrap"><image :src="item.image" mode="widthFix"></image></view>
 							<text>{{ item.name }}</text>
 						</view>
@@ -32,7 +32,7 @@
 				<view class="filter-section"><filter-view :filterData="filterData" @update="update" ref="filterViews"></filter-view></view>
 
 				<!-- 商家信息列表 -->
-				<view class="shop-list-section"><shop-lists v-for="(item, index) in shopList" :key="index" :shopList="item.restaurant"></shop-lists></view>
+				<view class="shop-list-section"><shop-lists v-for="(item, index) in shopList" :key="index" :shopList="item.restaurant" @navigateToShop="navigateToShop"></shop-lists></view>
 			</view>
 			
 		</scroll-view>
@@ -85,19 +85,18 @@ export default {
 	watch: {
 	},
 	mounted() {
-		// this.$nextTick(function() {
-		// 	uni
-		// 		.createSelectorQuery()
-		// 		.in(this)
-		// 		.select('#filterSection')
-		// 		.boundingClientRect(data => {
-		// 			console.log(data);
-		// 			this.filterTop = data.top;
-		// 		})
-		// 		.exec();
-		// });
 	},
 	methods: {
+		selectCategory(naem) {
+			uni.navigateTo({
+				url: '../../shops/shops?shop_id=1'  //没有开发分类页面，暂时使用该页面
+			});
+		},
+		navigateToShop(id) {
+			uni.navigateTo({
+				url: '../../shops/shops?shop_id=' + id
+			});
+		},
 		scrolltolower() {
 			if (!this.allLoaded) {
 				this.page++;

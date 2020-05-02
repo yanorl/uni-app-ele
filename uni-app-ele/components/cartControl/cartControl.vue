@@ -1,8 +1,8 @@
 <template>
 	<view class="cart-Control-box">
-		<transition name="move">
+		<!-- <transition name="move"> -->
 			<view class="cart-decrease" v-if="count > 0" @tap.stop="decreaseCart"><i class="fa fa-minus-circle"></i></view>
-		</transition>
+		<!-- </transition> -->
 		<view class="cart-count" v-if="count > 0">{{ count }}</view>
 		<view class="cart-add" @tap.stop="addCart"><i class="fa fa-plus-circle"></i></view>
 	</view>
@@ -29,7 +29,7 @@ export default {
 				res.data.forEach(function(item){
 					if(item.food_id == that.items.specfoods[0].food_id) {
 						that.count = item.foot_count
-						console.log(that.count)
+						// console.log(that.count)
 					}
 				})
 				

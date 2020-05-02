@@ -1,7 +1,9 @@
 <template>
 	<view class="page-section" v-if="shopInfo">
 		<!-- 状态栏 -->
-		<page-status></page-status>
+		<view v-show="showStatus">
+			<page-status></page-status>
+		</view>
 		<view class="shops-box">
 			<shopsHeader />
 			<!-- <scroll-view class="shops-wrap" scroll-y="true" @scroll="scroll"> -->
@@ -45,18 +47,18 @@
 				<!-- tab-content -->
 				<view class="tab-content">
 					<view class="tab-item" v-show="currentIndex == 0">
+						<!-- 推荐商品 -->
 						<goods :shopInfo="shopInfo"></goods>
-						<goods :shopInfo="shopInfo"></goods>
-						<goods :shopInfo="shopInfo"></goods>
-						<goods :shopInfo="shopInfo"></goods>
-						<goods :shopInfo="shopInfo"></goods>
-						<goods :shopInfo="shopInfo"></goods>
+						<!-- 商品列表左右联动 -->
+						<goods-lists :shopInfo="shopInfo"></goods-lists>
 					</view>
 
 					<view class="tab-item" v-show="currentIndex == 1">dd</view>
 
 					<view class="tab-item" v-show="currentIndex == 2">aaa</view>
 				</view>
+				
+				<!--  -->
 				<!-- </scroll-view> -->
 			</view>
 		</view>
@@ -69,19 +71,24 @@ import shopsHeader from './shopsHeader.vue';
 import infoModel from './infoModel.vue';
 import activity from './activity.vue';
 import goods from './goods.vue';
+import goodsLists from './goodsLists.vue';
 import interfaces from '../../utils/interfaces.js';
+
 export default {
 	data() {
 		return {
 			shopInfo: null,
 			showInfoModel: false,
 			tabNav: [{ name: '点餐' }, { name: '评价' }, { name: '商家' }],
-			currentIndex: 0
+			currentIndex: 0,
+			scrollTop: 0,
+			statusBarHeight: 0,
+			showStatus: false
 		};
 	},
 	onLoad(option) {
 		// console.log(option)
-		if (!option.name) {
+		if (!option.shop_id) {
 			uni.switchTab({
 				url: '../tabBar/home/home'
 			});
@@ -89,12 +96,36 @@ export default {
 		}
 		this.initData();
 	},
+	watch: {
+		// #ifdef APP-PLUS
+		scrollTop(newValue) {
+			if(newValue >= this.statusBarHeight) {
+				this.showStatus = true
+			} else {
+				this.showStatus = false
+			}
+		}
+		// #endif
+	},
+	mounted() {
+		// #ifdef APP-PLUS
+		this.$nextTick(function(){
+			this.statusBarHeight = uni.getSystemInfoSync().statusBarHeight
+		})
+		// #endif
+	},
 	components: {
 		pageStatus,
 		shopsHeader,
 		infoModel,
 		activity,
-		goods
+		goods,
+		goodsLists
+	},
+	onPageScroll (e){
+		// #ifdef APP-PLUS
+		this.scrollTop = e.scrollTop
+		// #endif
 	},
 	methods: {
 		initData() {
@@ -115,10 +146,12 @@ export default {
 </script>
 
 <style lang="scss">
+	// .showStatus{
+	// 	/*  #ifdef  APP-PLUS  */
+	// 	margin-top: var(--status-bar-height);
+	// 	/*  #endif  */
+	// }
 .shops-box {
-	/*  #ifdef  APP-PLUS  */
-	margin-top: var(--status-bar-height);
-	/*  #endif  */
 	height: 100%;
 
 	.shops-wrap {

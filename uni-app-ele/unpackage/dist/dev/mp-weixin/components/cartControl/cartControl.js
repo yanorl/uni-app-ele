@@ -145,7 +145,7 @@ var _default2 =
         res.data.forEach(function (item) {
           if (item.food_id == that.items.specfoods[0].food_id) {
             that.count = item.foot_count;
-            console.log(that.count);
+            // console.log(that.count)
           }
         });
 

@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -218,19 +218,18 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
   watch: {},
 
   mounted: function mounted() {
-    // this.$nextTick(function() {
-    // 	uni
-    // 		.createSelectorQuery()
-    // 		.in(this)
-    // 		.select('#filterSection')
-    // 		.boundingClientRect(data => {
-    // 			console.log(data);
-    // 			this.filterTop = data.top;
-    // 		})
-    // 		.exec();
-    // });
   },
   methods: {
+    selectCategory: function selectCategory(naem) {
+      uni.navigateTo({
+        url: '../../shops/shops?shop_id=1' //没有开发分类页面，暂时使用该页面
+      });
+    },
+    navigateToShop: function navigateToShop(id) {
+      uni.navigateTo({
+        url: '../../shops/shops?shop_id=' + id });
+
+    },
     scrolltolower: function scrolltolower() {
       if (!this.allLoaded) {
         this.page++;
@@ -289,6 +288,7 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
       this.upDate = true;
       this.shopLists();
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

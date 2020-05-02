@@ -211,19 +211,26 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageStatus = function pageStatus() {__webpack_require__.e(/*! require.ensure | components/status/status */ "components/status/status").then((function () {return resolve(__webpack_require__(/*! ../../components/status/status.vue */ 117));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopsHeader = function shopsHeader() {__webpack_require__.e(/*! require.ensure | pages/shops/shopsHeader */ "pages/shops/shopsHeader").then((function () {return resolve(__webpack_require__(/*! ./shopsHeader.vue */ 124));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var infoModel = function infoModel() {__webpack_require__.e(/*! require.ensure | pages/shops/infoModel */ "pages/shops/infoModel").then((function () {return resolve(__webpack_require__(/*! ./infoModel.vue */ 131));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var activity = function activity() {__webpack_require__.e(/*! require.ensure | pages/shops/activity */ "pages/shops/activity").then((function () {return resolve(__webpack_require__(/*! ./activity.vue */ 138));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goods = function goods() {__webpack_require__.e(/*! require.ensure | pages/shops/goods */ "pages/shops/goods").then((function () {return resolve(__webpack_require__(/*! ./goods.vue */ 145));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/interfaces.js */ 30));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageStatus = function pageStatus() {__webpack_require__.e(/*! require.ensure | components/status/status */ "components/status/status").then((function () {return resolve(__webpack_require__(/*! ../../components/status/status.vue */ 117));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopsHeader = function shopsHeader() {__webpack_require__.e(/*! require.ensure | pages/shops/shopsHeader */ "pages/shops/shopsHeader").then((function () {return resolve(__webpack_require__(/*! ./shopsHeader.vue */ 124));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var infoModel = function infoModel() {__webpack_require__.e(/*! require.ensure | pages/shops/infoModel */ "pages/shops/infoModel").then((function () {return resolve(__webpack_require__(/*! ./infoModel.vue */ 131));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var activity = function activity() {__webpack_require__.e(/*! require.ensure | pages/shops/activity */ "pages/shops/activity").then((function () {return resolve(__webpack_require__(/*! ./activity.vue */ 138));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goods = function goods() {Promise.all(/*! require.ensure | pages/shops/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goods")]).then((function () {return resolve(__webpack_require__(/*! ./goods.vue */ 145));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsLists = function goodsLists() {Promise.all(/*! require.ensure | pages/shops/goodsLists */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goodsLists")]).then((function () {return resolve(__webpack_require__(/*! ./goodsLists.vue */ 184));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 {
   data: function data() {
     return {
       shopInfo: null,
       showInfoModel: false,
       tabNav: [{ name: '点餐' }, { name: '评价' }, { name: '商家' }],
-      currentIndex: 0 };
+      currentIndex: 0,
+      scrollTop: 0,
+      statusBarHeight: 0,
+      showStatus: false };
 
   },
   onLoad: function onLoad(option) {
     // console.log(option)
-    if (!option.name) {
+    if (!option.shop_id) {
       uni.switchTab({
         url: '../tabBar/home/home' });
 
@@ -231,13 +238,37 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/int
     }
     this.initData();
   },
+  watch: {},
+
+
+
+
+
+
+
+
+
+
+  mounted: function mounted() {
+
+
+
+
+
+  },
   components: {
     pageStatus: pageStatus,
     shopsHeader: shopsHeader,
     infoModel: infoModel,
     activity: activity,
-    goods: goods },
+    goods: goods,
+    goodsLists: goodsLists },
 
+  onPageScroll: function onPageScroll(e) {
+
+
+
+  },
   methods: {
     initData: function initData() {var _this = this;
       this.request({

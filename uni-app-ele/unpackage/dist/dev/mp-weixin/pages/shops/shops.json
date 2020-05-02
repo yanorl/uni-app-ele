@@ -5,6 +5,7 @@
     "shops-header": "/pages/shops/shopsHeader",
     "info-model": "/pages/shops/infoModel",
     "activity": "/pages/shops/activity",
-    "goods": "/pages/shops/goods"
+    "goods": "/pages/shops/goods",
+    "goods-lists": "/pages/shops/goodsLists"
   }
 }

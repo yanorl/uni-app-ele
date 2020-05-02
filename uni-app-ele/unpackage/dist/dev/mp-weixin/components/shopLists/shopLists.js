@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var rating = function rating() {__webpack_require__.e(/*! require.ensure | components/rating/rating */ "components/rating/rating").then((function () {return resolve(__webpack_require__(/*! ../rating/rating.vue */ 152));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var rating = function rating() {__webpack_require__.e(/*! require.ensure | components/rating/rating */ "components/rating/rating").then((function () {return resolve(__webpack_require__(/*! ../rating/rating.vue */ 152));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 =
 
 
 
@@ -66,12 +66,9 @@
     rating: rating },
 
   methods: {
-    selectShop: function selectShop(name) {
-      uni.navigateTo({
-        url: '../../../pages/shops/shops?name=' + name });
-
+    selectShop: function selectShop(id) {
+      this.$emit('navigateToShop', id);
     } } };exports.default = _default2;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

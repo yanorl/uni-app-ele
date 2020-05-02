@@ -1,6 +1,6 @@
 <template>
 		<view class="shop-list">
-			<view class="shop-list-info" @tap="selectShop(shopList.name)">
+			<view class="shop-list-info" @tap="selectShop(shopList.id)">
 				<!-- 左侧图片 -->
 				<view class="shop-list-logo"><image :src="shopList.image_path"></image></view>
 				<!-- 右侧内容 -->
@@ -56,10 +56,8 @@ export default {
 		rating
 	},
 	methods:{
-		selectShop(name) {
-			uni.navigateTo({
-				url: '../../../pages/shops/shops?name=' + name
-			});
+		selectShop(id) {
+			this.$emit('navigateToShop', id)
 		}
 	}
 };
