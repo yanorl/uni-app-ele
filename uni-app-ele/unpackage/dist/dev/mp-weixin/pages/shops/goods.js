@@ -140,7 +140,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 150);var cartControl = function cartControl() {__webpack_require__.e(/*! require.ensure | components/cartControl/cartControl */ "components/cartControl/cartControl").then((function () {return resolve(__webpack_require__(/*! ../../components/cartControl/cartControl.vue */ 167));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 =
+var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 150);var cartControl = function cartControl() {__webpack_require__.e(/*! require.ensure | components/cartControl/cartControl */ "components/cartControl/cartControl").then((function () {return resolve(__webpack_require__(/*! ../../components/cartControl/cartControl.vue */ 174));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 =
 
 {
   data: function data() {

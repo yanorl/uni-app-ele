@@ -8,6 +8,10 @@ const mutations = {
 	[types.SET_LOCATIONADDR] (state, locationAddr) {
 		state.locationAddr = locationAddr
 	},
+	
+	[types.SET_WATCHOPTION] (state, watchOption) {
+		state.watchOption = watchOption
+	}
 }
 
 

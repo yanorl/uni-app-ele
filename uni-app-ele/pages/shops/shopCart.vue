@@ -22,8 +22,9 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+	
 export default {
-	name: 'ShopCart',
 	data() {
 		return {
 			goodsList: []
@@ -36,11 +37,15 @@ export default {
 		}
 	},
 	watch:{
+		watchOption() {
+		  this.getGoodsList()
+		}
 	},
 	created() {
 		this.getGoodsList()
 	},
 	computed: {
+		...mapGetters(['watchOption']),
 		totalPrice() {
 			let total = 0;
 			this.goodsList.forEach(item => {
@@ -84,6 +89,7 @@ export default {
 				key: 'goodsList',
 				success: res => {
 					this.goodsList = res.data;
+					console.log(this.goodsList)
 				}
 			});
 		}

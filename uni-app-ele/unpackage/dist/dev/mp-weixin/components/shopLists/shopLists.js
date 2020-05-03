@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var rating = function rating() {__webpack_require__.e(/*! require.ensure | components/rating/rating */ "components/rating/rating").then((function () {return resolve(__webpack_require__(/*! ../rating/rating.vue */ 160));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var rating = function rating() {__webpack_require__.e(/*! require.ensure | components/rating/rating */ "components/rating/rating").then((function () {return resolve(__webpack_require__(/*! ../rating/rating.vue */ 167));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 =
 
 
 
@@ -179,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   rating: function() {
-    return __webpack_require__.e(/*! import() | components/rating/rating */ "components/rating/rating").then(__webpack_require__.bind(null, /*! @/components/rating/rating.vue */ 160))
+    return __webpack_require__.e(/*! import() | components/rating/rating */ "components/rating/rating").then(__webpack_require__.bind(null, /*! @/components/rating/rating.vue */ 167))
   }
 }
 var render = function() {

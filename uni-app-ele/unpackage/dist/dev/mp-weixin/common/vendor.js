@@ -2542,13 +2542,22 @@ var index_esm = {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.cartControlMixin = void 0;var cartControlMixin = {
-  methods: {
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.cartControlMixin = void 0;var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+var cartControlMixin = {
+  computed: _objectSpread({},
+  (0, _vuex.mapGetters)(['watchOption'])),
+
+  methods: _objectSpread({},
+  (0, _vuex.mapMutations)({
+    setWatchOption: 'SET_WATCHOPTION' }), {
+
     add: function add(item, count) {
       this.joinCart(item, count);
       // this.sum();
     },
     sub: function sub(item, count) {
+      var that = this;
       if (count <= 0) {
         // 更新storage
         uni.getStorage({
@@ -2561,7 +2570,9 @@ var index_esm = {
                 goodsList.splice(index, 1);
               }
             });
-            uni.setStorageSync("goodsList", goodsList);
+            that.setGoodsList(goodsList);
+            // uni.setStorageSync("goodsList", goodsList);
+            // that.setWatchOption(!that.watchOption)
           } });
 
       } else {
@@ -2611,17 +2622,19 @@ var index_esm = {
     setGoodsList: function setGoodsList(goodsList) {
       // console.log("存储到本地存储中")
       // 存储到本地存储中
+      var that = this;
       uni.setStorage({
         key: 'goodsList',
         data: goodsList,
         success: function success() {
+          that.setWatchOption(!that.watchOption);
           // uni.showToast({
           // 	icon:"success",
           // 	title:"添加购物车成功"
           // })
         } });
 
-    } } };exports.cartControlMixin = cartControlMixin;
+    } }) };exports.cartControlMixin = cartControlMixin;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -2791,7 +2804,8 @@ new _vuex.default.Store({
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var state = {
   city: '定位',
-  locationAddr: '' };var _default =
+  locationAddr: '',
+  watchOption: false };var _default =
 
 state;exports.default = _default;
 
@@ -8844,6 +8858,10 @@ types.SET_CITY, function (state, city) {
 
 types.SET_LOCATIONADDR, function (state, locationAddr) {
   state.locationAddr = locationAddr;
+}), _defineProperty(_mutations,
+
+types.SET_WATCHOPTION, function (state, watchOption) {
+  state.watchOption = watchOption;
 }), _mutations);var _default =
 
 
@@ -8861,9 +8879,11 @@ mutations;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.SET_LOCATIONADDR = exports.SET_CITY = void 0;var SET_CITY = 'SET_CITY';exports.SET_CITY = SET_CITY;
+Object.defineProperty(exports, "__esModule", { value: true });exports.SET_WATCHOPTION = exports.SET_LOCATIONADDR = exports.SET_CITY = void 0;var SET_CITY = 'SET_CITY';exports.SET_CITY = SET_CITY;
 
 var SET_LOCATIONADDR = 'SET_LOCATIONADDR';exports.SET_LOCATIONADDR = SET_LOCATIONADDR;
+
+var SET_WATCHOPTION = 'SET_WATCHOPTION';exports.SET_WATCHOPTION = SET_WATCHOPTION;
 
 /***/ }),
 
@@ -8875,9 +8895,11 @@ var SET_LOCATIONADDR = 'SET_LOCATIONADDR';exports.SET_LOCATIONADDR = SET_LOCATIO
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.locationAddr = exports.city = void 0;var city = function city(state) {return state.city;};exports.city = city;
+Object.defineProperty(exports, "__esModule", { value: true });exports.watchOption = exports.locationAddr = exports.city = void 0;var city = function city(state) {return state.city;};exports.city = city;
 
 var locationAddr = function locationAddr(state) {return state.locationAddr;};exports.locationAddr = locationAddr;
+
+var watchOption = function watchOption(state) {return state.watchOption;};exports.watchOption = watchOption;
 
 /***/ }),
 

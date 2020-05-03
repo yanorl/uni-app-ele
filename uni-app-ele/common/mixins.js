@@ -1,10 +1,19 @@
+import { mapGetters, mapMutations } from 'vuex';
+
 export const cartControlMixin = {
+	computed: {
+		...mapGetters(['watchOption'])
+	},
 	methods: {
+		...mapMutations({
+			setWatchOption: 'SET_WATCHOPTION'
+		}),
 		add(item, count) {
 			this.joinCart(item, count);
 			// this.sum();
 		},
 		sub(item, count) {
+			let that = this
 			if (count <= 0) {
 				// 更新storage
 				uni.getStorage({
@@ -17,7 +26,9 @@ export const cartControlMixin = {
 								goodsList.splice(index, 1)
 							}
 						})
-						uni.setStorageSync("goodsList", goodsList);
+						that.setGoodsList(goodsList)
+						// uni.setStorageSync("goodsList", goodsList);
+							// that.setWatchOption(!that.watchOption)
 					})
 				})
 			} else {
@@ -67,10 +78,12 @@ export const cartControlMixin = {
 		setGoodsList(goodsList) {
 			// console.log("存储到本地存储中")
 			// 存储到本地存储中
+			let that = this
 			uni.setStorage({
 				key: 'goodsList',
 				data: goodsList,
 				success: function() {
+					that.setWatchOption(!that.watchOption)
 					// uni.showToast({
 					// 	icon:"success",
 					// 	title:"添加购物车成功"

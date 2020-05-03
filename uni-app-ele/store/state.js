@@ -1,5 +1,6 @@
 const state = {
 	city: '定位',
-	locationAddr: ''
+	locationAddr: '',
+	watchOption: false
 }
 export default state
