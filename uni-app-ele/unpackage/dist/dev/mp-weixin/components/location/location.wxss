@@ -37,16 +37,16 @@
           align-items: center;
 }
 .location-box .location-addr ._i {
-    color: #009eef;
+  color: #009eef;
 }
 .location-box .location-addr .addr {
-    color: #333;
-    font-weight: bold;
-    margin-left: 10rpx;
-    display: inline-block;
-    width: 90%;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  color: #333;
+  font-weight: bold;
+  margin-left: 10rpx;
+  display: inline-block;
+  width: 90%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 

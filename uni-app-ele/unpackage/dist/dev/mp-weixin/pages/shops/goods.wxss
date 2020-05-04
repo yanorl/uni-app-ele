@@ -30,74 +30,74 @@
   height: 506rpx;
 }
 .goods-box .recommend .recommend-name {
-    padding-left: 32rpx;
-    color: #333;
-    font-size: 32rpx;
-    font-weight: 700;
-    margin-bottom: 20rpx;
+  padding-left: 32rpx;
+  color: #333;
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
 }
 .goods-box .recommend .recommend-wrap {
-    overflow-x: scroll;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    width: 100%;
-    padding-bottom: 20rpx;
+  overflow-x: scroll;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  padding-bottom: 20rpx;
 }
 .goods-box .recommend .recommend-wrap ._ul {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      padding-left: 32rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding-left: 32rpx;
 }
 .goods-box .recommend .recommend-wrap ._ul ._li {
-        -webkit-box-flex: 0;
-        -webkit-flex: none;
-                flex: none;
-        width: 240rpx;
-        margin-right: 20rpx;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+          flex: none;
+  width: 240rpx;
+  margin-right: 20rpx;
 }
 .goods-box .recommend .recommend-wrap ._ul ._li image {
-          display: block;
-          width: 240rpx;
-          height: 240rpx;
-          border-top-left-radius: 8rpx;
-          border-top-right-radius: 8rpx;
-          max-width: 100%;
+  display: block;
+  width: 240rpx;
+  height: 240rpx;
+  border-top-left-radius: 8rpx;
+  border-top-right-radius: 8rpx;
+  max-width: 100%;
 }
 .goods-box .recommend .recommend-wrap ._ul ._li .recommend-food .recommend-food-name {
-          color: #333;
-          font-size: 24rpx;
-          margin: 14rpx 0 8rpx;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
+  color: #333;
+  font-size: 24rpx;
+  margin: 14rpx 0 8rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .goods-box .recommend .recommend-wrap ._ul ._li .recommend-food .recommend-food-zm {
-          color: #999;
-          font-size: 24rpx;
-          margin-bottom: 14rpx;
-          min-height: 40rpx;
+  color: #999;
+  font-size: 24rpx;
+  margin-bottom: 14rpx;
+  min-height: 40rpx;
 }
 .goods-box .recommend .recommend-wrap ._ul ._li .recommend-food .recommend-food-price {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: flex;
-          -webkit-box-align: center;
-          -webkit-align-items: center;
-                  align-items: center;
-          -webkit-box-pack: justify;
-          -webkit-justify-content: space-between;
-                  justify-content: space-between;
-          padding-right: 20rpx;
-          position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding-right: 20rpx;
+  position: relative;
 }
 .goods-box .recommend .recommend-wrap ._ul ._li .recommend-food .recommend-food-price text {
-            font-size: 28rpx;
-            color: #ff5339;
+  font-size: 28rpx;
+  color: #ff5339;
 }
 .goods-box .recommend .recommend-wrap ._ul ._li .recommend-food .recommend-food-price .cart-control-wrapper {
-            position: absolute;
-            right: 0;
+  position: absolute;
+  right: 0;
 }
 

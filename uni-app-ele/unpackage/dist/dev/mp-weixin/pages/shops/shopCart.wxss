@@ -34,99 +34,100 @@
   background: #000;
 }
 .shop-cart-box .content-wrapper {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    background: #141d27;
-    font-size: 0;
-    color: rgba(255, 255, 255, 0.4);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  background: #141d27;
+  font-size: 0;
+  color: rgba(255, 255, 255, 0.4);
 }
 .shop-cart-box .content-wrapper .content-left {
-      -webkit-box-flex: 1;
-      -webkit-flex: 1;
-              flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
 }
 .shop-cart-box .content-wrapper .content-left .logo-wrapper {
-        display: inline-block;
-        vertical-align: top;
-        position: relative;
-        top: -20rpx;
-        margin: 0 36rpx;
-        padding: 12rpx;
-        width: 88rpx;
-        height: 88rpx;
-        border-radius: 50%;
-        background: #141d27;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: -20rpx;
+  margin: 0 36rpx;
+  padding: 12rpx;
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: #141d27;
 }
 .shop-cart-box .content-wrapper .content-left .logo-wrapper .logo {
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: #2b343c;
-          text-align: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #2b343c;
+  text-align: center;
 }
 .shop-cart-box .content-wrapper .content-left .logo-wrapper .logo.highlight {
-            background-color: #00a0dc;
+  background-color: #00a0dc;
 }
 .shop-cart-box .content-wrapper .content-left .logo-wrapper .logo.highlight ._i.fa-cart-plus {
-              color: #fff;
+  color: #fff;
 }
 .shop-cart-box .content-wrapper .content-left .logo-wrapper .logo ._i.fa-cart-plus {
-            font-size: 48rpx;
-            line-height: 88rpx;
-            color: #80858a;
+  font-size: 48rpx;
+  line-height: 88rpx;
+  color: #80858a;
 }
 .shop-cart-box .content-wrapper .content-left .logo-wrapper .num {
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 48rpx;
-          height: 32rpx;
-          line-height: 32rpx;
-          text-align: center;
-          border-radius: 32rpx;
-          font-size: 18rpx;
-          font-weight: 700;
-          color: #fff;
-          background: #f01414;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 32rpx;
+  font-size: 18rpx;
+  font-weight: 700;
+  color: #fff;
+  background: #f01414;
+  -webkit-box-shadow: 0 4rpx 8rpx 0 rgba(0, 0, 0, 0.4);
           box-shadow: 0 4rpx 8rpx 0 rgba(0, 0, 0, 0.4);
 }
 .shop-cart-box .content-wrapper .content-left .price {
-        display: inline-block;
-        margin-top: 24rpx;
-        line-height: 48rpx;
-        padding-right: 24rpx;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        font-size: 32rpx;
-        font-weight: 700;
+  display: inline-block;
+  margin-top: 24rpx;
+  line-height: 48rpx;
+  padding-right: 24rpx;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 32rpx;
+  font-weight: 700;
 }
 .shop-cart-box .content-wrapper .content-left .price.highlight {
-          color: #fff;
+  color: #fff;
 }
 .shop-cart-box .content-wrapper .content-left .desc {
-        display: inline-block;
-        margin-left: 24rpx;
-        font-size: 20rpx;
-        line-height: 48rpx;
+  display: inline-block;
+  margin-left: 24rpx;
+  font-size: 20rpx;
+  line-height: 48rpx;
 }
 .shop-cart-box .content-wrapper .content-right {
-      -webkit-box-flex: 0;
-      -webkit-flex: 0 0 210rpx;
-              flex: 0 0 210rpx;
-      width: 210rpx;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 210rpx;
+          flex: 0 0 210rpx;
+  width: 210rpx;
 }
 .shop-cart-box .content-wrapper .content-right .pay {
-        font-size: 24rpx;
-        font-weight: 700;
-        line-height: 96rpx;
-        padding: 0 16rpx;
-        text-align: center;
+  font-size: 24rpx;
+  font-weight: 700;
+  line-height: 96rpx;
+  padding: 0 16rpx;
+  text-align: center;
 }
 .shop-cart-box .content-wrapper .content-right .pay.not-enough {
-          background-color: #2b343c;
+  background-color: #2b343c;
 }
 .shop-cart-box .content-wrapper .content-right .pay.enough {
-          background-color: #00b43c;
-          color: #fff;
+  background-color: #00b43c;
+  color: #fff;
 }
 

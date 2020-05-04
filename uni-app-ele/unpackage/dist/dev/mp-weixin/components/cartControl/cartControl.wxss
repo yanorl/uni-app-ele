@@ -31,49 +31,49 @@
           transform: translate3d(20rpx, 0, 0);
 }
 .cart-Control-box .cart-decrease ._i {
-    -webkit-transition: all 0.4s linear;
-    transition: all 0.4s linear;
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 .cart-Control-box .cart-decrease.move {
-    display: inline-block;
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
+  display: inline-block;
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
 }
 .cart-Control-box .cart-decrease.move ._i {
-      -webkit-transform: rotate(0);
-              transform: rotate(0);
+  -webkit-transform: rotate(0);
+          transform: rotate(0);
 }
 .cart-Control-box .cart-decrease,
 .cart-Control-box .cart-add {
   display: inline-block;
-  padding: 16rpx;
+  margin: 16rpx;
   -webkit-transition: all 0.4s linear;
   transition: all 0.4s linear;
 }
 .cart-Control-box .cart-decrease ._i,
-  .cart-Control-box .cart-add ._i {
-    display: inline-block;
-    line-height: 36rpx;
-    font-size: 36rpx;
-    color: #00a0dc;
-    -webkit-transition: all 0.4s linear;
-    transition: all 0.4s linear;
+.cart-Control-box .cart-add ._i {
+  display: inline-block;
+  line-height: 36rpx;
+  font-size: 36rpx;
+  color: #00a0dc;
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
 }
 .cart-Control-box .cart-decrease.move-enter-active, .cart-Control-box .cart-decrease.move-leave-active, .cart-Control-box .cart-add.move-enter-active, .cart-Control-box .cart-add.move-leave-active {
-    -webkit-transition: all 0.4s linear;
-    transition: all 0.4s linear;
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
 }
 .cart-Control-box .cart-decrease.move-enter, .cart-Control-box .cart-decrease.move-leave-to, .cart-Control-box .cart-add.move-enter, .cart-Control-box .cart-add.move-leave-to {
-    opacity: 0;
-    -webkit-transform: translate3d(36rpx, 0, 0);
-            transform: translate3d(36rpx, 0, 0);
+  opacity: 0;
+  -webkit-transform: translate3d(36rpx, 0, 0);
+          transform: translate3d(36rpx, 0, 0);
 }
 .cart-Control-box .cart-decrease.move-enter ._i, .cart-Control-box .cart-decrease.move-leave-to ._i, .cart-Control-box .cart-add.move-enter ._i, .cart-Control-box .cart-add.move-leave-to ._i {
-      -webkit-transform: rotate(180deg);
-              transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 .cart-Control-box .cart-count {
   display: inline-block;

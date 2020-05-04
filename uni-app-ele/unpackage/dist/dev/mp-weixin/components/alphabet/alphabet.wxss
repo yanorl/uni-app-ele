@@ -33,32 +33,32 @@
   height: calc(100vh - 240rpx);
 }
 .area-box .area-wrap .city-wrap .hot-wrap {
-    border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 .area-box .area-wrap .city-wrap .hot-wrap ._ul {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex-wrap: wrap;
-              flex-wrap: wrap;
-      background-color: #ffffff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  background-color: #ffffff;
 }
 .area-box .area-wrap .city-wrap .hot-wrap ._ul ._li {
-        text-align: center;
-        width: calc(100vw / 3);
+  text-align: center;
+  width: calc(100vw / 3);
 }
 .area-box .area-wrap .city-wrap .hot-wrap ._ul ._li text {
-          background: #eeeeee;
-          display: block;
-          margin: 20rpx;
-          padding: 20rpx;
-          border-radius: 10rpx;
+  background: #eeeeee;
+  display: block;
+  margin: 20rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
 }
 .area-box .area-wrap .city-wrap ._ul ._li text {
-    padding: 20rpx 40rpx;
-    border-bottom: 1px solid #eee;
-    background: #fff;
-    display: block;
+  padding: 20rpx 40rpx;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  display: block;
 }
 .area-box .area-keys {
   position: fixed;
@@ -74,7 +74,7 @@
   z-index: 1;
 }
 .area-box .area-keys ._ul ._li.current {
-    color: #ffcd32;
+  color: #ffcd32;
 }
 .area-box .list-fixed {
   position: absolute;
@@ -83,6 +83,6 @@
   top: 240rpx;
 }
 .area-box .list-fixed .title {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 

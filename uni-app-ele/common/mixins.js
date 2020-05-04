@@ -22,7 +22,7 @@ export const cartControlMixin = {
 						let goodsList = res.data
 						// 本地删除选中商品
 						goodsList.forEach((goods, index) => {
-							if (goods.food_id == item.specfoods[0].food_id) {
+							if (goods.food_id == item.food_id) {
 								goodsList.splice(index, 1)
 							}
 						})
@@ -37,12 +37,13 @@ export const cartControlMixin = {
 			// this.sum();
 		},
 		joinCart(item, count) {
+			
 			let parm = {
-				'food_id': item.specfoods[0].food_id,
-				'food_name': item.specfoods[0].name,
-				'food_img': item.image_path,
-				'foot_count': count,
-				'food_price': item.specfoods[0].price
+				'food_id': item.food_id,
+				'food_name': item.food_name,
+				'food_image': item.food_image,
+				'food_count': count,
+				'food_price': item.food_price
 			}
 			// 1.先去本地存储中取
 			uni.getStorage({
@@ -55,7 +56,7 @@ export const cartControlMixin = {
 					goodsList.forEach(goods => {
 						if (goods.food_id == parm.food_id) {
 							// 如果存在  修改商品数量
-							goods.foot_count = Number(parm.foot_count)
+							goods.food_count = Number(parm.food_count)
 							isExist = true
 						}
 					})
@@ -84,10 +85,6 @@ export const cartControlMixin = {
 				data: goodsList,
 				success: function() {
 					that.setWatchOption(!that.watchOption)
-					// uni.showToast({
-					// 	icon:"success",
-					// 	title:"添加购物车成功"
-					// })
 				}
 			});
 		}

@@ -10,24 +10,26 @@
 					<view class="num" v-show="totalCount > 0">{{ totalCount }}</view>
 				</view>
 				<view class="price" :class="{ highlight: totalPrice > 0 }">¥{{ totalPrice }}</view>
-				<view class="desc" v-if="shopInfo">另需配送费¥{{ shopInfo.rst.float_delivery_fee }}元</view>
+				<view class="desc" v-if="shopInfo">另需配送费¥{{ shopInfo.float_delivery_fee }}元</view>
 			</view>
 			<view class="content-right" @tap.stop.prevent="pay">
 				<view class="pay" :class="payClass">{{ payDesc }}</view>
 			</view>
 		</view>
 		<!-- <ball></ball> -->
-		<!-- <shop-cart-details ref="shopCartDetails" @parentFold="changeFold" :fold="fold" :selectGoods="selectGoods" :totalCount="totalCount"></shop-cart-details> -->
+		<shop-cart-details  @parentFold="changeFold" :fold="fold" :selectGoods="goodsList" :totalCount="totalCount"></shop-cart-details>
 	</view>
 </template>
 
 <script>
+	import shopCartDetails from './shopCartDetails.vue';
 import { mapGetters } from 'vuex';
-	
+
 export default {
 	data() {
 		return {
-			goodsList: []
+			goodsList: [],
+			fold: true // 购物车详情页折叠状态,true表示折叠
 		};
 	},
 	props: {
@@ -36,33 +38,33 @@ export default {
 			default: () => {}
 		}
 	},
-	watch:{
+	watch: {
 		watchOption() {
-		  this.getGoodsList()
+			this.getGoodsList();
 		}
 	},
 	created() {
-		this.getGoodsList()
+		this.getGoodsList();
 	},
 	computed: {
 		...mapGetters(['watchOption']),
 		totalPrice() {
 			let total = 0;
 			this.goodsList.forEach(item => {
-				total += item.food_price * item.foot_count;
+				total += item.food_price * item.food_count;
 			});
 			return total;
 		},
 		totalCount() {
 			let count = 0;
 			this.goodsList.forEach(item => {
-				count += item.foot_count;
+				count += item.food_count;
 			});
 			return count;
 		},
 		minPrice() {
-			if(this.shopInfo) {
-				return this.shopInfo.rst.float_minimum_order_amount
+			if (this.shopInfo) {
+				return this.shopInfo.float_minimum_order_amount;
 			}
 		},
 		payClass() {
@@ -83,15 +85,37 @@ export default {
 			}
 		}
 	},
-	methods:{
+	components:{
+		shopCartDetails
+	},
+	methods: {
 		getGoodsList() {
+			let that = this
 			uni.getStorage({
 				key: 'goodsList',
 				success: res => {
-					this.goodsList = res.data;
-					console.log(this.goodsList)
+					that.goodsList = res.data;
+					// console.log(this.goodsList);
+				},
+				fail() {
+					that.goodsList = []
 				}
 			});
+		},
+		toggleList() {
+			if (!this.totalCount) {
+				return;
+			}
+			this.fold = !this.fold;
+		},
+		changeFold() {
+			this.fold = true;
+		},
+		pay() {
+			if (this.totalPrice < this.minPrice) {
+				return;
+			}
+			console.log(`支付${this.totalPrice}元`);
 		}
 	}
 };

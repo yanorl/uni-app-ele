@@ -28,57 +28,58 @@
   font-size: 28rpx;
 }
 .address-box .city-search {
-    background-color: #fff;
-    padding: 20rpx 4%;
-    color: #333;
-    width: 92%;
-    margin-bottom: 30rpx;
+  background-color: #fff;
+  padding: 20rpx 4%;
+  color: #333;
+  width: 92%;
+  margin-bottom: 30rpx;
 }
 .address-box .city-search .search {
-      background-color: #eee;
-      height: 80rpx;
-      line-height: 80rpx;
-      border-radius: 20rpx;
-      padding: 0 20rpx;
-      box-sizing: border-box;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
+  background-color: #eee;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 20rpx;
+  padding: 0 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
 }
 .address-box .city-search .search .city {
-        padding-right: 20rpx;
+  padding-right: 20rpx;
 }
 .address-box .city-search .search .city .icon {
-          margin: 0 20rpx;
+  margin: 0 20rpx;
 }
 .address-box .city-search .search input {
-        -webkit-box-flex: 2;
-        -webkit-flex-grow: 2;
-                flex-grow: 2;
-        margin-left: 20rpx;
-        background-color: #eee;
-        outline: none;
-        border: none;
-        font-size: 28rpx;
+  -webkit-box-flex: 2;
+  -webkit-flex-grow: 2;
+          flex-grow: 2;
+  margin-left: 20rpx;
+  background-color: #eee;
+  outline: none;
+  border: none;
+  font-size: 28rpx;
 }
 .address-box .area-box {
-    width: 92%;
-    padding: 0 4%;
-    background-color: #ffffff;
-    position: absolute;
-    height: calc(100vh - 240rpx - 30rpx);
+  width: 92%;
+  padding: 0 4%;
+  background-color: #ffffff;
+  position: absolute;
+  height: calc(100vh - 240rpx - 30rpx);
 }
 .address-box .area-box .area-list {
-      border-bottom: 1px solid #eeeeee;
-      padding: 20rpx 30rpx;
-      color: #aaaaaa;
+  border-bottom: 1px solid #eeeeee;
+  padding: 20rpx 30rpx;
+  color: #aaaaaa;
 }
 .address-box .area-box .area-list .title {
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 10rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
 }
 

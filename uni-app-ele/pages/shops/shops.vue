@@ -5,32 +5,32 @@
 		<view class="shops-box">
 			<shopsHeader />
 			<!-- <scroll-view class="shops-wrap" scroll-y="true" @scroll="scroll"> -->
-			<view class="shops-wrap" >
+			<view class="shops-wrap">
 				<!-- 头部 -->
 				<view class="header-nav">
-					<view class="header-bg"><image :src="shopInfo.rst.scheme" mode=""></image></view>
-					<view class="shop-img"><image :src="shopInfo.rst.image_path" mode=""></image></view>
+					<view class="header-bg"><image :src="shopInfo.scheme" mode=""></image></view>
+					<view class="shop-img"><image :src="shopInfo.image_path" mode=""></image></view>
 				</view>
 
 				<!-- 商家信息 -->
 				<view class="shop-des">
 					<view class="shop-des-name" @tap="showInfoModel = true">
-						<text>{{ shopInfo.rst.name }}</text>
+						<text>{{ shopInfo.name }}</text>
 						<i class="fa fa-caret-right"></i>
 					</view>
 					<!-- 弹窗信息 -->
-					<infoModel @close="showInfoModel = false" :rst="shopInfo.rst" :showInfoModel="showInfoModel" />
+					<infoModel @close="showInfoModel = false" :rst="shopInfo" :showInfoModel="showInfoModel" />
 
 					<!-- 评分月售 -->
 					<view class="shop-des-order">
-						<text>评分{{ shopInfo.rst.rating }}</text>
-						<text>月售{{ shopInfo.rst.recent_order_num }}单</text>
-						<text>蜂鸟专送约{{ shopInfo.rst.order_lead_time }}分钟</text>
+						<text>评分{{ shopInfo.rating }}</text>
+						<text>月售{{ shopInfo.recent_order_num }}单</text>
+						<text>蜂鸟专送约{{ shopInfo.order_lead_time }}分钟</text>
 					</view>
 					<!-- 优惠信息 -->
-					<activity :activities="shopInfo.rst.activities" />
+					<activity :activities="shopInfo.activities" />
 					<!-- 公告 -->
-					<view class="shop-des-promotion">公告: {{ shopInfo.rst.promotion_info }}</view>
+					<view class="shop-des-promotion">公告: {{ shopInfo.promotion_info }}</view>
 				</view>
 
 				<!-- 导航 -->
@@ -46,9 +46,9 @@
 				<view class="tab-content">
 					<view class="tab-item" v-show="currentIndex == 0">
 						<!-- 推荐商品 -->
-						<goods :shopInfo="shopInfo"></goods>
+						<goods :recommend="recommend.recommend"></goods>
 						<!-- 商品列表左右联动 -->
-						<goods-lists :shopInfo="shopInfo"></goods-lists>
+						<goods-lists :goodList="goodList.menu"></goods-lists>
 					</view>
 
 					<view class="tab-item" v-show="currentIndex == 1">dd</view>
@@ -75,6 +75,7 @@ import goods from './goods.vue';
 import goodsLists from './goodsLists.vue';
 import shopCart from './shopCart.vue';
 import interfaces from '../../utils/interfaces.js';
+import shopCartClass from '../../common/shopCartClass.js';
 
 export default {
 	data() {
@@ -85,7 +86,9 @@ export default {
 			currentIndex: 0,
 			scrollTop: 0,
 			statusBarHeight: 0,
-			showStatus: false
+			showStatus: false,
+			recommend: {},
+			goodList: {}
 		};
 	},
 	onLoad(option) {
@@ -136,8 +139,64 @@ export default {
 			this.request({
 				url: interfaces.getShops,
 				success: res => {
-					this.shopInfo = res;
+
+					this.shopInfo = res.rst;
+					this.recommend = this._normalizeRecommend(res.recommend);
+					this.goodList = this._normalizeMenu(res.menu);
 				}
+			});
+		},
+		_normalizeRecommend(list) {
+			let that = this
+			let map = {
+				recommend: []
+			};
+			list.forEach(res => {
+				let recomItem = [];
+				res.items.forEach(item => {
+					recomItem.push(
+					that.newClass(item)
+					);
+				});
+				map.recommend.push({
+					name: res.name,
+					items: recomItem
+				});
+			});
+			// console.log(map);
+			return map;
+		},
+		_normalizeMenu(list) {
+			let that = this;
+			let map = {
+				menu: []
+			};
+			
+			list.forEach(res => {
+				let foodsItem = [];
+				res.foods.forEach(item => {
+					foodsItem.push(that.newClass(item));
+				})
+				map.menu.push({
+					icon_url: res.icon_url,
+					name: res.name,
+					description: res.description,
+					foods: foodsItem
+				});
+			});
+			// console.log(map);
+			return map;
+		},
+		newClass(item) {
+			return new shopCartClass({
+				food_id: item.specfoods[0].food_id,
+				food_name: item.specfoods[0].name,
+				food_image: item.image_path,
+				food_count: 0,
+				food_price: item.specfoods[0].price,
+				month_sales: item.month_sales,
+				satisfy_rate: item.satisfy_rate,
+				description: item.description
 			});
 		},
 		clickNav(index) {

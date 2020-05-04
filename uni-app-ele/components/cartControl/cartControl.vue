@@ -9,6 +9,8 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+	
 export default {
 	data() {
 		return {
@@ -29,26 +31,45 @@ export default {
 			} else {
 				this.move = false
 			}
+		},
+		watchOption() {
+			this.undate();
 		}
+		
 	},
 	created() {
-		let that = this
-		uni.getStorage({
-			key: "goodsList",
-			success: (res => {
-				res.data.forEach(function(item){
-					if(item.food_id == that.items.specfoods[0].food_id) {
-						that.count = item.foot_count
-						// console.log(that.count)
-					}
-				})
-				
-			})
-		})
+		this.undate()
 	},
-	computed: {
+computed: {
+		...mapGetters(['watchOption'])
 	},
 	methods: {
+		undate() {
+			let that = this
+			uni.getStorage({
+				key: "goodsList",
+				success: (res => {
+					
+					let bool = res.data.some((item) => {
+					  return item.food_id == that.items.food_id;
+					});  //先判断有没有存储都有和当前food_id相同都产品，没有count 为0，  有就循环把有相同food_id产品的food_count 赋值给count；如果不进行这一步，当food_count减小为0的时候，count的值依旧为1；
+					if(bool) {
+						res.data.forEach(function(item){
+							if(item.food_id == that.items.food_id) {
+								that.count = item.food_count
+							} 
+						})
+					} else {
+						that.count = 0
+					}
+
+				}),
+				fail() {
+					that.count = 0
+				}
+			})
+			
+		},
 		addCart() {
 			this.count++;
 			this.$emit('add', this.count);
@@ -85,7 +106,7 @@ export default {
 	.cart-decrease,
 	.cart-add {
 		display: inline-block;
-		padding: 16rpx;
+		margin: 16rpx;
 		transition: all 0.4s linear;
 		i {
 			display: inline-block;

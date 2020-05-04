@@ -3,7 +3,7 @@
 		<!-- 菜单左边 -->
 		<view class="left">
 			<scroll-view scroll-y="true" class="scrollHeight">
-				<view class="item" v-for="(item, index) in shopInfo.menu" :key="index" :class="{ active: index == leftIndex }" :data-index="index" @tap="leftTap" @touchstart="touchStart">
+				<view class="item" v-for="(item, index) in goodList" :key="index" :class="{ active: index == leftIndex }" :data-index="index" @tap="leftTap" @touchstart="touchStart">
 					<image v-if="item.icon_url" :src="item.icon_url" mode=""></image>
 					<text>{{ item.name }}</text>
 				</view>
@@ -11,7 +11,7 @@
 		</view>
 		<view class="main">
 			<scroll-view class="scrollHeight" scroll-y="true" @scroll="mainScroll" :scroll-into-view="scrollInto" scroll-with-animation="true" @touchstart="mainTouch" id="scroll-el">
-				<block v-for="(item, index) in shopInfo.menu" :key="index">
+				<block v-for="(item, index) in goodList" :key="index">
 					<view class="food-item" :id="'item-' + index">
 						<!-- title -->
 						<view class="foot-item-title">
@@ -20,13 +20,13 @@
 						</view>
 						<!-- content -->
 						<view class="foot-item-list" v-for="(food, i) in item.foods" :key="i">
-							<image :src="food.image_path" mode=""></image>
+							<image :src="food.food_image" mode=""></image>
 							<view class="food-item-list-info">
-								<text class="foot-name">{{ food.name }}</text>
+								<text class="foot-name">{{ food.food_name }}</text>
 								<view class="food-item-list-des">{{ food.description }}</view>
 								<view class="food-item-list-sales">月售{{ food.month_sales }}份 好评率{{ food.satisfy_rate }}</view>
 								<view class="food-item-list-price">
-									<text class="price">¥{{ food.activity.fixed_price }}</text>
+									<text class="price">¥{{ food.food_price }}</text>
 									<view class="cart-control-wrapper"><cart-control @add="add(food, $event)" @sub="sub(food, $event)" :items="food"></cart-control></view>
 								</view>
 							</view>
@@ -55,9 +55,9 @@ export default {
 		};
 	},
 	props: {
-		shopInfo: {
-			type: Object,
-			default: () => {}
+		goodList: {
+			type: Array,
+			default: () => []
 		}
 	},
 	mixins: [cartControlMixin],
@@ -76,7 +76,7 @@ export default {
 				})
 				.exec();
 
-			that.shopInfo.menu.forEach(function(item) {
+			that.goodList.forEach(function(item) {
 				that.mainArray.push(item.foods);
 			});
 

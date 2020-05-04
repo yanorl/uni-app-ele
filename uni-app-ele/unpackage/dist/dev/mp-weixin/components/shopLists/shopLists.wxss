@@ -31,114 +31,116 @@
   border-bottom: 1 solid #eee;
 }
 .shop-list .shop-list-info {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-            justify-content: flex-start;
-    padding: 0 4%;
-    -webkit-box-align: stretch;
-    -webkit-align-items: stretch;
-            align-items: stretch;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+          justify-content: flex-start;
+  padding: 0 4%;
+  -webkit-box-align: stretch;
+  -webkit-align-items: stretch;
+          align-items: stretch;
 }
 .shop-list .shop-list-info .shop-list-logo {
-      width: 130rpx;
-      height: 130rpx;
+  width: 130rpx;
+  height: 130rpx;
 }
 .shop-list .shop-list-info .shop-list-logo image {
-        display: block;
-        width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        border-radius: 8rpx;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8rpx;
 }
 .shop-list .shop-list-info .shop-list-content {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-              justify-content: space-between;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: column;
-              flex-direction: column;
-      padding-left: 20rpx;
-      font-size: 24rpx;
-      -webkit-box-flex: 1;
-      -webkit-flex-grow: 1;
-              flex-grow: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+          flex-grow: 1;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-name {
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-                align-items: center;
-        color: #333;
-        font-weight: 700;
-        font-size: 28rpx;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  color: #333;
+  font-weight: 700;
+  font-size: 28rpx;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-name ._i {
-          background: #ffe800;
-          margin-right: 10rpx;
-          padding: 2rpx 5rpx;
-          text-align: center;
-          white-space: nowrap;
-          font-size: 24rpx;
-          font-style: normal;
-          display: inline-block;
+  background: #ffe800;
+  margin-right: 10rpx;
+  padding: 2rpx 5rpx;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 24rpx;
+  font-style: normal;
+  display: inline-block;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-name text {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-rate {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-                align-items: center;
-        overflow: hidden;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-                justify-content: space-between;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  overflow: hidden;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-rate .rate-wrap .rate-num {
-          margin-right: 10rpx;
+  margin-right: 10rpx;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-rate .delivery {
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: flex;
-          -webkit-box-align: center;
-          -webkit-align-items: center;
-                  align-items: center;
-          font-size: 24rpx;
-          margin-left: 10rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 24rpx;
+  margin-left: 10rpx;
 }
 .shop-list .shop-list-info .shop-list-content .shop-list-rate .delivery .icon-hollow {
-            color: #fff;
-            background-color: #2395ff;
-            padding: 4rpx;
-            box-sizing: border-box;
+  color: #fff;
+  background-color: #2395ff;
+  padding: 4rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .shop-list .shop-list-info .shop-list-content .shop-delivery {
-        width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-                justify-content: space-between;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
 }
 .shop-list .shop-list-info .shop-list-content .shop-delivery text {
-          margin: 0 10rpx;
+  margin: 0 10rpx;
 }
 .shop-list .shop-list-info .shop-list-content .shop-delivery .shop-delivery-distance {
-          color: #999;
+  color: #999;
 }
 

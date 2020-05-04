@@ -34,12 +34,12 @@
   z-index: 1;
 }
 .swiper-box swiper {
-    width: 100%;
-    height: 200rpx;
+  width: 100%;
+  height: 200rpx;
 }
 .swiper-box swiper swiper-item image {
-      width: 100%;
-      height: 200rpx;
+  width: 100%;
+  height: 200rpx;
 }
 .entries-box {
   background: #fff;
@@ -48,28 +48,28 @@
   overflow: hidden;
 }
 .entries-box swiper {
-    height: 354rpx;
+  height: 354rpx;
 }
 .entries-box swiper .entries-wrap {
-      width: 20%;
-      float: left;
-      position: relative;
-      margin-top: 22rpx;
+  width: 20%;
+  float: left;
+  position: relative;
+  margin-top: 22rpx;
 }
 .entries-box swiper .entries-wrap .img-wrap {
-        position: relative;
-        display: inline-block;
-        width: 100rpx;
-        height: 100rpx;
+  position: relative;
+  display: inline-block;
+  width: 100rpx;
+  height: 100rpx;
 }
 .entries-box swiper .entries-wrap .img-wrap image {
-          width: 100rpx;
-          height: 100rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 .entries-box swiper .entries-wrap text {
-        display: block;
-        color: #666;
-        font-size: 24rpx;
+  display: block;
+  color: #666;
+  font-size: 24rpx;
 }
 /* 推荐商家 */
 .shop-box .filter-section {
@@ -96,16 +96,16 @@
   background: #fff;
 }
 .shop-box .title:before {
-    margin-right: 28rpx;
+  margin-right: 28rpx;
 }
 .shop-box .title:after {
-    margin-left: 28rpx;
+  margin-left: 28rpx;
 }
 .shop-box .title:after, .shop-box .title:before {
-    display: block;
-    content: '一';
-    width: 44rpx;
-    height: 1px;
-    color: #999;
+  display: block;
+  content: '一';
+  width: 44rpx;
+  height: 1px;
+  color: #999;
 }
 

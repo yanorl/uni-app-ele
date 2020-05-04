@@ -1,17 +1,17 @@
 <template>
-	<view class="goods-box" v-if="shopInfo">
+	<view class="goods-box" v-if="recommend.length">
 		<!-- 商家推荐 -->
-		<scroll-view scroll-x="true" class="recommend" v-for="(recommend, index) in shopInfo.recommend" :key="index">
+		<scroll-view scroll-x="true" class="recommend" v-for="(recommend, index) in recommend" :key="index">
 			<view class="recommend-name">{{ recommend.name }}</view>
 			<view class="recommend-wrap">
 				<ul>
 					<li v-for="(item, i) in recommend.items" :key="i">
-						<image :src="item.image_path" mode=""></image>
+						<image :src="item.food_image" mode=""></image>
 						<view class="recommend-food">
-							<view class="recommend-food-name">{{ item.name }}</view>
+							<view class="recommend-food-name">{{ item.food_name }}</view>
 							<view class="recommend-food-zm">月售{{ item.month_sales }} 好评率{{ item.satisfy_rate }}</view>
 							<view class="recommend-food-price">
-								<text>￥{{ item.activity.fixed_price }}</text>
+								<text>￥{{ item.food_price }}</text>
 								<view class="cart-control-wrapper"><cart-control @add="add(item, $event)" @sub="sub(item, $event)" :items="item"></cart-control></view>
 							</view>
 						</view>
@@ -32,9 +32,9 @@ export default {
 		};
 	},
 	props: {
-		shopInfo: {
-			type: Object,
-			default: () => {}
+		recommend: {
+			type: Array,
+			default: () => []
 		}
 	},
 	mixins: [cartControlMixin],

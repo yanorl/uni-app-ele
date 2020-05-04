@@ -1,5 +1,5 @@
 <template>
-  <view class="rst-activity">
+  <view class="rst-activity" v-if="activities">
     <view class="activity-txt">
       <text :style="{background: '#'+ activities[0].icon_color}">{{activities[0].icon_name}}</text>
       <text>{{activities[0].description}}</text>
