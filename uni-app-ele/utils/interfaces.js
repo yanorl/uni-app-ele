@@ -10,6 +10,10 @@ const interfaces = {
 	// 商家列表详情信息
 	getShoplists: domain + "profile/restaurants",
 	//商家详情信息
-	getShops: domain + 'profile/batch_shop'
+	getShops: domain + 'profile/batch_shop',
+	
+	sms_back: domain + 'posts/sms_back',
+	
+	sms_send: domain + 'posts/sms_send'
 }
 module.exports = interfaces;

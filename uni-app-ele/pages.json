@@ -30,7 +30,14 @@
 				"navigationBarBackgroundColor": "#f06c7a",
 				"backgroundTextStyle": "light",
 				"backgroundColorTop": "#f06c7a",
-				"navigationBarTextStyle": "white"
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": false
+				},
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
 			}
 		}, {
 			"path": "pages/city/city",
@@ -61,8 +68,28 @@
 					"bounce": "none"
 				}
 			}
+		}, {
+			"path": "pages/orders/orders",
+			"style": {
+				"navigationBarTitleText": "确定订单"
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"h5": {
+					"titleNView": false
+				},
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
 		}
-	],
+	    ,{
+            "path" : "pages/userInfo/userInfo",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "Yan",
