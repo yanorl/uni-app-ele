@@ -9,7 +9,9 @@
     "pages/shops/shops",
     "pages/orders/orders",
     "pages/login/login",
-    "pages/userInfo/userInfo"
+    "pages/userInfo/userInfo",
+    "pages/myFace/myFace",
+    "pages/faceCrop/faceCrop"
   ],
   "subPackages": [],
   "window": {

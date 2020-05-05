@@ -14,6 +14,8 @@ const interfaces = {
 	
 	sms_back: domain + 'posts/sms_back',
 	
-	sms_send: domain + 'posts/sms_send'
+	sms_send: domain + 'posts/sms_send',
+	
+	uploadFace: domain +''
 }
 module.exports = interfaces;

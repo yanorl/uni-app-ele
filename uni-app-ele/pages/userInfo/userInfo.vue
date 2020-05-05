@@ -85,20 +85,16 @@ export default {
 							success(res) {
 								// 获得临时路径
 								var tempFilePath = res.tempFilePaths[0];
-								uni.showToast({
-									title: '头像替换成功',
-									duration: 1500,
-								});
-								console.log(tempFilePath);
+								
 								// #ifdef H5
-								// uni.navigateTo({
-								// 	url: "../meFace/meFace?tempFilePath=" + tempFilePath
-								// })
+								uni.navigateTo({
+									url: "../myFace/myFace?tempFilePath=" + tempFilePath
+								})
 								// #endif
 								// #ifndef H5
-								// uni.navigateTo({
-								// 	url: "../faceCrop/faceCrop?tempFilePath=" + tempFilePath
-								// })
+								uni.navigateTo({
+									url: "../faceCrop/faceCrop?tempFilePath=" + tempFilePath
+								})
 								// #endif
 							}
 						});

@@ -217,20 +217,16 @@ var _default =
               success: function success(res) {
                 // 获得临时路径
                 var tempFilePath = res.tempFilePaths[0];
-                uni.showToast({
-                  title: '头像替换成功',
-                  duration: 1500 });
-
-                console.log(tempFilePath);
 
 
 
 
 
 
-                // uni.navigateTo({
-                // 	url: "../faceCrop/faceCrop?tempFilePath=" + tempFilePath
-                // })
+
+                uni.navigateTo({
+                  url: "../faceCrop/faceCrop?tempFilePath=" + tempFilePath });
+
 
               } });
 
