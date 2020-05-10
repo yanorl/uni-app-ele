@@ -7,19 +7,21 @@
 		<view class="login-wrap">
 			<view class="logo"><image src="../../static/logo.jpg" mode=""></image></view>
 
-			<!-- 手机号 -->
-			<input-group type="number" v-model="phone" placeholder="手机号" :btnTitle="btnTitle" :disabled="disabled" :error="errors.phone" @btnClick="getVerifyCode" />
-			<!-- 验证码 -->
-			<input-group type="number" v-model="verifyCode" placeholder="验证码" :error="errors.code" />
-			<!-- 用户服务协议 -->
-			<view class="login_des">
-				<view>
-					新用户登录即自动注册，表示已同意
-					<text>《用户服务协议》</text>
+			<form @submit="handleLogin"> 
+				<!-- 手机号 -->
+				<input-group type="number" name="phone" placeholder="手机号" :btnTitle="btnTitle" :disabled="disabled" :error="errors.phone" @btnClick="getVerifyCode" />
+				<!-- 验证码 -->
+				<input-group type="number"  placeholder="验证码" :error="errors.code" name="verifyCode" @modelInput="setVerifyCode"/>
+				<!-- 用户服务协议 -->
+				<view class="login_des">
+					<view>
+						新用户登录即自动注册，表示已同意
+						<text>《用户服务协议》</text>
+					</view>
 				</view>
-			</view>
-			<!-- 登录按钮 -->
-			<view class="login_btn"><button :disabled="isClick" @tap="handleLogin">登录</button></view>
+				<!-- 登录按钮 -->
+				<view class="login_btn"><button type="primary" form-type="submit" :disabled="isClick">注册/登录</button></view>
+			</form>
 		</view>
 
 		<!-- 第三方登录H5不支持，所以隐藏掉 -->
@@ -66,6 +68,8 @@ export default {
 	},
 	computed: {
 		isClick() {
+			console.log(this.phone)
+			console.log(this.verifyCode)
 			if (!this.phone || !this.verifyCode) return true;
 			else return false;
 		}
@@ -75,7 +79,10 @@ export default {
 		inputGroup
 	},
 	methods: {
-		handleLogin() {
+		handleLogin(e) {
+			// this.phone = e.detail.value.phone;
+			// this.verifyCode = e.detail.value.verifyCode;
+			
 			let that = this;
 			// 取消错误提醒
 			that.errors = {};
@@ -89,12 +96,17 @@ export default {
 				},
 				method: 'POST',
 				success: res => {
-					that.setStor({userId: res.user._id, nickname:'Yan', face: 'http://img3.imgtn.bdimg.com/it/u=2141623099,2896788564&fm=26&gp=0.jpg'});
+					that.setStor({ userId: res.user._id, nickname: 'Yan', face: 'http://img3.imgtn.bdimg.com/it/u=2141623099,2896788564&fm=26&gp=0.jpg' });
 				}
 			});
 		},
-		getVerifyCode() {
+		setVerifyCode(code) {
+			console.log(code)
+			this.verifyCode = code
+		},
+		getVerifyCode(phone) {
 			let that = this;
+			that.phone = phone
 			if (this.validatePhone()) {
 				this.validateBtn();
 				// 发送网络请求
@@ -104,7 +116,7 @@ export default {
 					data: {
 						tpl_id: '140481',
 						key: '795be723dd9e88c3ea98e2b6713ab795',
-						phone: this.phone
+						phone: that.phone
 					},
 					method: 'POST',
 					success: res => {
@@ -190,7 +202,7 @@ export default {
 			});
 		},
 		otherLogin(data) {
-			let that = this
+			let that = this;
 			that.request({
 				url: interfaces.sms_back,
 				data: {
@@ -199,7 +211,7 @@ export default {
 				},
 				method: 'POST',
 				success: res => {
-					let parmData = Object.assign({userId: res.user._id}, data)
+					let parmData = Object.assign({ userId: res.user._id }, data);
 					that.setStor(parmData);
 				}
 			});
@@ -285,9 +297,9 @@ export default {
 
 <style lang="scss">
 .login {
-		/*  #ifdef  APP-PLUS  */
-		margin-top: var(--status-bar-height);
-		/*  #endif  */
+	/*  #ifdef  APP-PLUS  */
+	margin-top: var(--status-bar-height);
+	/*  #endif  */
 	width: 100%;
 	height: 100vh;
 	padding: 60rpx;
@@ -318,14 +330,14 @@ export default {
 			width: 100%;
 			height: 80rpx;
 			line-height: 80rpx;
-			background-color: #cccccc;
+			background-color: #8bda81;
 			border-radius: 8rpx;
 			color: white;
 			font-size: 28rpx;
 			border: none;
 			outline: none;
 			&[disabled] {
-				background-color: #8bda81;
+				background-color: #cccccc;
 			}
 		}
 	}

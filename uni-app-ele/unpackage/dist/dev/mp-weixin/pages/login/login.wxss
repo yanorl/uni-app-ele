@@ -58,7 +58,7 @@
   width: 100%;
   height: 80rpx;
   line-height: 80rpx;
-  background-color: #cccccc;
+  background-color: #8bda81;
   border-radius: 8rpx;
   color: white;
   font-size: 28rpx;
@@ -66,7 +66,7 @@
   outline: none;
 }
 .login .login-wrap .login_btn button[disabled] {
-  background-color: #8bda81;
+  background-color: #cccccc;
 }
 .login .third-wapper {
   width: 100%;

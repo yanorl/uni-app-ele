@@ -1,0 +1,1 @@
+<view class="input-wrap _div"><block wx:for="{{tags}}" wx:for-item="item" wx:for-index="index" wx:key="index"><label data-event-opts="{{[['tap',[['$emit',['checkTag','$0'],[[['tags','',index]]]]]]]}}" class="{{['form-span _span',(selectTag==item)?'checked':'']}}" bindtap="__e">{{item}}</label></block></view>

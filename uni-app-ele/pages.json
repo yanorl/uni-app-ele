@@ -71,7 +71,9 @@
 		}, {
 			"path": "pages/orders/orders",
 			"style": {
-				"navigationBarTitleText": "确定订单"
+				"navigationBarTextStyle" : "white",
+				"navigationBarTitleText" : "确认订单",
+				"navigationBarBackgroundColor" : "#009eef"
 			}
 		}, {
 			"path": "pages/login/login",
@@ -107,10 +109,40 @@
 							"navigationBarBackgroundColor" : "#000000"
 						}
         }
+        ,{
+            "path" : "pages/remark/remark",
+            "style" : {
+							"navigationBarTitleText" : "订单备注"
+						}
+        }
+        ,{
+            "path" : "pages/myAddress/myAddress",
+            "style" : {
+							"navigationBarTextStyle" : "white",
+							"navigationBarTitleText" : "收货地址管理",
+							"navigationBarBackgroundColor" : "#009eef"
+						}
+        }
+        ,{
+            "path" : "pages/addAddress/addAddress",
+            "style" : {
+							"navigationBarTextStyle" : "white",
+							"navigationBarBackgroundColor" : "#009eef"
+						}
+        }
+        ,{
+            "path" : "pages/pay/pay",
+            "style" : {
+							"navigationBarTextStyle" : "white",
+							"navigationBarTitleText" : "在线支付",
+							"navigationBarBackgroundColor" : "#009eef"
+							
+						}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "Yan",
+		// "navigationBarTitleText": "Yan",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF"
 	},

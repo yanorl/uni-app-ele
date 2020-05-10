@@ -2539,108 +2539,6 @@ var index_esm = {
 
 /***/ }),
 
-/***/ 165:
-/*!********************************************************************************!*\
-  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/mixins.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.cartControlMixin = void 0;var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
-
-var cartControlMixin = {
-  computed: _objectSpread({},
-  (0, _vuex.mapGetters)(['watchOption'])),
-
-  methods: _objectSpread({},
-  (0, _vuex.mapMutations)({
-    setWatchOption: 'SET_WATCHOPTION' }), {
-
-    add: function add(item, count) {
-      this.joinCart(item, count);
-      // this.sum();
-    },
-    sub: function sub(item, count) {
-      var that = this;
-      if (count <= 0) {
-        // 更新storage
-        uni.getStorage({
-          key: "goodsList",
-          success: function success(res) {
-            var goodsList = res.data;
-            // 本地删除选中商品
-            goodsList.forEach(function (goods, index) {
-              if (goods.food_id == item.food_id) {
-                goodsList.splice(index, 1);
-              }
-            });
-            that.setGoodsList(goodsList);
-            // uni.setStorageSync("goodsList", goodsList);
-            // that.setWatchOption(!that.watchOption)
-          } });
-
-      } else {
-        this.joinCart(item, count);
-      }
-      // this.sum();
-    },
-    joinCart: function joinCart(item, count) {var _this = this;
-
-      var parm = {
-        'food_id': item.food_id,
-        'food_name': item.food_name,
-        'food_image': item.food_image,
-        'food_count': count,
-        'food_price': item.food_price };
-
-      // 1.先去本地存储中取
-      uni.getStorage({
-        key: "goodsList",
-        success: function success(res) {
-          // 拿数据
-          var goodsList = res.data;
-          // 查找商品是否存在
-          var isExist = false;
-          goodsList.forEach(function (goods) {
-            if (goods.food_id == parm.food_id) {
-              // 如果存在  修改商品数量
-              goods.food_count = Number(parm.food_count);
-              isExist = true;
-            }
-          });
-          if (!isExist) {// 不存在，存入数组
-            goodsList.push(parm);
-          }
-          _this.setGoodsList(goodsList);
-        },
-        fail: function fail(err) {// 没有得到数据,那么就存
-          // console.log("加入失败")
-          var goodsList = [];
-          goodsList.push(parm);
-
-          // 往本地存储中存储数据
-          _this.setGoodsList(goodsList);
-        } });
-
-
-    },
-    setGoodsList: function setGoodsList(goodsList) {
-      // console.log("存储到本地存储中")
-      // 存储到本地存储中
-      var that = this;
-      uni.setStorage({
-        key: 'goodsList',
-        data: goodsList,
-        success: function success() {
-          that.setWatchOption(!that.watchOption);
-        } });
-
-    } }) };exports.cartControlMixin = cartControlMixin;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
 /***/ 17:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -2781,18 +2679,17 @@ function normalizeComponent (
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 14));
 var _state = _interopRequireDefault(__webpack_require__(/*! ./state */ 19));
-var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 20));
-var getters = _interopRequireWildcard(__webpack_require__(/*! ./getters */ 22));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
-// import * as actions from './actions'
+var _mutations = _interopRequireDefault(__webpack_require__(/*! ./mutations */ 21));
+var getters = _interopRequireWildcard(__webpack_require__(/*! ./getters */ 23));
+var actions = _interopRequireWildcard(__webpack_require__(/*! ./actions */ 24));function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 _vue.default.use(_vuex.default);var _default =
 
 new _vuex.default.Store({
   state: _state.default,
   mutations: _mutations.default,
-  getters: getters
-  // actions
-});exports.default = _default;
+  getters: getters,
+  actions: actions });exports.default = _default;
 
 /***/ }),
 
@@ -2804,10 +2701,20 @@ new _vuex.default.Store({
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var state = {
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _cache = __webpack_require__(/*! ../common/cache.js */ 20);
+// console.log('state')
+// console.log(loadOrderInfo())
+var state = {
   city: '定位',
   locationAddr: '',
-  watchOption: false };var _default =
+  address: {},
+  watchOption: false,
+  orderInfo: (0, _cache.loadOrderInfo)(),
+  userInfo: null,
+  remarkInfo: {
+    tableware: '',
+    remark: '' } };var _default =
+
 
 state;exports.default = _default;
 
@@ -8844,6 +8751,61 @@ internalMixin(Vue);
 /***/ }),
 
 /***/ 20:
+/*!*******************************************************************************!*\
+  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/cache.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.saveOrderInfo = saveOrderInfo;exports.loadOrderInfo = loadOrderInfo;function saveOrderInfo(orderInfo) {
+
+  try {
+    uni.setStorageSync('orderInfo', orderInfo);
+    return orderInfo;
+  } catch (e) {
+    return null;
+  }
+
+}
+
+function loadOrderInfo() {
+  try {
+    var value = uni.getStorageSync('orderInfo');
+    if (value) {
+      console.log('value');
+      console.log(value);
+
+      return value;
+      // return value
+    }
+  } catch (e) {
+    console.log(1);
+    return null;
+  }
+
+
+  // let load = {}
+  // uni.getStorage({
+  // 	key: 'orderInfo',
+  // 	success: res => {
+  // 		if(res.data){
+  // 			load =  res.data
+  // 		} else {
+  // 			load =  res
+  // 		}
+  // 	},
+  // 	fail() {
+  // 		load = {}
+  // 	}
+  // });
+  // return load
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 21:
 /*!**********************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/mutations.js ***!
   \**********************************************************************************/
@@ -8851,7 +8813,7 @@ internalMixin(Vue);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ./mutation-types.js */ 21));var _mutations;function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ./mutation-types.js */ 22));var _mutations;function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 var mutations = (_mutations = {}, _defineProperty(_mutations,
 types.SET_CITY, function (state, city) {
@@ -8862,8 +8824,24 @@ types.SET_LOCATIONADDR, function (state, locationAddr) {
   state.locationAddr = locationAddr;
 }), _defineProperty(_mutations,
 
+types.SET_ADDRESS, function (state, address) {
+  state.address = address;
+}), _defineProperty(_mutations,
+
 types.SET_WATCHOPTION, function (state, watchOption) {
   state.watchOption = watchOption;
+}), _defineProperty(_mutations,
+
+types.SET_ORDER_INFO, function (state, orderInfo) {
+  state.orderInfo = orderInfo;
+}), _defineProperty(_mutations,
+
+types.SET_REMARK_INFO, function (state, remarkInfo) {
+  state.remarkInfo = remarkInfo;
+}), _defineProperty(_mutations,
+
+types.SET_USER_INFO, function (state, userInfo) {
+  state.userInfo = userInfo;
 }), _mutations);var _default =
 
 
@@ -8873,7 +8851,112 @@ mutations;exports.default = _default;
 
 /***/ }),
 
-/***/ 21:
+/***/ 219:
+/*!********************************************************************************!*\
+  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/mixins.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.cartControlMixin = void 0;var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+
+
+
+
+var cartControlMixin = {
+  computed: _objectSpread({},
+  (0, _vuex.mapGetters)(['watchOption'])),
+
+  methods: _objectSpread({},
+  (0, _vuex.mapMutations)({
+    setWatchOption: 'SET_WATCHOPTION' }), {
+
+    add: function add(item, count) {
+      this.joinCart(item, count);
+      // this.sum();
+    },
+    sub: function sub(item, count) {
+      var that = this;
+      if (count <= 0) {
+        // 更新storage
+        uni.getStorage({
+          key: "goodsList",
+          success: function success(res) {
+            var goodsList = res.data;
+            // 本地删除选中商品
+            goodsList.forEach(function (goods, index) {
+              if (goods.food_id == item.food_id) {
+                goodsList.splice(index, 1);
+              }
+            });
+            that.setGoodsList(goodsList);
+            // uni.setStorageSync("goodsList", goodsList);
+            // that.setWatchOption(!that.watchOption)
+          } });
+
+      } else {
+        this.joinCart(item, count);
+      }
+      // this.sum();
+    },
+    joinCart: function joinCart(item, count) {var _this = this;
+
+      var parm = {
+        'food_id': item.food_id,
+        'food_name': item.food_name,
+        'food_image': item.food_image,
+        'food_count': count,
+        'food_price': item.food_price };
+
+      // 1.先去本地存储中取
+      uni.getStorage({
+        key: "goodsList",
+        success: function success(res) {
+          // 拿数据
+          var goodsList = res.data;
+          // 查找商品是否存在
+          var isExist = false;
+          goodsList.forEach(function (goods) {
+            if (goods.food_id == parm.food_id) {
+              // 如果存在  修改商品数量
+              goods.food_count = Number(parm.food_count);
+              isExist = true;
+            }
+          });
+          if (!isExist) {// 不存在，存入数组
+            goodsList.push(parm);
+          }
+          _this.setGoodsList(goodsList);
+        },
+        fail: function fail(err) {// 没有得到数据,那么就存
+          // console.log("加入失败")
+          var goodsList = [];
+          goodsList.push(parm);
+
+          // 往本地存储中存储数据
+          _this.setGoodsList(goodsList);
+        } });
+
+
+    },
+    setGoodsList: function setGoodsList(goodsList) {
+      // console.log("存储到本地存储中")
+      // 存储到本地存储中
+      var that = this;
+      uni.setStorage({
+        key: 'goodsList',
+        data: goodsList,
+        success: function success() {
+          that.setWatchOption(!that.watchOption);
+        } });
+
+    } }) };exports.cartControlMixin = cartControlMixin;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 22:
 /*!***************************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/mutation-types.js ***!
   \***************************************************************************************/
@@ -8881,15 +8964,23 @@ mutations;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.SET_WATCHOPTION = exports.SET_LOCATIONADDR = exports.SET_CITY = void 0;var SET_CITY = 'SET_CITY';exports.SET_CITY = SET_CITY;
+Object.defineProperty(exports, "__esModule", { value: true });exports.SET_USER_INFO = exports.SET_REMARK_INFO = exports.SET_ORDER_INFO = exports.SET_WATCHOPTION = exports.SET_ADDRESS = exports.SET_LOCATIONADDR = exports.SET_CITY = void 0;var SET_CITY = 'SET_CITY';exports.SET_CITY = SET_CITY;
 
 var SET_LOCATIONADDR = 'SET_LOCATIONADDR';exports.SET_LOCATIONADDR = SET_LOCATIONADDR;
 
+var SET_ADDRESS = 'SET_ADDRESS';exports.SET_ADDRESS = SET_ADDRESS;
+
 var SET_WATCHOPTION = 'SET_WATCHOPTION';exports.SET_WATCHOPTION = SET_WATCHOPTION;
+
+var SET_ORDER_INFO = 'SET_ORDER_INFO';exports.SET_ORDER_INFO = SET_ORDER_INFO;
+
+var SET_REMARK_INFO = 'SET_REMARK_INFO';exports.SET_REMARK_INFO = SET_REMARK_INFO;
+
+var SET_USER_INFO = 'SET_USER_INFO';exports.SET_USER_INFO = SET_USER_INFO;
 
 /***/ }),
 
-/***/ 22:
+/***/ 23:
 /*!********************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/getters.js ***!
   \********************************************************************************/
@@ -8897,15 +8988,62 @@ var SET_WATCHOPTION = 'SET_WATCHOPTION';exports.SET_WATCHOPTION = SET_WATCHOPTIO
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.watchOption = exports.locationAddr = exports.city = void 0;var city = function city(state) {return state.city;};exports.city = city;
+Object.defineProperty(exports, "__esModule", { value: true });exports.remarkInfo = exports.userInfo = exports.totalPrice = exports.orderInfo = exports.watchOption = exports.address = exports.locationAddr = exports.city = void 0;var city = function city(state) {return state.city;};exports.city = city;
 
 var locationAddr = function locationAddr(state) {return state.locationAddr;};exports.locationAddr = locationAddr;
 
+var address = function address(state) {return state.address;};exports.address = address;
+
 var watchOption = function watchOption(state) {return state.watchOption;};exports.watchOption = watchOption;
+
+var orderInfo = function orderInfo(state) {return state.orderInfo;};exports.orderInfo = orderInfo;
+
+var totalPrice = function totalPrice(state) {
+  var price = 0;
+  if (state.orderInfo) {
+    var selectFoods = state.orderInfo.selectFoods;
+    selectFoods.forEach(function (food) {
+      price += food.food_price * food.food_count;
+    });
+    price += state.orderInfo.shopInfo.float_delivery_fee;
+  }
+  return price;
+};exports.totalPrice = totalPrice;
+
+var userInfo = function userInfo(state) {return state.userInfo;};exports.userInfo = userInfo;
+
+var remarkInfo = function remarkInfo(state) {return state.remarkInfo;};exports.remarkInfo = remarkInfo;
 
 /***/ }),
 
-/***/ 23:
+/***/ 24:
+/*!********************************************************************************!*\
+  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/actions.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.setUserInfo = exports.setOrderInfo = void 0;var types = _interopRequireWildcard(__webpack_require__(/*! ./mutation-types */ 22));
+var _cache = __webpack_require__(/*! ../common/cache.js */ 20);function _getRequireWildcardCache() {if (typeof WeakMap !== "function") return null;var cache = new WeakMap();_getRequireWildcardCache = function _getRequireWildcardCache() {return cache;};return cache;}function _interopRequireWildcard(obj) {if (obj && obj.__esModule) {return obj;}if (obj === null || typeof obj !== "object" && typeof obj !== "function") {return { default: obj };}var cache = _getRequireWildcardCache();if (cache && cache.has(obj)) {return cache.get(obj);}var newObj = {};var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor;for (var key in obj) {if (Object.prototype.hasOwnProperty.call(obj, key)) {var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null;if (desc && (desc.get || desc.set)) {Object.defineProperty(newObj, key, desc);} else {newObj[key] = obj[key];}}}newObj.default = obj;if (cache) {cache.set(obj, newObj);}return newObj;}
+
+
+
+var setOrderInfo = function setOrderInfo(_ref,
+
+orderInfo) {var commit = _ref.commit;
+  commit(types.SET_ORDER_INFO, (0, _cache.saveOrderInfo)(orderInfo));
+};exports.setOrderInfo = setOrderInfo;
+
+var setUserInfo = function setUserInfo(_ref2,
+
+userInfo) {var commit = _ref2.commit;
+  commit(types.SET_USER_INFO, userInfo);
+};exports.setUserInfo = setUserInfo;
+
+/***/ }),
+
+/***/ 25:
 /*!******************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/utils/https.js ***!
   \******************************************************************************/
@@ -8921,7 +9059,7 @@ var watchOption = function watchOption(state) {return state.watchOption;};export
   //请求的方式： GET POST
   if (method) {
     method = method.toUpperCase(); // 小写转成大写
-    if (method == "POST") {
+    if (method == "POST" || method == 'DELETE') {
       header = {
         "content-type": "application/x-www-form-urlencoded" };
 
@@ -8951,8 +9089,9 @@ var watchOption = function watchOption(state) {return state.watchOption;};export
       typeof param.success == 'function' && param.success(res.data);
     },
     fail: function fail(e) {
+      console.log(e);
       uni.showModal({
-        content: e.meg });
+        content: e.errMsg });
 
       typeof param.fail == 'function' && param.fail(res.data);
     },
@@ -8999,7 +9138,7 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 30:
+/***/ 32:
 /*!***********************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/utils/interfaces.js ***!
   \***********************************************************************************/
@@ -9019,6 +9158,15 @@ var interfaces = {
   getShoplists: domain + "profile/restaurants",
   //商家详情信息
   getShops: domain + 'profile/batch_shop',
+
+  //获取用户设置的地址
+  getUserAddress: domain + 'user/user_info',
+
+  deletAddress: domain + 'user/address',
+
+  addAddress: domain + 'user/add_address',
+
+  editAddress: domain + 'user/edit_address',
 
   sms_back: domain + 'posts/sms_back',
 
@@ -9041,18 +9189,18 @@ module.exports = interfaces;
 
 /***/ }),
 
-/***/ 45:
+/***/ 47:
 /*!*********************************************************************************************!*\
   !*** ./node_modules/@vue/babel-preset-app/node_modules/@babel/runtime/regenerator/index.js ***!
   \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! regenerator-runtime */ 46);
+module.exports = __webpack_require__(/*! regenerator-runtime */ 48);
 
 /***/ }),
 
-/***/ 46:
+/***/ 48:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
@@ -9083,7 +9231,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(/*! ./runtime */ 47);
+module.exports = __webpack_require__(/*! ./runtime */ 49);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -9100,7 +9248,7 @@ if (hadRuntime) {
 
 /***/ }),
 
-/***/ 47:
+/***/ 49:
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
   \*****************************************************/
@@ -10730,7 +10878,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 
 /***/ }),
 
-/***/ 62:
+/***/ 66:
 /*!*******************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/mock/citys.json ***!
   \*******************************************************************************/
@@ -10749,11 +10897,11 @@ module.exports = {"S":[{"id":1,"name":"上海","abbr":"SH","area_code":"021","so
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页", "usingComponents": { "page-header": "/components/pageheader/pageHeader", "filter-view": "/components/filterView/filterView", "shop-lists": "/components/shopLists/shopLists" }, "usingAutoImportComponents": {} }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": { "page-status": "/components/status/status", "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" }, "usingAutoImportComponents": { "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" } }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white", "usingComponents": { "location": "/components/location/location" }, "usingAutoImportComponents": { "location": "/components/location/location" } }, "pages/shops/shops": { "navigationBarTitleText": "商家", "usingComponents": { "page-status": "/components/status/status", "shops-header": "/pages/shops/shopsHeader", "info-model": "/pages/shops/infoModel", "activity": "/pages/shops/activity", "goods": "/pages/shops/goods", "goods-lists": "/pages/shops/goodsLists", "shop-cart": "/pages/shops/shopCart" }, "usingAutoImportComponents": {} }, "pages/orders/orders": { "navigationBarTitleText": "确定订单", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/login/login": { "usingComponents": { "page-status": "/components/status/status", "input-group": "/components/inputGroup/inputGroup" }, "usingAutoImportComponents": {} }, "pages/userInfo/userInfo": { "navigationBarTitleText": "我的信息", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myFace/myFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/faceCrop/faceCrop": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像剪裁", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "Yan", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页", "usingComponents": { "page-header": "/components/pageheader/pageHeader", "filter-view": "/components/filterView/filterView", "shop-lists": "/components/shopLists/shopLists" }, "usingAutoImportComponents": {} }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": { "page-status": "/components/status/status", "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" }, "usingAutoImportComponents": { "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" } }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white", "usingComponents": { "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/shops/shops": { "navigationBarTitleText": "商家", "usingComponents": { "page-status": "/components/status/status", "shops-header": "/pages/shops/shopsHeader", "info-model": "/pages/shops/infoModel", "activity": "/pages/shops/activity", "goods": "/pages/shops/goods", "goods-lists": "/pages/shops/goodsLists", "shop-cart": "/pages/shops/shopCart" }, "usingAutoImportComponents": {} }, "pages/orders/orders": { "navigationBarTextStyle": "white", "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "delivery": "/pages/orders/delivery", "order-cart-group": "/pages/orders/orderCartGroup", "cart-item": "/pages/orders/cartItem", "table-ware": "/pages/orders/tableWare" }, "usingAutoImportComponents": {} }, "pages/login/login": { "usingComponents": { "page-status": "/components/status/status", "input-group": "/components/inputGroup/inputGroup" }, "usingAutoImportComponents": {} }, "pages/userInfo/userInfo": { "navigationBarTitleText": "我的信息", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myFace/myFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/faceCrop/faceCrop": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像剪裁", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/remark/remark": { "navigationBarTitleText": "订单备注", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myAddress/myAddress": { "navigationBarTextStyle": "white", "navigationBarTitleText": "收货地址管理", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/addAddress/addAddress": { "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "input-group": "/components/inputGroup/inputGroup", "tab-tag": "/components/tabTag/tabTag", "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/pay/pay": { "navigationBarTextStyle": "white", "navigationBarTitleText": "在线支付", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 
-/***/ 71:
+/***/ 75:
 /*!******************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/utils/index.js ***!
   \******************************************************************************/
@@ -10788,7 +10936,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 80:
+/***/ 84:
 /*!***************************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/shopCartClass.js ***!
   \***************************************************************************************/

@@ -23,7 +23,7 @@
 
 <script>
 	import shopCartDetails from './shopCartDetails.vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	data() {
@@ -111,11 +111,20 @@ export default {
 		changeFold() {
 			this.fold = true;
 		},
+		...mapActions([
+		      'setOrderInfo'
+		    ]),
 		pay() {
 			if (this.totalPrice < this.minPrice) {
 				return;
 			}
-			console.log(`支付${this.totalPrice}元`);
+			this.setOrderInfo({
+        shopInfo: this.shopInfo,
+        selectFoods: this.goodsList
+      })
+			uni.navigateTo({
+				url:'../orders/orders'
+			})
 		}
 	}
 };

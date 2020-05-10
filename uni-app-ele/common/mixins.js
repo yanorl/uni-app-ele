@@ -1,4 +1,7 @@
-import { mapGetters, mapMutations } from 'vuex';
+import {
+	mapGetters,
+	mapMutations
+} from 'vuex';
 
 export const cartControlMixin = {
 	computed: {
@@ -28,7 +31,7 @@ export const cartControlMixin = {
 						})
 						that.setGoodsList(goodsList)
 						// uni.setStorageSync("goodsList", goodsList);
-							// that.setWatchOption(!that.watchOption)
+						// that.setWatchOption(!that.watchOption)
 					})
 				})
 			} else {
@@ -37,7 +40,7 @@ export const cartControlMixin = {
 			// this.sum();
 		},
 		joinCart(item, count) {
-			
+
 			let parm = {
 				'food_id': item.food_id,
 				'food_name': item.food_name,

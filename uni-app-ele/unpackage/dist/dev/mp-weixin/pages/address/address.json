@@ -5,6 +5,6 @@
   "backgroundColorTop": "#009eef",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "location": "/components/location/location"
+    "set-address": "/components/setAddress/setAddress"
   }
 }

@@ -10,7 +10,7 @@
 					<view class="food" v-for="(food, index) in selectGoods" :key="food.food_id">
 						<text class="name">{{ food.food_name }}</text>
 						<view class="price">
-							<text>${{ food.food_price * food.food_count }}</text>
+							<text>¥{{ food.food_price * food.food_count }}</text>
 						</view>
 						<view class="cart-control-wrapper" :key="food.food_id"><cart-control @add="add(food, $event)" @sub="sub(food, $event)" :items="food"></cart-control></view>
 					</view>

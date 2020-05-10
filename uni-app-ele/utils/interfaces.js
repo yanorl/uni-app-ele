@@ -12,6 +12,15 @@ const interfaces = {
 	//商家详情信息
 	getShops: domain + 'profile/batch_shop',
 	
+	//获取用户设置的地址
+	getUserAddress: domain + 'user/user_info',
+	
+	deletAddress: domain + 'user/address',
+	
+	addAddress: domain + 'user/add_address',
+	
+	editAddress: domain + 'user/edit_address',
+	
 	sms_back: domain + 'posts/sms_back',
 	
 	sms_send: domain + 'posts/sms_send',

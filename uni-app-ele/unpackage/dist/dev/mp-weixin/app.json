@@ -11,12 +11,15 @@
     "pages/login/login",
     "pages/userInfo/userInfo",
     "pages/myFace/myFace",
-    "pages/faceCrop/faceCrop"
+    "pages/faceCrop/faceCrop",
+    "pages/remark/remark",
+    "pages/myAddress/myAddress",
+    "pages/addAddress/addAddress",
+    "pages/pay/pay"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Yan",
     "navigationBarBackgroundColor": "#FFFFFF",
     "backgroundColor": "#FFFFFF"
   },

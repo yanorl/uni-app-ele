@@ -7,7 +7,7 @@ module.exports = (param) => {
 	//请求的方式： GET POST
 	if (method) {
 		method = method.toUpperCase(); // 小写转成大写
-		if (method == "POST") {
+		if (method == "POST" || method == 'DELETE') {
 			header = {
 				"content-type": "application/x-www-form-urlencoded"
 			}
@@ -37,8 +37,9 @@ module.exports = (param) => {
 			typeof param.success == 'function' && param.success(res.data);
 		},
 		fail: (e) => {
+			console.log(e)
 			uni.showModal({
-				content: e.meg
+				content: e.errMsg
 			})
 			typeof param.fail == 'function' && param.fail(res.data);
 		},

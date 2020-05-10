@@ -25,9 +25,8 @@
 /* 透明度 */
 /* 文章场景相关 */
 .input_group {
-  border: 1px solid #ccc;
   border-radius: 8rpx;
-  padding: 20rpx;
+  padding: 10rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -43,12 +42,16 @@
           align-items: center;
   font-size: 24rpx;
 }
+.input_group.border {
+  border: 1px solid #ccc;
+}
 .input_group input {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
           flex: 1;
   outline: none;
   font-size: 24rpx;
+  min-height: 60rpx;
 }
 .input_group button {
   font-size: 24rpx;

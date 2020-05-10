@@ -1,4 +1,11 @@
 {
-  "navigationBarTitleText": "确定订单",
-  "usingComponents": {}
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "确认订单",
+  "navigationBarBackgroundColor": "#009eef",
+  "usingComponents": {
+    "delivery": "/pages/orders/delivery",
+    "order-cart-group": "/pages/orders/orderCartGroup",
+    "cart-item": "/pages/orders/cartItem",
+    "table-ware": "/pages/orders/tableWare"
+  }
 }
