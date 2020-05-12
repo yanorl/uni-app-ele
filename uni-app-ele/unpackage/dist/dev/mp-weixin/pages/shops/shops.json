@@ -7,6 +7,8 @@
     "activity": "/pages/shops/activity",
     "goods": "/pages/shops/goods",
     "goods-lists": "/pages/shops/goodsLists",
-    "shop-cart": "/pages/shops/shopCart"
+    "shop-cart": "/pages/shops/shopCart",
+    "seller": "/pages/shops/seller",
+    "comments": "/pages/shops/comments"
   }
 }

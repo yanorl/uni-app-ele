@@ -23,21 +23,5 @@ export function loadOrderInfo() {
 		console.log(1)
 	   return null
 	}
-	
-	
-	// let load = {}
-	// uni.getStorage({
-	// 	key: 'orderInfo',
-	// 	success: res => {
-	// 		if(res.data){
-	// 			load =  res.data
-	// 		} else {
-	// 			load =  res
-	// 		}
-	// 	},
-	// 	fail() {
-	// 		load = {}
-	// 	}
-	// });
-	// return load
+
 }

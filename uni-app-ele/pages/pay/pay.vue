@@ -23,7 +23,9 @@
 					</li>
 				</ul>
 			</view>
-			<button @click="pay" :disabled="timeOut" class="btn-submit">确认支付</button>
+			<view class="button-wrap">
+				<button @click="pay" :disabled="timeOut" class="btn-submit">确认支付</button>
+			</view>
 		</view>
 	</view>
 </template>
@@ -171,23 +173,28 @@ export default {
 				}
 			}
 		}
-		.btn-submit {
-			font-size: 36rpx;
-			line-height: 48rpx;
-			background-color: #4cd964;
-			width: 100%;
-			outline: none;
-			border: none;
-			color: #fff;
-			border-radius: 10rpx;
-			padding: 16rpx;
-			box-sizing: border-box;
+		.button-wrap{
+			margin: 20rpx auto;
+			  width: 90%;
+			.btn-submit {
+				font-size: 36rpx;
+				line-height: 48rpx;
+				background-color: #4cd964;
+				width: 100%;
+				outline: none;
+				border: none;
+				color: #fff;
+				border-radius: 10rpx;
+				padding: 16rpx;
+				box-sizing: border-box;
+			}
+			/* 不可点击btn */
+			.btn-submit[disabled] {
+				background-color: #bbb !important;
+			}
 		}
 
-		/* 不可点击btn */
-		.btn-submit[disabled] {
-			background-color: #bbb !important;
-		}
+	
 	}
 }
 </style>

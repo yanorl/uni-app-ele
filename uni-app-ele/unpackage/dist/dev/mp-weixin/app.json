@@ -60,5 +60,6 @@
       "desc": "定位"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap93.json"
 }

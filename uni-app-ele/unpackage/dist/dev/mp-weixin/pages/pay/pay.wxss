@@ -29,7 +29,6 @@
   height: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  /* 不可点击btn */
 }
 .pay-box .pay-wrap .tip {
   display: block;
@@ -129,7 +128,12 @@
 .pay-box .pay-wrap .pay-content .payment-list-item .selected {
   color: #4cd964 !important;
 }
-.pay-box .pay-wrap .btn-submit {
+.pay-box .pay-wrap .button-wrap {
+  margin: 20rpx auto;
+  width: 90%;
+  /* 不可点击btn */
+}
+.pay-box .pay-wrap .button-wrap .btn-submit {
   font-size: 36rpx;
   line-height: 48rpx;
   background-color: #4cd964;
@@ -142,7 +146,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.pay-box .pay-wrap .btn-submit[disabled] {
+.pay-box .pay-wrap .button-wrap .btn-submit[disabled] {
   background-color: #bbb !important;
 }
 

@@ -49,11 +49,18 @@
 						<goods :recommend="recommend.recommend"></goods>
 						<!-- 商品列表左右联动 -->
 						<goods-lists :goodList="goodList.menu"></goods-lists>
+						
+						<!-- 购物车 -->
+						<view class="shop-cart-wrap"><shop-cart :shopInfo="shopInfo" /></view>
 					</view>
 
-					<view class="tab-item" v-show="currentIndex == 1">dd</view>
+					<view class="tab-item" v-show="currentIndex == 1">
+						<comments></comments>
+					</view>
 
-					<view class="tab-item" v-show="currentIndex == 2">aaa</view>
+					<view class="tab-item" v-show="currentIndex == 2">
+						<seller></seller>
+					</view>
 				</view>
 
 				<!--  -->
@@ -61,8 +68,7 @@
 			</view>
 		</view>
 
-		<!-- 购物车 -->
-		<view class="shop-cart-wrap"><shop-cart :shopInfo="shopInfo" /></view>
+		
 	</view>
 </template>
 
@@ -74,6 +80,8 @@ import activity from './activity.vue';
 import goods from './goods.vue';
 import goodsLists from './goodsLists.vue';
 import shopCart from './shopCart.vue';
+import seller from './seller.vue';
+import comments from './comments.vue';
 import interfaces from '../../utils/interfaces.js';
 import shopCartClass from '../../common/shopCartClass.js';
 
@@ -127,7 +135,9 @@ export default {
 		activity,
 		goods,
 		goodsLists,
-		shopCart
+		shopCart,
+		seller,
+		comments
 	},
 	onPageScroll(e) {
 		// #ifdef APP-PLUS

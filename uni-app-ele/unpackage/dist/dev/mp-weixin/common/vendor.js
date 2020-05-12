@@ -8784,24 +8784,31 @@ function loadOrderInfo() {
     return null;
   }
 
-
-  // let load = {}
-  // uni.getStorage({
-  // 	key: 'orderInfo',
-  // 	success: res => {
-  // 		if(res.data){
-  // 			load =  res.data
-  // 		} else {
-  // 			load =  res
-  // 		}
-  // 	},
-  // 	fail() {
-  // 		load = {}
-  // 	}
-  // });
-  // return load
 }
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 203:
+/*!******************************************************************************!*\
+  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/utils/index.js ***!
+  \******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.debounce = debounce;function debounce(func, delay) {
+  var timer;
+  return function () {var _this = this;for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}
+    // console.log(args)
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function () {
+      func.apply(_this, args);
+    }, delay);
+  };
+}
 
 /***/ }),
 
@@ -8851,7 +8858,67 @@ mutations;exports.default = _default;
 
 /***/ }),
 
-/***/ 219:
+/***/ 22:
+/*!***************************************************************************************!*\
+  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/mutation-types.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.SET_USER_INFO = exports.SET_REMARK_INFO = exports.SET_ORDER_INFO = exports.SET_WATCHOPTION = exports.SET_ADDRESS = exports.SET_LOCATIONADDR = exports.SET_CITY = void 0;var SET_CITY = 'SET_CITY';exports.SET_CITY = SET_CITY;
+
+var SET_LOCATIONADDR = 'SET_LOCATIONADDR';exports.SET_LOCATIONADDR = SET_LOCATIONADDR;
+
+var SET_ADDRESS = 'SET_ADDRESS';exports.SET_ADDRESS = SET_ADDRESS;
+
+var SET_WATCHOPTION = 'SET_WATCHOPTION';exports.SET_WATCHOPTION = SET_WATCHOPTION;
+
+var SET_ORDER_INFO = 'SET_ORDER_INFO';exports.SET_ORDER_INFO = SET_ORDER_INFO;
+
+var SET_REMARK_INFO = 'SET_REMARK_INFO';exports.SET_REMARK_INFO = SET_REMARK_INFO;
+
+var SET_USER_INFO = 'SET_USER_INFO';exports.SET_USER_INFO = SET_USER_INFO;
+
+/***/ }),
+
+/***/ 23:
+/*!********************************************************************************!*\
+  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/getters.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.remarkInfo = exports.userInfo = exports.totalPrice = exports.orderInfo = exports.watchOption = exports.address = exports.locationAddr = exports.city = void 0;var city = function city(state) {return state.city;};exports.city = city;
+
+var locationAddr = function locationAddr(state) {return state.locationAddr;};exports.locationAddr = locationAddr;
+
+var address = function address(state) {return state.address;};exports.address = address;
+
+var watchOption = function watchOption(state) {return state.watchOption;};exports.watchOption = watchOption;
+
+var orderInfo = function orderInfo(state) {return state.orderInfo;};exports.orderInfo = orderInfo;
+
+var totalPrice = function totalPrice(state) {
+  var price = 0;
+  if (state.orderInfo) {
+    var selectFoods = state.orderInfo.selectFoods;
+    selectFoods.forEach(function (food) {
+      price += food.food_price * food.food_count;
+    });
+    price += state.orderInfo.shopInfo.float_delivery_fee;
+  }
+  return price;
+};exports.totalPrice = totalPrice;
+
+var userInfo = function userInfo(state) {return state.userInfo;};exports.userInfo = userInfo;
+
+var remarkInfo = function remarkInfo(state) {return state.remarkInfo;};exports.remarkInfo = remarkInfo;
+
+/***/ }),
+
+/***/ 232:
 /*!********************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/mixins.js ***!
   \********************************************************************************/
@@ -8953,66 +9020,6 @@ var cartControlMixin = {
 
     } }) };exports.cartControlMixin = cartControlMixin;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 22:
-/*!***************************************************************************************!*\
-  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/mutation-types.js ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.SET_USER_INFO = exports.SET_REMARK_INFO = exports.SET_ORDER_INFO = exports.SET_WATCHOPTION = exports.SET_ADDRESS = exports.SET_LOCATIONADDR = exports.SET_CITY = void 0;var SET_CITY = 'SET_CITY';exports.SET_CITY = SET_CITY;
-
-var SET_LOCATIONADDR = 'SET_LOCATIONADDR';exports.SET_LOCATIONADDR = SET_LOCATIONADDR;
-
-var SET_ADDRESS = 'SET_ADDRESS';exports.SET_ADDRESS = SET_ADDRESS;
-
-var SET_WATCHOPTION = 'SET_WATCHOPTION';exports.SET_WATCHOPTION = SET_WATCHOPTION;
-
-var SET_ORDER_INFO = 'SET_ORDER_INFO';exports.SET_ORDER_INFO = SET_ORDER_INFO;
-
-var SET_REMARK_INFO = 'SET_REMARK_INFO';exports.SET_REMARK_INFO = SET_REMARK_INFO;
-
-var SET_USER_INFO = 'SET_USER_INFO';exports.SET_USER_INFO = SET_USER_INFO;
-
-/***/ }),
-
-/***/ 23:
-/*!********************************************************************************!*\
-  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/store/getters.js ***!
-  \********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.remarkInfo = exports.userInfo = exports.totalPrice = exports.orderInfo = exports.watchOption = exports.address = exports.locationAddr = exports.city = void 0;var city = function city(state) {return state.city;};exports.city = city;
-
-var locationAddr = function locationAddr(state) {return state.locationAddr;};exports.locationAddr = locationAddr;
-
-var address = function address(state) {return state.address;};exports.address = address;
-
-var watchOption = function watchOption(state) {return state.watchOption;};exports.watchOption = watchOption;
-
-var orderInfo = function orderInfo(state) {return state.orderInfo;};exports.orderInfo = orderInfo;
-
-var totalPrice = function totalPrice(state) {
-  var price = 0;
-  if (state.orderInfo) {
-    var selectFoods = state.orderInfo.selectFoods;
-    selectFoods.forEach(function (food) {
-      price += food.food_price * food.food_count;
-    });
-    price += state.orderInfo.shopInfo.float_delivery_fee;
-  }
-  return price;
-};exports.totalPrice = totalPrice;
-
-var userInfo = function userInfo(state) {return state.userInfo;};exports.userInfo = userInfo;
-
-var remarkInfo = function remarkInfo(state) {return state.remarkInfo;};exports.remarkInfo = remarkInfo;
 
 /***/ }),
 
@@ -9171,6 +9178,10 @@ var interfaces = {
   sms_back: domain + 'posts/sms_back',
 
   sms_send: domain + 'posts/sms_send',
+
+  seller: domain + 'profile/seller',
+
+  comments: domain + 'profile/comments',
 
   uploadFace: domain + '' };
 
@@ -10897,30 +10908,7 @@ module.exports = {"S":[{"id":1,"name":"上海","abbr":"SH","area_code":"021","so
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页", "usingComponents": { "page-header": "/components/pageheader/pageHeader", "filter-view": "/components/filterView/filterView", "shop-lists": "/components/shopLists/shopLists" }, "usingAutoImportComponents": {} }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": { "page-status": "/components/status/status", "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" }, "usingAutoImportComponents": { "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" } }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white", "usingComponents": { "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/shops/shops": { "navigationBarTitleText": "商家", "usingComponents": { "page-status": "/components/status/status", "shops-header": "/pages/shops/shopsHeader", "info-model": "/pages/shops/infoModel", "activity": "/pages/shops/activity", "goods": "/pages/shops/goods", "goods-lists": "/pages/shops/goodsLists", "shop-cart": "/pages/shops/shopCart" }, "usingAutoImportComponents": {} }, "pages/orders/orders": { "navigationBarTextStyle": "white", "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "delivery": "/pages/orders/delivery", "order-cart-group": "/pages/orders/orderCartGroup", "cart-item": "/pages/orders/cartItem", "table-ware": "/pages/orders/tableWare" }, "usingAutoImportComponents": {} }, "pages/login/login": { "usingComponents": { "page-status": "/components/status/status", "input-group": "/components/inputGroup/inputGroup" }, "usingAutoImportComponents": {} }, "pages/userInfo/userInfo": { "navigationBarTitleText": "我的信息", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myFace/myFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/faceCrop/faceCrop": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像剪裁", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/remark/remark": { "navigationBarTitleText": "订单备注", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myAddress/myAddress": { "navigationBarTextStyle": "white", "navigationBarTitleText": "收货地址管理", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/addAddress/addAddress": { "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "input-group": "/components/inputGroup/inputGroup", "tab-tag": "/components/tabTag/tabTag", "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/pay/pay": { "navigationBarTextStyle": "white", "navigationBarTitleText": "在线支付", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
-
-/***/ }),
-
-/***/ 75:
-/*!******************************************************************************!*\
-  !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/utils/index.js ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.debounce = debounce;function debounce(func, delay) {
-  var timer;
-  return function () {var _this = this;for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}
-    // console.log(args)
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(function () {
-      func.apply(_this, args);
-    }, delay);
-  };
-}
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页" }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车" }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类" }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white" }, "pages/city/city": { "navigationBarTitleText": "选择城市" }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white" }, "pages/shops/shops": { "navigationBarTitleText": "商家" }, "pages/orders/orders": { "navigationBarTextStyle": "white", "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#009eef" }, "pages/login/login": {}, "pages/userInfo/userInfo": { "navigationBarTitleText": "我的信息" }, "pages/myFace/myFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000" }, "pages/faceCrop/faceCrop": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像剪裁", "navigationBarBackgroundColor": "#000000" }, "pages/remark/remark": { "navigationBarTitleText": "订单备注" }, "pages/myAddress/myAddress": { "navigationBarTextStyle": "white", "navigationBarTitleText": "收货地址管理", "navigationBarBackgroundColor": "#009eef" }, "pages/addAddress/addAddress": { "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#009eef" }, "pages/pay/pay": { "navigationBarTextStyle": "white", "navigationBarTitleText": "在线支付", "navigationBarBackgroundColor": "#009eef" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 
@@ -10936,7 +10924,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 84:
+/***/ 81:
 /*!***************************************************************************************!*\
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/common/shopCartClass.js ***!
   \***************************************************************************************/

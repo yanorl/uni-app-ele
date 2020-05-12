@@ -25,6 +25,10 @@ const interfaces = {
 	
 	sms_send: domain + 'posts/sms_send',
 	
+	seller: domain + 'profile/seller',
+	
+	comments: domain + 'profile/comments',
+	
 	uploadFace: domain +''
 }
 module.exports = interfaces;
