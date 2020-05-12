@@ -285,15 +285,21 @@ var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common
 
 
   },
+  onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+    setTimeout(function () {
+      _this.initData();
+      uni.stopPullDownRefresh();
+    }, 1000);
+  },
   methods: {
-    initData: function initData() {var _this = this;
+    initData: function initData() {var _this2 = this;
       this.request({
         url: _interfaces.default.getShops,
         success: function success(res) {
 
-          _this.shopInfo = res.rst;
-          _this.recommend = _this._normalizeRecommend(res.recommend);
-          _this.goodList = _this._normalizeMenu(res.menu);
+          _this2.shopInfo = res.rst;
+          _this2.recommend = _this2._normalizeRecommend(res.recommend);
+          _this2.goodList = _this2._normalizeMenu(res.menu);
         } });
 
     },

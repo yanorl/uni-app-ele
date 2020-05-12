@@ -202,6 +202,14 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
     this.shopLists();
     this.getFilter();
   },
+  onPullDownRefresh: function onPullDownRefresh() {var _this = this;
+    setTimeout(function () {
+      _this.getBanner();
+      _this.shopLists();
+      _this.getFilter();
+      uni.stopPullDownRefresh();
+    }, 1000);
+  },
   components: {
     pageHeader: pageHeader,
     filterView: filterView,
@@ -236,26 +244,26 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
         this.shopLists();
       }
     },
-    getBanner: function getBanner() {var _this = this;
+    getBanner: function getBanner() {var _this2 = this;
       this.request({
         url: _interfaces.default.getBanner,
         success: function success(res) {
           // console.log(res);
-          _this.swipeImgs = res.swipeImgs;
-          _this.entries = res.entries;
+          _this2.swipeImgs = res.swipeImgs;
+          _this2.entries = res.entries;
         } });
 
     },
-    getFilter: function getFilter() {var _this2 = this;
+    getFilter: function getFilter() {var _this3 = this;
       this.request({
         url: _interfaces.default.getfilter,
         success: function success(res) {
           // console.log(res);
-          _this2.filterData = res;
+          _this3.filterData = res;
         } });
 
     },
-    shopLists: function shopLists() {var _this3 = this;
+    shopLists: function shopLists() {var _this4 = this;
       this.allLoaded = false;
 
       this.request({
@@ -266,16 +274,16 @@ var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../../utils/
         success: function success(res) {
           console.log(res);
           // this.shopList = res;
-          if (!_this3.upDate) {
-            if (res.length >= _this3.size) {
+          if (!_this4.upDate) {
+            if (res.length >= _this4.size) {
               res.forEach(function (item) {
-                _this3.shopList.push(item);
+                _this4.shopList.push(item);
               });
             } else {
-              _this3.allLoaded = true;
+              _this4.allLoaded = true;
             }
           } else {
-            _this3.shopList = res;
+            _this4.shopList = res;
           }
         } });
 

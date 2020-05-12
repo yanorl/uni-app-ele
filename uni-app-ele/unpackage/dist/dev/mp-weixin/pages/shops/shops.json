@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh": true,
   "navigationBarTitleText": "商家",
   "usingComponents": {
     "page-status": "/components/status/status",

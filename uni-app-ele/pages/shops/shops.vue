@@ -144,6 +144,12 @@ export default {
 		this.scrollTop = e.scrollTop;
 		// #endif
 	},
+	onPullDownRefresh(){
+		setTimeout(() => {
+			this.initData();
+			uni.stopPullDownRefresh();
+		},1000)
+	},
 	methods: {
 		initData() {
 			this.request({

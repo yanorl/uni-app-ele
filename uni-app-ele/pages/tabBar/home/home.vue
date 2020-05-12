@@ -70,6 +70,14 @@ export default {
 		this.shopLists();
 		this.getFilter();
 	},
+	onPullDownRefresh(){
+		setTimeout(() => {
+			this.getBanner();
+			this.shopLists();
+			this.getFilter();
+			uni.stopPullDownRefresh();
+		},1000)
+	},
 	components: {
 		pageHeader,
 		filterView,

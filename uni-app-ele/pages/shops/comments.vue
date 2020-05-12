@@ -1,7 +1,7 @@
 <template>
 	<view class="comment-box" v-if="evaluation">
 		<!-- 商家评分 -->
-		<view class="rating-wraps">
+		<view class="rating-wraps" v-if="evaluation.rating">
 			<view class="rating-info">
 				<h4>{{ evaluation.rating.shop_score.toFixed(1) }}</h4>
 				<view class="shop-score">
