@@ -135,7 +135,7 @@ export default {
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	z-index: 10;
+	z-index: 11;
 	width: 100%;
 	height: 96rpx;
 	background: #000;

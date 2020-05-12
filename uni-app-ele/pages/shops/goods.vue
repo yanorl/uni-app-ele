@@ -5,7 +5,7 @@
 			<view class="recommend-name">{{ recommend.name }}</view>
 			<view class="recommend-wrap">
 				<ul>
-					<li v-for="(item, i) in recommend.items" :key="i">
+					<li v-for="(item, i) in recommend.items" :key="i" @tap="handleFood(item)">
 						<image :src="item.food_image" mode=""></image>
 						<view class="recommend-food">
 							<view class="recommend-food-name">{{ item.food_name }}</view>
@@ -43,6 +43,9 @@ export default {
 		cartControl
 	},
 	methods: {
+		handleFood(food) {
+			this.$emit('handleFood', food)
+		},
 	}
 };
 </script>

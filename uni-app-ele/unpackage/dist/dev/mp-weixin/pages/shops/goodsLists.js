@@ -203,6 +203,9 @@ var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 232);function _i
     cartControl: cartControl },
 
   methods: {
+    handleFood: function handleFood(food) {
+      this.$emit('handleFood', food);
+    },
     //获取距离顶部的高度
     getScrollTop: function getScrollTop(selector) {var _this2 = this;
       var that = this;

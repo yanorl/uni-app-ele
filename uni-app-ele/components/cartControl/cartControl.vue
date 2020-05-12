@@ -115,18 +115,6 @@ computed: {
 			color: #00a0dc;
 			transition: all 0.4s linear;
 		}
-		&.move-enter-active,
-		&.move-leave-active {
-			transition: all 0.4s linear;
-		}
-		&.move-enter,
-		&.move-leave-to {
-			opacity: 0;
-			transform: translate3d(36rpx, 0, 0);
-			i {
-				transform: rotate(180deg);
-			}
-		}
 	}
 	.cart-count {
 		display: inline-block;

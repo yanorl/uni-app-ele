@@ -19,7 +19,7 @@
 							<text class="foot-descript">{{ item.description }}</text>
 						</view>
 						<!-- content -->
-						<view class="foot-item-list" v-for="(food, i) in item.foods" :key="i">
+						<view class="foot-item-list" v-for="(food, i) in item.foods" :key="i" @tap="handleFood(food)">
 							<image :src="food.food_image" mode=""></image>
 							<view class="food-item-list-info">
 								<text class="foot-name">{{ food.food_name }}</text>
@@ -87,6 +87,9 @@ export default {
 		cartControl
 	},
 	methods: {
+		handleFood(food) {
+			this.$emit('handleFood', food)
+		},
 		//获取距离顶部的高度
 		getScrollTop(selector) {
 			let that = this;

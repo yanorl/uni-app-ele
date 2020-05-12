@@ -105,6 +105,10 @@ var render = function() {
     _vm.e1 = function($event) {
       _vm.showInfoModel = false
     }
+
+    _vm.e2 = function($event) {
+      _vm.showFood = false
+    }
   }
 }
 var recyclableRender = false
@@ -220,11 +224,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
 var _interfaces = _interopRequireDefault(__webpack_require__(/*! ../../utils/interfaces.js */ 32));
-var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common/shopCartClass.js */ 81));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageStatus = function pageStatus() {__webpack_require__.e(/*! require.ensure | components/status/status */ "components/status/status").then((function () {return resolve(__webpack_require__(/*! ../../components/status/status.vue */ 191));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopsHeader = function shopsHeader() {__webpack_require__.e(/*! require.ensure | pages/shops/shopsHeader */ "pages/shops/shopsHeader").then((function () {return resolve(__webpack_require__(/*! ./shopsHeader.vue */ 206));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var infoModel = function infoModel() {__webpack_require__.e(/*! require.ensure | pages/shops/infoModel */ "pages/shops/infoModel").then((function () {return resolve(__webpack_require__(/*! ./infoModel.vue */ 213));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var activity = function activity() {__webpack_require__.e(/*! require.ensure | pages/shops/activity */ "pages/shops/activity").then((function () {return resolve(__webpack_require__(/*! ./activity.vue */ 220));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goods = function goods() {Promise.all(/*! require.ensure | pages/shops/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goods")]).then((function () {return resolve(__webpack_require__(/*! ./goods.vue */ 227));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsLists = function goodsLists() {Promise.all(/*! require.ensure | pages/shops/goodsLists */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goodsLists")]).then((function () {return resolve(__webpack_require__(/*! ./goodsLists.vue */ 235));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopCart = function shopCart() {Promise.all(/*! require.ensure | pages/shops/shopCart */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/shopCart")]).then((function () {return resolve(__webpack_require__(/*! ./shopCart.vue */ 242));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var seller = function seller() {__webpack_require__.e(/*! require.ensure | pages/shops/seller */ "pages/shops/seller").then((function () {return resolve(__webpack_require__(/*! ./seller.vue */ 249));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var comments = function comments() {__webpack_require__.e(/*! require.ensure | pages/shops/comments */ "pages/shops/comments").then((function () {return resolve(__webpack_require__(/*! ./comments.vue */ 256));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common/shopCartClass.js */ 81));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var pageStatus = function pageStatus() {__webpack_require__.e(/*! require.ensure | components/status/status */ "components/status/status").then((function () {return resolve(__webpack_require__(/*! ../../components/status/status.vue */ 191));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopsHeader = function shopsHeader() {__webpack_require__.e(/*! require.ensure | pages/shops/shopsHeader */ "pages/shops/shopsHeader").then((function () {return resolve(__webpack_require__(/*! ./shopsHeader.vue */ 206));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var infoModel = function infoModel() {__webpack_require__.e(/*! require.ensure | pages/shops/infoModel */ "pages/shops/infoModel").then((function () {return resolve(__webpack_require__(/*! ./infoModel.vue */ 213));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var activity = function activity() {__webpack_require__.e(/*! require.ensure | pages/shops/activity */ "pages/shops/activity").then((function () {return resolve(__webpack_require__(/*! ./activity.vue */ 220));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goods = function goods() {Promise.all(/*! require.ensure | pages/shops/goods */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goods")]).then((function () {return resolve(__webpack_require__(/*! ./goods.vue */ 227));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var goodsLists = function goodsLists() {Promise.all(/*! require.ensure | pages/shops/goodsLists */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/goodsLists")]).then((function () {return resolve(__webpack_require__(/*! ./goodsLists.vue */ 235));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var shopCart = function shopCart() {Promise.all(/*! require.ensure | pages/shops/shopCart */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/shopCart")]).then((function () {return resolve(__webpack_require__(/*! ./shopCart.vue */ 242));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var seller = function seller() {__webpack_require__.e(/*! require.ensure | pages/shops/seller */ "pages/shops/seller").then((function () {return resolve(__webpack_require__(/*! ./seller.vue */ 249));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var comments = function comments() {__webpack_require__.e(/*! require.ensure | pages/shops/comments */ "pages/shops/comments").then((function () {return resolve(__webpack_require__(/*! ./comments.vue */ 256));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var foodView = function foodView() {Promise.all(/*! require.ensure | pages/shops/food */[__webpack_require__.e("common/vendor"), __webpack_require__.e("pages/shops/food")]).then((function () {return resolve(__webpack_require__(/*! ./food.vue */ 365));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   data: function data() {
@@ -237,7 +238,9 @@ var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common
       statusBarHeight: 0,
       showStatus: false,
       recommend: {},
-      goodList: {} };
+      goodList: {},
+      selectedFood: null,
+      showFood: false };
 
   },
   onLoad: function onLoad(option) {
@@ -278,7 +281,8 @@ var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common
     goodsLists: goodsLists,
     shopCart: shopCart,
     seller: seller,
-    comments: comments },
+    comments: comments,
+    foodView: foodView },
 
   onPageScroll: function onPageScroll(e) {
 
@@ -292,11 +296,15 @@ var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common
     }, 1000);
   },
   methods: {
+    handleFood: function handleFood(food) {
+      // console.log(food)
+      this.selectedFood = food;
+      this.showFood = true;
+    },
     initData: function initData() {var _this2 = this;
       this.request({
         url: _interfaces.default.getShops,
         success: function success(res) {
-
           _this2.shopInfo = res.rst;
           _this2.recommend = _this2._normalizeRecommend(res.recommend);
           _this2.goodList = _this2._normalizeMenu(res.menu);
@@ -311,9 +319,7 @@ var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common
       list.forEach(function (res) {
         var recomItem = [];
         res.items.forEach(function (item) {
-          recomItem.push(
-          that.newClass(item));
-
+          recomItem.push(that.newClass(item));
         });
         map.recommend.push({
           name: res.name,

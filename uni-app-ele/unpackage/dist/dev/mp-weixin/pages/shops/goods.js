@@ -158,7 +158,10 @@ var _mixins = __webpack_require__(/*! ../../common/mixins.js */ 232);var cartCon
   components: {
     cartControl: cartControl },
 
-  methods: {} };exports.default = _default2;
+  methods: {
+    handleFood: function handleFood(food) {
+      this.$emit('handleFood', food);
+    } } };exports.default = _default2;
 
 /***/ }),
 

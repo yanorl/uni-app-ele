@@ -46,29 +46,25 @@
 				<view class="tab-content">
 					<view class="tab-item" v-show="currentIndex == 0">
 						<!-- 推荐商品 -->
-						<goods :recommend="recommend.recommend"></goods>
+						<goods :recommend="recommend.recommend" @handleFood="handleFood"></goods>
 						<!-- 商品列表左右联动 -->
-						<goods-lists :goodList="goodList.menu"></goods-lists>
-						
+						<goods-lists :goodList="goodList.menu" @handleFood="handleFood"></goods-lists>
+
 						<!-- 购物车 -->
 						<view class="shop-cart-wrap"><shop-cart :shopInfo="shopInfo" /></view>
 					</view>
 
-					<view class="tab-item" v-show="currentIndex == 1">
-						<comments></comments>
-					</view>
+					<view class="tab-item" v-show="currentIndex == 1"><comments></comments></view>
 
-					<view class="tab-item" v-show="currentIndex == 2">
-						<seller></seller>
-					</view>
+					<view class="tab-item" v-show="currentIndex == 2"><seller></seller></view>
 				</view>
 
 				<!--  -->
 				<!-- </scroll-view> -->
 			</view>
 		</view>
-
-		
+		<!-- 商品详情 -->
+		<food-view :food="selectedFood" :isShow="showFood" @close="showFood=false"></food-view>
 	</view>
 </template>
 
@@ -82,6 +78,7 @@ import goodsLists from './goodsLists.vue';
 import shopCart from './shopCart.vue';
 import seller from './seller.vue';
 import comments from './comments.vue';
+import foodView from './food.vue';
 import interfaces from '../../utils/interfaces.js';
 import shopCartClass from '../../common/shopCartClass.js';
 
@@ -96,7 +93,9 @@ export default {
 			statusBarHeight: 0,
 			showStatus: false,
 			recommend: {},
-			goodList: {}
+			goodList: {},
+			selectedFood: null,
+			 showFood: false
 		};
 	},
 	onLoad(option) {
@@ -137,25 +136,30 @@ export default {
 		goodsLists,
 		shopCart,
 		seller,
-		comments
+		comments,
+		foodView
 	},
 	onPageScroll(e) {
 		// #ifdef APP-PLUS
 		this.scrollTop = e.scrollTop;
 		// #endif
 	},
-	onPullDownRefresh(){
+	onPullDownRefresh() {
 		setTimeout(() => {
 			this.initData();
 			uni.stopPullDownRefresh();
-		},1000)
+		}, 1000);
 	},
 	methods: {
+		handleFood(food) {
+			// console.log(food)
+			this.selectedFood = food;
+			      this.showFood = true;
+		},
 		initData() {
 			this.request({
 				url: interfaces.getShops,
 				success: res => {
-
 					this.shopInfo = res.rst;
 					this.recommend = this._normalizeRecommend(res.recommend);
 					this.goodList = this._normalizeMenu(res.menu);
@@ -163,16 +167,14 @@ export default {
 			});
 		},
 		_normalizeRecommend(list) {
-			let that = this
+			let that = this;
 			let map = {
 				recommend: []
 			};
 			list.forEach(res => {
 				let recomItem = [];
 				res.items.forEach(item => {
-					recomItem.push(
-					that.newClass(item)
-					);
+					recomItem.push(that.newClass(item));
 				});
 				map.recommend.push({
 					name: res.name,
@@ -187,12 +189,12 @@ export default {
 			let map = {
 				menu: []
 			};
-			
+
 			list.forEach(res => {
 				let foodsItem = [];
 				res.foods.forEach(item => {
 					foodsItem.push(that.newClass(item));
-				})
+				});
 				map.menu.push({
 					icon_url: res.icon_url,
 					name: res.name,
@@ -327,6 +329,16 @@ export default {
 					&.active {
 						color: #333;
 						font-weight: 700;
+					}
+					&.active:after {
+						content: '';
+						height: 4rpx;
+						background: #2395ff;
+						width: 100rpx;
+						position: absolute;
+						bottom: -1px;
+						left: 50%;
+						transform: translate(-50%, 0);
 					}
 				}
 			}

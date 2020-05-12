@@ -10,6 +10,7 @@
     "goods-lists": "/pages/shops/goodsLists",
     "shop-cart": "/pages/shops/shopCart",
     "seller": "/pages/shops/seller",
-    "comments": "/pages/shops/comments"
+    "comments": "/pages/shops/comments",
+    "food-view": "/pages/shops/food"
   }
 }
