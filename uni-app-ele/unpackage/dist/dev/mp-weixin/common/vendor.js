@@ -9062,62 +9062,9 @@ userInfo) {var commit = _ref2.commit;
   !*** /Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/utils/https.js ***!
   \******************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-/* WEBPACK VAR INJECTION */(function(uni) {module.exports = function (param) {
-  var url = param.url;
-  var method = param.method;
-  var header = param.header || {};
-  var data = param.data || {};
-
-  //请求的方式： GET POST
-  if (method) {
-    method = method.toUpperCase(); // 小写转成大写
-    if (method == "POST" || method == 'DELETE') {
-      header = {
-        "content-type": "application/x-www-form-urlencoded" };
-
-    }
-  }
-
-  // 发起请求 加载动画
-  if (!param.hideLoading) {
-    uni.showLoading({
-      // title: "加载中..."
-    });
-  }
-
-  //发起网络请求
-  uni.request({
-    url: url,
-    method: method || "GET",
-    header: header,
-    data: data,
-    success: function success(res) {
-      if (res.statusCode && res.statusCode != '200') {//请求api错误
-        uni.showModal({
-          content: res.msg });
-
-        return;
-      }
-      typeof param.success == 'function' && param.success(res.data);
-    },
-    fail: function fail(e) {
-      console.log(e);
-      uni.showModal({
-        content: e.errMsg });
-
-      typeof param.fail == 'function' && param.fail(res.data);
-    },
-    complete: function complete() {
-      console.log('complete');
-      uni.hideLoading();
-      typeof param.complete == 'function' && param.complete(res.data);
-      return;
-    } });
-
-};
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+throw new Error("Module build failed (from ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader/index.js):\nError: ENOENT: no such file or directory, open '/Users/yan/webserver/git/uniapp/uni-app-ele/uni-app-ele/utils/https.js'");
 
 /***/ }),
 
@@ -10915,7 +10862,7 @@ module.exports = {"S":[{"id":1,"name":"上海","abbr":"SH","area_code":"021","so
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页", "enablePullDownRefresh": true, "usingComponents": { "page-header": "/components/pageheader/pageHeader", "filter-view": "/components/filterView/filterView", "shop-lists": "/components/shopLists/shopLists" }, "usingAutoImportComponents": {} }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": { "page-status": "/components/status/status", "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" }, "usingAutoImportComponents": { "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" } }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white", "usingComponents": { "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/shops/shops": { "enablePullDownRefresh": true, "navigationBarTitleText": "商家", "usingComponents": { "page-status": "/components/status/status", "shops-header": "/pages/shops/shopsHeader", "info-model": "/pages/shops/infoModel", "activity": "/pages/shops/activity", "goods": "/pages/shops/goods", "goods-lists": "/pages/shops/goodsLists", "shop-cart": "/pages/shops/shopCart", "seller": "/pages/shops/seller", "comments": "/pages/shops/comments" }, "usingAutoImportComponents": {} }, "pages/orders/orders": { "navigationBarTextStyle": "white", "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "delivery": "/pages/orders/delivery", "order-cart-group": "/pages/orders/orderCartGroup", "cart-item": "/pages/orders/cartItem", "table-ware": "/pages/orders/tableWare" }, "usingAutoImportComponents": {} }, "pages/login/login": { "usingComponents": { "page-status": "/components/status/status", "input-group": "/components/inputGroup/inputGroup" }, "usingAutoImportComponents": {} }, "pages/userInfo/userInfo": { "navigationBarTitleText": "我的信息", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myFace/myFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/faceCrop/faceCrop": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像剪裁", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/remark/remark": { "navigationBarTitleText": "订单备注", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myAddress/myAddress": { "navigationBarTextStyle": "white", "navigationBarTitleText": "收货地址管理", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/addAddress/addAddress": { "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "input-group": "/components/inputGroup/inputGroup", "tab-tag": "/components/tabTag/tabTag", "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/pay/pay": { "navigationBarTextStyle": "white", "navigationBarTitleText": "在线支付", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/tabBar/home/home": { "navigationBarTitleText": "首页", "enablePullDownRefresh": true, "usingComponents": { "page-header": "/components/pageheader/pageHeader", "filter-view": "/components/filterView/filterView", "shop-lists": "/components/shopLists/shopLists" }, "usingAutoImportComponents": {} }, "pages/tabBar/cart/cart": { "navigationBarTitleText": "购物车", "usingComponents": { "cart-control": "/components/cartControl/cartControl" }, "usingAutoImportComponents": {} }, "pages/tabBar/category/category": { "navigationBarTitleText": "分类", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/tabBar/user/user": { "navigationBarTitleText": "我的", "navigationBarBackgroundColor": "#f06c7a", "backgroundTextStyle": "light", "backgroundColorTop": "#f06c7a", "navigationBarTextStyle": "white", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/city/city": { "navigationBarTitleText": "选择城市", "usingComponents": { "page-status": "/components/status/status", "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" }, "usingAutoImportComponents": { "location": "/components/location/location", "alphabet": "/components/alphabet/alphabet" } }, "pages/address/address": { "navigationBarTitleText": "选择收货地址", "navigationBarBackgroundColor": "#009eef", "backgroundTextStyle": "light", "backgroundColorTop": "#009eef", "navigationBarTextStyle": "white", "usingComponents": { "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/shops/shops": { "enablePullDownRefresh": true, "navigationBarTitleText": "商家", "usingComponents": { "page-status": "/components/status/status", "shops-header": "/pages/shops/shopsHeader", "info-model": "/pages/shops/infoModel", "activity": "/pages/shops/activity", "goods": "/pages/shops/goods", "goods-lists": "/pages/shops/goodsLists", "shop-cart": "/pages/shops/shopCart", "seller": "/pages/shops/seller", "comments": "/pages/shops/comments", "food-view": "/pages/shops/food" }, "usingAutoImportComponents": {} }, "pages/orders/orders": { "navigationBarTextStyle": "white", "navigationBarTitleText": "确认订单", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "delivery": "/pages/orders/delivery", "order-cart-group": "/pages/orders/orderCartGroup", "cart-item": "/pages/orders/cartItem", "table-ware": "/pages/orders/tableWare" }, "usingAutoImportComponents": {} }, "pages/login/login": { "usingComponents": { "page-status": "/components/status/status", "input-group": "/components/inputGroup/inputGroup" }, "usingAutoImportComponents": {} }, "pages/userInfo/userInfo": { "navigationBarTitleText": "我的信息", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myFace/myFace": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像上传", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/faceCrop/faceCrop": { "navigationBarTextStyle": "white", "navigationBarTitleText": "头像剪裁", "navigationBarBackgroundColor": "#000000", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/remark/remark": { "navigationBarTitleText": "订单备注", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/myAddress/myAddress": { "navigationBarTextStyle": "white", "navigationBarTitleText": "收货地址管理", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/addAddress/addAddress": { "navigationBarTextStyle": "white", "navigationBarBackgroundColor": "#009eef", "usingComponents": { "input-group": "/components/inputGroup/inputGroup", "tab-tag": "/components/tabTag/tabTag", "set-address": "/components/setAddress/setAddress" }, "usingAutoImportComponents": {} }, "pages/pay/pay": { "navigationBarTextStyle": "white", "navigationBarTitleText": "在线支付", "navigationBarBackgroundColor": "#009eef", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarBackgroundColor": "#FFFFFF", "backgroundColor": "#FFFFFF" } };exports.default = _default;
 
 /***/ }),
 
