@@ -1,0 +1,1 @@
+<block wx:if="{{sellerInfo}}"><view class="seller-box"><view class="seller-wrap"><image src="{{sellerInfo.header_image}}" alt></image><view class="_h3">{{sellerInfo.title}}</view><text>{{sellerInfo.brand_intros[0].brief}}</text><view class="destil">查看品牌故事</view></view></view></block>
