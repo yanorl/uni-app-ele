@@ -1,0 +1,1 @@
+<view class="location-box"><view class="title">{{locationText}}</view><view data-event-opts="{{[['tap',[['selectItem',['$0'],['address']]]]]}}" class="location-addr" bindtap="__e"><view class="fa fa-location-arrow _i"></view><text class="addr">{{address}}</text></view></view>

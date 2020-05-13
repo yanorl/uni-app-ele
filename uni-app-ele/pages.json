@@ -1,0 +1,183 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/tabBar/home/home",
+			"style": {
+				"navigationBarTitleText": "首页",
+				"enablePullDownRefresh": true,
+				"app-plus": { //取消默认的状态栏
+					"titleNView": false
+				}
+			}
+		}, {
+			"path": "pages/tabBar/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		}, {
+			"path": "pages/tabBar/category/category",
+			"style": {
+				"navigationBarTitleText": "分类",
+				"app-plus": { //取消默认的状态栏
+					"titleNView": false
+				}
+			}
+		}
+
+		, {
+			"path": "pages/tabBar/user/user",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#f06c7a",
+				"backgroundTextStyle": "light",
+				"backgroundColorTop": "#f06c7a",
+				"navigationBarTextStyle": "white",
+				"h5": {
+					"titleNView": false
+				},
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/city/city",
+			"style": {
+				"navigationBarTitleText": "选择城市",
+				"app-plus": { //取消默认的状态栏
+					"titleNView": false
+				}
+			}
+		}, {
+			"path": "pages/address/address",
+			"style": {
+				"navigationBarTitleText": "选择收货地址",
+				"navigationBarBackgroundColor": "#009eef",
+				"backgroundTextStyle": "light",
+				"backgroundColorTop": "#009eef",
+				"navigationBarTextStyle": "white"
+			}
+		}, {
+			"path": "pages/shops/shops",
+			"style": {
+				"enablePullDownRefresh": true,
+				"navigationBarTitleText": "商家",
+				"h5": {
+					"titleNView": false
+				},
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/orders/orders",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "确认订单",
+				"navigationBarBackgroundColor": "#009eef"
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"h5": {
+					"titleNView": false
+				},
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		}, {
+			"path": "pages/userInfo/userInfo",
+			"style": {
+				"navigationBarTitleText": "我的信息"
+			}
+		}, {
+			"path": "pages/myFace/myFace",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "头像上传",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/faceCrop/faceCrop",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "头像剪裁",
+				"navigationBarBackgroundColor": "#000000"
+			}
+		}, {
+			"path": "pages/remark/remark",
+			"style": {
+				"navigationBarTitleText": "订单备注"
+			}
+		}, {
+			"path": "pages/myAddress/myAddress",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "收货地址管理",
+				"navigationBarBackgroundColor": "#009eef"
+			}
+		}, {
+			"path": "pages/addAddress/addAddress",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#009eef"
+			}
+		}, {
+			"path": "pages/pay/pay",
+			"style": {
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "在线支付",
+				"navigationBarBackgroundColor": "#009eef"
+
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		// "navigationBarTitleText": "Yan",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF"
+	},
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#f06c7a",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"pagePath": "pages/tabBar/home/home",
+				"iconPath": "static/img/tabBar/home.png",
+				"selectedIconPath": "static/img/tabBar/home-on.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/tabBar/category/category",
+				"iconPath": "static/img/tabBar/category.png",
+				"selectedIconPath": "static/img/tabBar/category-on.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/tabBar/cart/cart",
+				"iconPath": "static/img/tabBar/cart.png",
+				"selectedIconPath": "static/img/tabBar/cart-on.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/tabBar/user/user",
+				"iconPath": "static/img/tabBar/user.png",
+				"selectedIconPath": "static/img/tabBar/user-on.png",
+				"text": "我的"
+			}
+		]
+	},
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "", //模式名称
+			"path": "", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
+	}
+}

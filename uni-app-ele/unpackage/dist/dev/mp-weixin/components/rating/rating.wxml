@@ -1,0 +1,1 @@
+<view class="rating-wrap"><block wx:for="{{itemClasses}}" wx:for-item="item" wx:for-index="index" wx:key="index"><view class="{{['fa _i',item]}}"></view></block></view>
