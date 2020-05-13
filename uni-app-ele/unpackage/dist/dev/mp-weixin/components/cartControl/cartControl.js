@@ -137,7 +137,11 @@ var _vuex = __webpack_require__(/*! vuex */ 14);function ownKeys(object, enumera
   props: {
     items: {
       type: Object,
-      default: function _default() {} } },
+      default: function _default() {} },
+
+    cartSum: {
+      type: Boolean,
+      default: false } },
 
 
   watch: {

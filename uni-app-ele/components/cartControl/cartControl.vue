@@ -22,6 +22,10 @@ export default {
 		items:{
 			type: Object,
 			default: () => {}
+		},
+		cartSum:{
+			type: Boolean,
+			default: false
 		}
 	},
 	watch:{

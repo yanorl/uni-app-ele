@@ -181,7 +181,6 @@ export default {
 					items: recomItem
 				});
 			});
-			// console.log(map);
 			return map;
 		},
 		_normalizeMenu(list) {

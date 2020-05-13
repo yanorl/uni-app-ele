@@ -13,7 +13,7 @@ export const cartControlMixin = {
 		}),
 		add(item, count) {
 			this.joinCart(item, count);
-			// this.sum();
+			
 		},
 		sub(item, count) {
 			let that = this
@@ -37,11 +37,10 @@ export const cartControlMixin = {
 			} else {
 				this.joinCart(item, count);
 			}
-			// this.sum();
 		},
 		joinCart(item, count) {
-
 			let parm = {
+				// 'selected': item.selected,
 				'food_id': item.food_id,
 				'food_name': item.food_name,
 				'food_image': item.food_image,
@@ -57,7 +56,10 @@ export const cartControlMixin = {
 					// 查找商品是否存在
 					let isExist = false;
 					goodsList.forEach(goods => {
+						
 						if (goods.food_id == parm.food_id) {
+							// console.log(parm)
+							// goods.selected = parm.selected
 							// 如果存在  修改商品数量
 							goods.food_count = Number(parm.food_count)
 							isExist = true
@@ -81,13 +83,18 @@ export const cartControlMixin = {
 		},
 		setGoodsList(goodsList) {
 			// console.log("存储到本地存储中")
+			console.log(goodsList)
 			// 存储到本地存储中
 			let that = this
 			uni.setStorage({
 				key: 'goodsList',
 				data: goodsList,
 				success: function() {
+					console.log(that.goodsList)
 					that.setWatchOption(!that.watchOption)
+					if(that.cartSum) {
+						that.sum();
+					}
 				}
 			});
 		}

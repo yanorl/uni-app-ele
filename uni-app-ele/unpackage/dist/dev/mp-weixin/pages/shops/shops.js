@@ -326,7 +326,6 @@ var _shopCartClass = _interopRequireDefault(__webpack_require__(/*! ../../common
           items: recomItem });
 
       });
-      // console.log(map);
       return map;
     },
     _normalizeMenu: function _normalizeMenu(list) {

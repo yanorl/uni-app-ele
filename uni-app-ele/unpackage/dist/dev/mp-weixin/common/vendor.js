@@ -8941,7 +8941,7 @@ var cartControlMixin = {
 
     add: function add(item, count) {
       this.joinCart(item, count);
-      // this.sum();
+
     },
     sub: function sub(item, count) {
       var that = this;
@@ -8965,11 +8965,10 @@ var cartControlMixin = {
       } else {
         this.joinCart(item, count);
       }
-      // this.sum();
     },
     joinCart: function joinCart(item, count) {var _this = this;
-
       var parm = {
+        // 'selected': item.selected,
         'food_id': item.food_id,
         'food_name': item.food_name,
         'food_image': item.food_image,
@@ -8985,7 +8984,10 @@ var cartControlMixin = {
           // 查找商品是否存在
           var isExist = false;
           goodsList.forEach(function (goods) {
+
             if (goods.food_id == parm.food_id) {
+              // console.log(parm)
+              // goods.selected = parm.selected
               // 如果存在  修改商品数量
               goods.food_count = Number(parm.food_count);
               isExist = true;
@@ -9009,13 +9011,18 @@ var cartControlMixin = {
     },
     setGoodsList: function setGoodsList(goodsList) {
       // console.log("存储到本地存储中")
+      console.log(goodsList);
       // 存储到本地存储中
       var that = this;
       uni.setStorage({
         key: 'goodsList',
         data: goodsList,
         success: function success() {
+          console.log(that.goodsList);
           that.setWatchOption(!that.watchOption);
+          if (that.cartSum) {
+            that.sum();
+          }
         } });
 
     } }) };exports.cartControlMixin = cartControlMixin;
