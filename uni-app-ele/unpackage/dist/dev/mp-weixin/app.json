@@ -39,7 +39,7 @@
         "pagePath": "pages/tabBar/category/category",
         "iconPath": "static/img/tabBar/category.png",
         "selectedIconPath": "static/img/tabBar/category-on.png",
-        "text": "分类"
+        "text": "订单"
       },
       {
         "pagePath": "pages/tabBar/cart/cart",
@@ -61,5 +61,5 @@
     }
   },
   "usingComponents": {},
-  "sitemapLocation": "sitemap93.json"
+  "sitemapLocation": "sitemap35.json"
 }

@@ -57,7 +57,6 @@
 import cartControl from '../../../components/cartControl/cartControl.vue';
 import { cartControlMixin } from '../../../common/mixins.js';
 import { mapGetters, mapActions } from 'vuex';
-import interfaces from '../../../utils/interfaces.js';
 
 export default {
 	components: {
