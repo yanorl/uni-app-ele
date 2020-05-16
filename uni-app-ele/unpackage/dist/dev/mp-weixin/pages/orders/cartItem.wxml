@@ -1,1 +1,0 @@
-<view data-event-opts="{{[['tap',[['$emit',['click']]]]]}}" class="cart-item" bindtap="__e"><view class="cart-item-title">{{title}}</view><block wx:if="{{subHead}}"><view class="cart-item-right"><text>{{subHead}}</text><view class="fa fa-angle-right _i"></view></view></block></view>

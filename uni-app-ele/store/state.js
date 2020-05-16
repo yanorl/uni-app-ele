@@ -5,7 +5,6 @@ const state = {
 	city: '定位',
 	locationAddr: '',
 	address: {},
-	watchOption: false,
 	orderInfo: loadOrderInfo(),
 	userInfo: null,
 	remarkInfo: {

@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "page-status": "/components/status/status"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "选择城市",
-  "usingComponents": {
-    "location": "/components/location/location",
-    "alphabet": "/components/alphabet/alphabet",
-    "page-status": "/components/status/status"
-  }
-}

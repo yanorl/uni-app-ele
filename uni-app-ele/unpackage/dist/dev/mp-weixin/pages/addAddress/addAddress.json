@@ -1,9 +1,0 @@
-{
-  "navigationBarTextStyle": "white",
-  "navigationBarBackgroundColor": "#009eef",
-  "usingComponents": {
-    "input-group": "/components/inputGroup/inputGroup",
-    "tab-tag": "/components/tabTag/tabTag",
-    "set-address": "/components/setAddress/setAddress"
-  }
-}
