@@ -13,10 +13,6 @@ const mutations = {
 		state.address = address
 	},
 
-	[types.SET_WATCHOPTION](state, watchOption) {
-		state.watchOption = watchOption
-	},
-
 	[types.SET_ORDER_INFO](state, orderInfo) {
 		state.orderInfo = orderInfo
 	},

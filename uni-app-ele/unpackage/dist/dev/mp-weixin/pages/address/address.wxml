@@ -1,1 +1,0 @@
-<view class="set-address"><set-address vue-id="91826bd4-1" fromHome="true" data-event-opts="{{[['^setAddress',[['setAddress']]]]}}" bind:setAddress="__e" bind:__l="__l"></set-address></view>

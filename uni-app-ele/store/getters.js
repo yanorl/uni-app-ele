@@ -4,8 +4,6 @@ export const locationAddr = state => state.locationAddr
 
 export const address = state => state.address
 
-export const watchOption = state => state.watchOption
-
 export const orderInfo = state => state.orderInfo
 
 export const totalPrice = state => {

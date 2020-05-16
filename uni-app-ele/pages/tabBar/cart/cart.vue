@@ -26,7 +26,7 @@
 							<view class="title">{{ item.food_name }}</view>
 							<view class="price-number">
 								<view class="price">￥{{ item.food_price }}</view>
-								<view class="cart-control-wrapper"><cart-control @add="add(item, $event)" @sub="sub(item, $event)" :items="item" :cartSum="cartSum"></cart-control></view>
+								<view class="cart-control-wrapper"><cart-control @add="add(item)" @sub="sub(item)" :food_count="item.food_count"></cart-control></view>
 							</view>
 						</view>
 					</view>
@@ -55,9 +55,7 @@
 
 <script>
 import cartControl from '../../../components/cartControl/cartControl.vue';
-import { cartControlMixin } from '../../../common/mixins.js';
 import { mapGetters, mapActions } from 'vuex';
-import interfaces from '../../../utils/interfaces.js';
 
 export default {
 	components: {
@@ -74,31 +72,16 @@ export default {
 			sumPrice: '0.00',
 			cartSum: true,
 			shopInfo: {
-				name:"汉堡王（北京珠江摩尔国际店21157）",
+				name: '汉堡王（北京珠江摩尔国际店21157）',
 				float_minimum_order_amount: 20,
 				order_lead_time: 41,
 				delivery_mode: {
-					text: "蜂鸟专送"
+					text: '蜂鸟专送'
 				},
 				float_delivery_fee: 5.5
 			}
 		};
 	},
-	watch: {
-		watchOption() {
-			uni.getStorage({
-				key: 'goodsList',
-				success: res => {
-					this.goodsList = res.data;
-					console.log(this.goodsList);
-				}
-			});
-		}
-	},
-	computed: {
-		...mapGetters(['watchOption'])
-	},
-	mixins: [cartControlMixin],
 	methods: {
 		handleCheckbox(item) {
 			// 单选
@@ -141,7 +124,7 @@ export default {
 		},
 		sum() {
 			// 合计
-			console.log(this.goodsList);
+			// console.log(this.goodsList);
 			this.sumPrice = 0;
 			// console.log(this.goodsList)
 			this.goodsList.forEach((item, i) => {
@@ -189,9 +172,9 @@ export default {
 			this.sum();
 		},
 		handleGoodsInfo(item) {
-			uni.navigateTo({
-				url: '../../goods/goods?goodsInfo=' + JSON.stringify(item)
-			});
+			// uni.navigateTo({
+			// 	url: '../../goods/goods?goodsInfo=' + JSON.stringify(item)
+			// });
 		},
 		handleTouchStart(index, event) {
 			// 多点触控 不触发
@@ -235,20 +218,20 @@ export default {
 		handleConfirm() {
 			// 结算
 			// console.log(this.shopInfo);
-			
-			if(this.selectedList.length < 1){
+
+			if (this.selectedList.length < 1) {
 				uni.showToast({
-					title:"请选择结算的商品",
-					icon:"none"
-				})
+					title: '请选择结算的商品',
+					icon: 'none'
+				});
 				return;
 			}
-			
+
 			if (this.sumPrice < this.shopInfo.float_minimum_order_amount) {
 				uni.showToast({
-					title: "¥" + this.shopInfo.float_minimum_order_amount+"元起送",
-					icon:"none"
-				})
+					title: '¥' + this.shopInfo.float_minimum_order_amount + '元起送',
+					icon: 'none'
+				});
 				return;
 			}
 			this.setOrderInfo({
@@ -258,25 +241,40 @@ export default {
 			uni.navigateTo({
 				url: '../../orders/orders'
 			});
-
-			// if(this.selectedList.length < 1){
-			// 	uni.showToast({
-			// 		title:"请选择结算的商品",
-			// 		icon:"none"
-			// 	})
-			// 	return;
-			// }
-
-			// 本地存储
-			// uni.setStorage({
-			// 	key:"confirmList",
-			// 	data: this.selectedList,
-			// 	success: () => {
-			// 		uni.navigateTo({
-			// 			url:"../../order/confirm"
-			// 		})
-			// 	}
-			// })
+		},
+		add(item) {
+			this.goodsList.map(v => {
+				if(v.food_id === item.food_id) {
+					return v.food_count++;
+				}
+			})
+			// console.log(this.goodsList)
+			// 更新storage
+			uni.getStorage({
+				key: 'goodsList',
+				success: res => {
+					uni.setStorageSync('goodsList', this.goodsList);
+				}
+			});
+			this.sum();
+		},
+		sub(item) {
+			if (item.food_count <= 0) {
+				return;
+			}
+			this.goodsList.map(v => {
+				if(v.food_id === item.food_id) {
+					return v.food_count--;
+				}
+			})
+			// 更新storage
+			uni.getStorage({
+				key: 'goodsList',
+				success: res => {
+					uni.setStorageSync('goodsList', this.goodsList);
+				}
+			});
+			this.sum();
 		},
 		getGoodsList() {
 			uni.getStorage({
