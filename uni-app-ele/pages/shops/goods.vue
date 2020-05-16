@@ -12,7 +12,7 @@
 							<view class="recommend-food-zm">月售{{ item.month_sales }} 好评率{{ item.satisfy_rate }}</view>
 							<view class="recommend-food-price">
 								<text>￥{{ item.food_price }}</text>
-								<view class="cart-control-wrapper"><cart-control @add="add(item, $event)" @sub="sub(item, $event)" :items="item"></cart-control></view>
+								<view class="cart-control-wrapper"><cart-control @add="add(item.food_id)" @sub="sub(item.food_id)" :food_count="item.food_count"></cart-control></view>
 							</view>
 						</view>
 					</li>
@@ -24,7 +24,6 @@
 
 <script>
 import cartControl from '../../components/cartControl/cartControl.vue';
-import { cartControlMixin } from '../../common/mixins.js';
 
 export default {
 	data() {
@@ -37,12 +36,17 @@ export default {
 			default: () => []
 		}
 	},
-	mixins: [cartControlMixin],
 	computed: {},
 	components: {
 		cartControl
 	},
 	methods: {
+		add(id) {
+		  this.$emit('add', id);
+		},
+		sub(id) {
+		  this.$emit('sub', id);
+		},
 		handleFood(food) {
 			this.$emit('handleFood', food)
 		},

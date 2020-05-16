@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "page-status": "/components/status/status",
-    "input-group": "/components/inputGroup/inputGroup"
-  }
-}

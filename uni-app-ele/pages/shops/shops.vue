@@ -46,12 +46,12 @@
 				<view class="tab-content">
 					<view class="tab-item" v-show="currentIndex == 0">
 						<!-- 推荐商品 -->
-						<goods :recommend="recommend.recommend" @handleFood="handleFood"></goods>
+						<goods :recommend="recommend.recommend" @handleFood="handleFood" @add="add" @sub="sub"></goods>
 						<!-- 商品列表左右联动 -->
-						<goods-lists :goodList="goodList.menu" @handleFood="handleFood"></goods-lists>
+						<goods-lists :goodList="goodList.menu" @handleFood="handleFood" @add="add" @sub="sub"></goods-lists>
 
 						<!-- 购物车 -->
-						<view class="shop-cart-wrap"><shop-cart :shopInfo="shopInfo" /></view>
+						<view class="shop-cart-wrap"><shop-cart :shopInfo="shopInfo" :cartSlectList="cartSlectList" @add="addAllList" @sub="subAllList" @empty="empty"></shop-cart></view>
 					</view>
 
 					<view class="tab-item" v-show="currentIndex == 1"><comments></comments></view>
@@ -64,7 +64,7 @@
 			</view>
 		</view>
 		<!-- 商品详情 -->
-		<food-view :food="selectedFood" :isShow="showFood" @close="showFood=false"></food-view>
+		<food-view :food="selectedFood" :isShow="showFood" @close="showFood = false"  @add="add" @sub="sub"></food-view>
 	</view>
 </template>
 
@@ -94,8 +94,9 @@ export default {
 			showStatus: false,
 			recommend: {},
 			goodList: {},
+			cartSlectList: [],
 			selectedFood: null,
-			 showFood: false
+			showFood: false
 		};
 	},
 	onLoad(option) {
@@ -151,10 +152,38 @@ export default {
 		}, 1000);
 	},
 	methods: {
+		upCountData() {
+			let that = this;
+			uni.getStorage({
+				key: 'goodsList',
+				success: res => {
+					res.data.forEach(function(item) {
+						that.getCartStorage(item);
+					});
+					this.cartSlectList = res.data;
+				},
+				fail() {}
+			});
+		},
+		getCartStorage(list) {
+			this.goodList.menu.map(item => {
+				return item.foods.map(v => {
+					if (v.food_id === list.food_id) {
+						return (v.food_count = list.food_count);
+					}
+				});
+			});
+
+			this.recommend.recommend[0].items.map(v => {
+				if (v.food_id === list.food_id) {
+					return (v.food_count = list.food_count);
+				}
+			});
+		},
 		handleFood(food) {
 			// console.log(food)
 			this.selectedFood = food;
-			      this.showFood = true;
+			this.showFood = true;
 		},
 		initData() {
 			this.request({
@@ -163,6 +192,7 @@ export default {
 					this.shopInfo = res.rst;
 					this.recommend = this._normalizeRecommend(res.recommend);
 					this.goodList = this._normalizeMenu(res.menu);
+					this.upCountData();
 				}
 			});
 		},
@@ -201,7 +231,6 @@ export default {
 					foods: foodsItem
 				});
 			});
-			// console.log(map);
 			return map;
 		},
 		newClass(item) {
@@ -218,6 +247,96 @@ export default {
 		},
 		clickNav(index) {
 			this.currentIndex = index;
+		},
+		add(id) {
+			this.addAllList(id);
+		},
+		sub(id) {
+			this.subAllList(id);
+		},
+		addAllList(id) {
+			this.goodList.menu.map(item => {
+				return item.foods.map(v => {
+					if (v.food_id === id) {
+						return v.food_count++;
+					}
+				});
+			});
+
+			this.recommend.recommend[0].items.map(v => {
+				if (v.food_id === id) {
+					return v.food_count++;
+				}
+			});
+
+			this.setAllList();
+		},
+		subAllList(id) {
+			this.goodList.menu.map(item => {
+				return item.foods.map(v => {
+					if (v.food_id === id) {
+						return v.food_count--;
+					}
+				});
+			});
+
+			this.recommend.recommend[0].items.map(v => {
+				if (v.food_id === id) {
+					return v.food_count--;
+				}
+			});
+			this.setAllList();
+		},
+		setAllList() {
+			let arr = [];
+			this.goodList.menu.forEach(item => {
+				item.foods.forEach(list => {
+					if (list.food_count > 0) {
+						arr.push(list);
+					}
+				});
+			});
+			this.recommend.recommend[0].items.forEach(item => {
+				if (item.food_count > 0) {
+					arr.push(item);
+				}
+			});
+			this.cartSlectList = this.uniq(arr);
+			this.setCartStorage(this.cartSlectList);
+		},
+		uniq(arr) {
+			//数组对象去重
+			let obj = {};
+			return arr.reduce((cur, next) => {
+				obj[next.food_id] ? '' : (obj[next.food_id] = true && cur.push(next));
+				return cur;
+			}, []); //设置cur默认类型为数组，并且初始值为空的数组
+		},
+		setCartStorage(goodsList) {
+			// 存储到本地存储中
+			uni.setStorage({
+				key: 'goodsList',
+				data: goodsList,
+				success: function(res) {}
+			});
+		},
+		empty() {
+			let that = this;
+			uni.removeStorage({
+				key: 'goodsList',
+				success: function(res) {
+					that.cartSlectList = [];
+					that.goodList.menu.map(item => {
+						return item.foods.map(v => {
+							return v.food_count = 0;
+						});
+					});
+
+					that.recommend.recommend[0].items.map(v => {
+						return v.food_count = 0;
+					});
+				}
+			});
 		},
 		scroll() {}
 	}

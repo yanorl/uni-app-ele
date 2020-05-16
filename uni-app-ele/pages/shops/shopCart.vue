@@ -17,18 +17,18 @@
 			</view>
 		</view>
 		<!-- <ball></ball> -->
-		<shop-cart-details  @parentFold="changeFold" :fold="fold" :selectGoods="goodsList" :totalCount="totalCount"></shop-cart-details>
+		<shop-cart-details @parentFold="changeFold" @empty="empty" :fold="fold" :selectGoods="cartSlectList" :totalCount="totalCount" @add="add" @sub="sub"></shop-cart-details>
 	</view>
 </template>
 
 <script>
-	import shopCartDetails from './shopCartDetails.vue';
-import { mapGetters, mapActions } from 'vuex';
+import shopCartDetails from './shopCartDetails.vue';
+import { mapActions } from 'vuex';
 
 export default {
 	data() {
 		return {
-			goodsList: [],
+			allListData: {},
 			fold: true // 购物车详情页折叠状态,true表示折叠
 		};
 	},
@@ -36,28 +36,24 @@ export default {
 		shopInfo: {
 			type: Object,
 			default: () => {}
+		},
+		cartSlectList: {
+			type: Array,
+			default: () => []
 		}
 	},
-	watch: {
-		watchOption() {
-			this.getGoodsList();
-		}
-	},
-	created() {
-		this.getGoodsList();
-	},
+	watch: {},
 	computed: {
-		...mapGetters(['watchOption']),
 		totalPrice() {
 			let total = 0;
-			this.goodsList.forEach(item => {
+			this.cartSlectList.forEach(item => {
 				total += item.food_price * item.food_count;
 			});
-			return total;
+			return total.toFixed(2);
 		},
 		totalCount() {
 			let count = 0;
-			this.goodsList.forEach(item => {
+			this.cartSlectList.forEach(item => {
 				count += item.food_count;
 			});
 			return count;
@@ -85,22 +81,16 @@ export default {
 			}
 		}
 	},
-	components:{
+	components: {
 		shopCartDetails
 	},
 	methods: {
-		getGoodsList() {
-			let that = this
-			uni.getStorage({
-				key: 'goodsList',
-				success: res => {
-					that.goodsList = res.data;
-					// console.log(this.goodsList);
-				},
-				fail() {
-					that.goodsList = []
-				}
-			});
+		...mapActions(['setOrderInfo']),
+		add(id) {
+			this.$emit('add', id);
+		},
+		sub(id) {
+			this.$emit('sub', id);
 		},
 		toggleList() {
 			if (!this.totalCount) {
@@ -111,20 +101,20 @@ export default {
 		changeFold() {
 			this.fold = true;
 		},
-		...mapActions([
-		      'setOrderInfo'
-		    ]),
+		empty() {
+			this.$emit('empty');
+		},
 		pay() {
 			if (this.totalPrice < this.minPrice) {
 				return;
 			}
 			this.setOrderInfo({
-        shopInfo: this.shopInfo,
-        selectFoods: this.goodsList
-      })
+				shopInfo: this.shopInfo,
+				selectFoods: this.cartSlectList
+			});
 			uni.navigateTo({
-				url:'../orders/orders'
-			})
+				url: '../orders/orders'
+			});
 		}
 	}
 };

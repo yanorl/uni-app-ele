@@ -1,36 +1,42 @@
 <template>
-		<view class="food-box" v-if="isShow" :class="{'active': isShow}">
-			<view class="foodpanel-close" @click="$emit('close')"><image src="https://fuss10.elemecdn.com/8/ba/bcfa8cc62b20e044bd2ea1c1c7f3dpng.png?imageMogr/format/webp/" alt /></view>
-			<view class="foodpanel-body">
-				<view class="foodpanel-foodimg"><image :src="food.food_image" alt mode="widthFix"/></view>
-				<view class="foodpanel-foodinfo">
-					<h4>{{ food.food_name }}</h4>
-					<view class="foodpanel-foodsales">
-						<text>月售{{ food.month_sales }}</text>
-						<text>好评率 {{ food.satisfy_rate }}%</text>
-					</view>
-					<view class="foodpanel-priceLine">
-						<text>¥{{ food.food_price }}</text>
-						<view class="cart-control-wrapper"><cart-control @add="add(food, $event)" @sub="sub(food, $event)" :items="food"></cart-control></view>
-					</view>
-					<text>{{ food.description }}</text>
+	<view class="food-box" v-if="isShow" :class="{ active: isShow }">
+		<view class="foodpanel-close" @click="$emit('close')"><image src="https://fuss10.elemecdn.com/8/ba/bcfa8cc62b20e044bd2ea1c1c7f3dpng.png?imageMogr/format/webp/" alt /></view>
+		<view class="foodpanel-body">
+			<view class="foodpanel-foodimg"><image :src="food.food_image" alt mode="widthFix" /></view>
+			<view class="foodpanel-foodinfo">
+				<h4>{{ food.food_name }}</h4>
+				<view class="foodpanel-foodsales">
+					<text>月售{{ food.month_sales }}</text>
+					<text>好评率 {{ food.satisfy_rate }}%</text>
 				</view>
+				<view class="foodpanel-priceLine">
+					<text>¥{{ food.food_price }}</text>
+					<view class="cart-control-wrapper"><cart-control @add="add(food.food_id)" @sub="sub(food.food_id)" :food_count="food.food_count"></cart-control></view>
+				</view>
+				<text>{{ food.description }}</text>
 			</view>
 		</view>
+	</view>
 </template>
 
 <script>
 import cartControl from '../../components/cartControl/cartControl.vue';
-import  {cartControlMixin} from './../../common/mixins.js'
 
 export default {
 	props: {
 		food: Object,
 		isShow: Boolean
 	},
-	mixins: [cartControlMixin],
 	components: {
 		cartControl
+	},
+	methods: {
+		add(id) {
+			this.$emit('add', id);
+		},
+		sub(id) {
+			this.$emit('sub', id);
+		}
 	}
 };
 </script>
@@ -44,7 +50,7 @@ export default {
 	height: 100%;
 	width: 100%;
 	z-index: 10;
-	&.active{
+	&.active {
 		transition: all 0.25s ease-in;
 		transform: translate(0, 0);
 	}
@@ -60,7 +66,7 @@ export default {
 		z-index: 1;
 		top: 20rpx;
 		right: 20rpx;
-		image{
+		image {
 			width: 40rpx;
 			height: 40rpx;
 		}
@@ -85,7 +91,7 @@ export default {
 		}
 		.foodpanel-foodinfo {
 			padding: 30rpx;
-				h4 {
+			h4 {
 				display: flex;
 				align-items: center;
 				margin-bottom: 20rpx;
@@ -100,7 +106,7 @@ export default {
 				color: #666;
 				line-height: 1;
 				margin-bottom: 20rpx;
-				text{
+				text {
 					margin-right: 10rpx;
 				}
 			}
@@ -109,14 +115,14 @@ export default {
 				align-items: center;
 				margin-bottom: 20rpx;
 				position: relative;
-				text{
+				text {
 					font-size: 32rpx;
 					color: #ff5339;
 					padding-bottom: 5rpx;
 					display: flex;
 					align-items: baseline;
 				}
-				.cart-control-wrapper{
+				.cart-control-wrapper {
 					position: absolute;
 					right: 0;
 				}
@@ -124,5 +130,4 @@ export default {
 		}
 	}
 }
-
 </style>

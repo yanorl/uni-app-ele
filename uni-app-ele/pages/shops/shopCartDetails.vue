@@ -10,9 +10,9 @@
 					<view class="food" v-for="(food, index) in selectGoods" :key="food.food_id">
 						<text class="name">{{ food.food_name }}</text>
 						<view class="price">
-							<text>¥{{ food.food_price * food.food_count }}</text>
+							<text>¥{{ (food.food_price * food.food_count).toFixed(2) }}</text>
 						</view>
-						<view class="cart-control-wrapper" :key="food.food_id"><cart-control @add="add(food, $event)" @sub="sub(food, $event)" :items="food"></cart-control></view>
+						<view class="cart-control-wrapper" :key="food.food_id"><cart-control @add="add(food.food_id)" @sub="sub(food.food_id)" :food_count="food.food_count"></cart-control></view>
 					</view>
 				</scroll-view>
 			</view>
@@ -23,14 +23,11 @@
 
 <script>
 import cartControl from '../../components/cartControl/cartControl.vue';
-import { cartControlMixin } from '../../common/mixins.js';
-import { mapGetters } from 'vuex';
 
 export default {
 	data() {
 		return {};
 	},
-	mixins: [cartControlMixin],
 	props: {
 		selectGoods: {
 			tyep: Array,
@@ -46,7 +43,6 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(['watchOption']),
 		listShow() {
 			let that = this;
 			if (!this.totalCount) {
@@ -61,12 +57,18 @@ export default {
 		cartControl
 	},
 	methods: {
+		add(id) {
+			this.$emit('add', id)
+		},
+		sub(id) {
+			this.$emit('sub', id)
+		},
 		empty() {
 			let that = this
 			uni.removeStorage({
 				key: 'goodsList',
 				success: function(res) {
-					that.setWatchOption(!that.watchOption)
+					that.$emit('empty');
 					that.$emit('parentFold');
 				}
 			});
