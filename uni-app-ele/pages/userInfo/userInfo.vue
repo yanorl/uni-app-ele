@@ -49,16 +49,20 @@
 </template>
 
 <script>
+	import { isLoginMixin } from '../../common/mixins.js'
 export default {
 	data() {
 		return {
 			globalUser: {}
 		};
 	},
+	mixins: [isLoginMixin],
+	onLoad() {
+		this.isLogin();
+	},
 	onShow() {
-		var me = this;
-		var globalUser = me.getGlobalUser('ele_login');
-		me.globalUser = globalUser;
+		var globalUser = this.getGlobalUser('ele_login');
+		this.globalUser = globalUser;
 	},
 	methods: {
 		operator() {

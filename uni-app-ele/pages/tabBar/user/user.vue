@@ -84,6 +84,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: flex-start;
+		align-items: center;
 	}
 	
 	.face {
@@ -91,6 +92,7 @@
 		height: 120rpx;
 		border-radius: 50%;
 		flex-shrink: 0;
+		margin-right: 30rpx;
 	}
 	
 	.info-wapper {
@@ -104,11 +106,10 @@
 		font-size: 36rpx;
 		font-weight: bold;
 	}
-	.regist-login {
-		margin-left: 60rpx;
-		margin-top: 30rpx;
+
+	.regist-login{
+		padding: 15rpx;
 	}
-	
 	
 	.nav-info {
 		color: #FFFFFF;
