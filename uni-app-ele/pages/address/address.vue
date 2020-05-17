@@ -1,6 +1,6 @@
 <template>
 	<view class="set-address">
-		<set-address @setAddress="setAddress" fromHome='true'></set-address>
+		<set-address @setAddress="setAddress" :fromHome="fromHome"></set-address>
 	</view>
 </template>
 
@@ -8,7 +8,9 @@
 import setAddress from '../../components/setAddress/setAddress.vue';
 export default {
 	data() {
-		return {};
+		return {
+			fromHome: true
+		};
 	},
 	components:{
 		setAddress

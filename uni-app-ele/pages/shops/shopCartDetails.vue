@@ -10,9 +10,11 @@
 					<view class="food" v-for="(food, index) in selectGoods" :key="food.food_id">
 						<text class="name">{{ food.food_name }}</text>
 						<view class="price">
-							<text>¥{{ (food.food_price * food.food_count).toFixed(2) }}</text>
+							<text>${{ listCount(food.food_price, food.food_count) }}</text>
 						</view>
-						<view class="cart-control-wrapper" :key="food.food_id"><cart-control @add="add(food.food_id)" @sub="sub(food.food_id)" :food_count="food.food_count"></cart-control></view>
+						<view class="cart-control-wrapper" :key="food.food_id">
+							<cart-control @add="add(food.food_id)" @sub="sub(food.food_id)" :food_count="food.food_count"></cart-control>
+						</view>
 					</view>
 				</scroll-view>
 			</view>
@@ -43,6 +45,12 @@ export default {
 		}
 	},
 	computed: {
+		listCount() {
+			return function(price, count) {
+				let total = price * count;
+				return total.toFixed(2);
+			};
+		},
 		listShow() {
 			let that = this;
 			if (!this.totalCount) {
@@ -58,13 +66,13 @@ export default {
 	},
 	methods: {
 		add(id) {
-			this.$emit('add', id)
+			this.$emit('add', id);
 		},
 		sub(id) {
-			this.$emit('sub', id)
+			this.$emit('sub', id);
 		},
 		empty() {
-			let that = this
+			let that = this;
 			uni.removeStorage({
 				key: 'goodsList',
 				success: function(res) {
