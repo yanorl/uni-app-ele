@@ -44,7 +44,7 @@
 
 				<!-- tab-content -->
 				<view class="tab-content">
-					<view class="tab-item" v-show="currentIndex == 0">
+					<view class="tab-item" v-if="currentIndex == 0">
 						<!-- 推荐商品 -->
 						<goods :recommend="recommend.recommend" @handleFood="handleFood" @add="add" @sub="sub"></goods>
 						<!-- 商品列表左右联动 -->
@@ -54,9 +54,9 @@
 						<view class="shop-cart-wrap"><shop-cart :shopInfo="shopInfo" :cartSlectList="cartSlectList" @add="addAllList" @sub="subAllList" @empty="empty"></shop-cart></view>
 					</view>
 
-					<view class="tab-item" v-show="currentIndex == 1"><comments></comments></view>
+					<view class="tab-item" v-if="currentIndex == 1"><comments></comments></view>
 
-					<view class="tab-item" v-show="currentIndex == 2"><seller></seller></view>
+					<view class="tab-item" v-if="currentIndex == 2"><seller></seller></view>
 				</view>
 
 				<!--  -->

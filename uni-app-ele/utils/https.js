@@ -1,6 +1,8 @@
-import store from '../store/index.js'
-
+//同时发送异步代码都次数
+let ajaxTimes = 0;
 module.exports = (param) => {
+	ajaxTimes++
+
 	var url = param.url;
 	var method = param.method;
 	var header = param.header || {};
@@ -18,21 +20,21 @@ module.exports = (param) => {
 	}
 
 	// token
-		if (token && store.state.ele_login) {
-			header.token = store.state.ele_login.userId
-			// 二次验证
-			if (!header.token) {
-				uni.showToast({
-					title: '请先登录',
-					icon: 'none'
-				});
-				return uni.navigateTo({
-					url: '/pages/login/login.vue'
-				});
-			}
+	if (token && store.state.ele_login) {
+		header.token = store.state.ele_login.userId
+		// 二次验证
+		if (!header.token) {
+			uni.showToast({
+				title: '请先登录',
+				icon: 'none'
+			});
+			return uni.navigateTo({
+				url: '/pages/login/login.vue'
+			});
 		}
-		
-		
+	}
+
+
 	// 发起请求 加载动画
 	if (!param.hideLoading) {
 		uni.showLoading({
@@ -64,7 +66,10 @@ module.exports = (param) => {
 		},
 		complete: () => {
 			console.log('complete');
-			uni.hideLoading();
+			ajaxTimes--;
+			if (ajaxTimes === 0) {
+				wx.hideLoading();
+			}
 			typeof param.complete == 'function' && param.complete(res.data);
 			return;
 		}
