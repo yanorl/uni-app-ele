@@ -13,6 +13,10 @@ const mutations = {
 		state.address = address
 	},
 
+	[types.SET_ELE_LOGIN](state, ele_login) {
+		state.ele_login = ele_login
+	},
+	
 	[types.SET_ORDER_INFO](state, orderInfo) {
 		state.orderInfo = orderInfo
 	},

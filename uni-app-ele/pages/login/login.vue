@@ -55,6 +55,7 @@
 import pageStatus from '../../components/status/status.vue';
 import inputGroup from '../../components/inputGroup/inputGroup.vue';
 import interfaces from '../../utils/interfaces.js';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
 	data() {
@@ -72,13 +73,22 @@ export default {
 			console.log(this.verifyCode)
 			if (!this.phone || !this.verifyCode) return true;
 			else return false;
-		}
+		},
+		...mapGetters(['ele_login'])
 	},
 	components: {
 		pageStatus,
 		inputGroup
 	},
+	onLoad() {
+		if(this.ele_login && this.ele_login.userId) {
+			uni.switchTab({
+				url: '../tabBar/user/user'
+			})
+		}
+	},
 	methods: {
+		...mapActions(['setEleLogin']),
 		handleLogin(e) {
 			// this.phone = e.detail.value.phone;
 			// this.verifyCode = e.detail.value.verifyCode;
@@ -255,15 +265,26 @@ export default {
 			});
 		},
 		setStor(data) {
-			uni.setStorage({
-				key: 'ele_login',
-				data: data,
-				success: function() {
-					uni.switchTab({
-						url: '../tabBar/user/user'
-					});
-				}
+				// 状态存储
+			this.setEleLogin(data)
+			
+			uni.showToast({
+				title: '登录成功',
+				icon: 'none'
 			});
+			uni.navigateBack({
+				delta: 1
+			});
+			
+			// uni.setStorage({
+			// 	key: 'ele_login',
+			// 	data: data,
+			// 	success: function() {
+			// 		uni.switchTab({
+			// 			url: '../tabBar/user/user'
+			// 		});
+			// 	}
+			// });
 		},
 		// 实现在微信小程序端的微信登录
 		wxLogin(e) {

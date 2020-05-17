@@ -16,9 +16,9 @@
 					<i class="fa fa-angle-right"></i>
 				</view>
 				<view class="address-name" v-if="userInfo">
-					<text>{{userInfo.name}}</text>
-					<text>({{userInfo.sex}})</text>
-					<text class="phone">{{userInfo.phone}}</text>
+					<text>{{ userInfo.name }}</text>
+					<text>({{ userInfo.sex }})</text>
+					<text class="phone">{{ userInfo.phone }}</text>
 				</view>
 			</view>
 
@@ -52,6 +52,7 @@ import cartItem from './cartItem.vue';
 import tableWare from './tableWare.vue';
 import { mapGetters } from 'vuex';
 import interfaces from '../../utils/interfaces.js';
+import { isLoginMixin } from '../../common/mixins.js';
 
 export default {
 	data() {
@@ -60,7 +61,7 @@ export default {
 			showTableware: false
 		};
 	},
-
+	mixins: [isLoginMixin],
 	onLoad() {
 		if (!this.orderInfo) {
 			uni.switchTab({
@@ -105,26 +106,39 @@ export default {
 				url: '../remark/remark'
 			});
 		},
-		handelAddress() {
+		async handelAddress() {
+			await this.isLogin();
 			uni.navigateTo({
 				url: '../myAddress/myAddress'
 			});
 		},
-		addAddress() {
+		async addAddress() {
+			await this.isLogin();
+			let detail = {
+				title: '添加地址',
+				addressInfo: {
+					name: '',
+					sex: '',
+					phone: '',
+					bottom: '',
+					address: '',
+					tag: ''
+				}
+			};
 			uni.navigateTo({
-				url: '../addAddress/addAddress?title=添加地址'
+				url: '../addAddress/addAddress?params=' + encodeURIComponent(JSON.stringify(detail))
 			});
 		},
 		handlePay() {
 			if (!this.userInfo) {
 				uni.showToast({
 					title: '请选择收货地址'
-				})
+				});
 				return;
 			}
 			uni.navigateTo({
 				url: '../pay/pay'
-			})
+			});
 		}
 	}
 };

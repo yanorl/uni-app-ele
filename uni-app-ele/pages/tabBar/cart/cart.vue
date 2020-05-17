@@ -2,7 +2,16 @@
 	<view>
 		<!-- 购物列表 -->
 		<view class="goods-list">
-			<view class="empty" v-if="goodsList.length == 0">购物车空空如也~</view>
+			<view class="empty" v-if="goodsList.length == 0">
+				
+				<view class="icon-btn">
+					<view  class="icon iconfont">&#xe6af;</view>
+				</view>
+				<view class="empty-text">
+					购物车空空如也~
+				</view>
+				<navigator open-type="switchTab" url="../home/home" class="empty-link">去首页逛逛</navigator>
+				</view>
 			<view class="row" v-for="(item, index) in goodsList" :key="index">
 				<!-- 删除按钮 -->
 				<view class="menu" @tap="handleSingleDelete(item)"><view class="icon iconfont">&#xe6a6;</view></view>
@@ -340,12 +349,25 @@ export default {
 
 	.empty {
 		width: 100%;
-		height: 60upx;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		flex-direction: column;
 		font-size: 32upx;
 		color: #a7a7a7;
+		margin-top: 100rpx;
+		.icon-btn{
+			.icon{
+				font-size: 200rpx;
+			}
+		}
+		.empty-text{
+			margin: 40rpx 0;
+		}
+		.empty-link{
+				color: #f06c7a;
+			font-size: 28rpx;
+		}
 	}
 
 	.row {

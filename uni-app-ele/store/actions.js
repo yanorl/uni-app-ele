@@ -1,6 +1,6 @@
 import * as types from './mutation-types'
 import {
-	saveOrderInfo
+	saveOrderInfo, saveEleLogin
 } from '../common/cache.js'
 
 export const setOrderInfo = function({
@@ -14,3 +14,8 @@ export const setUserInfo = function({
 	}, userInfo) {
 		commit(types.SET_USER_INFO, userInfo);
 	}
+
+
+export const setEleLogin = function({commit}, ele_login) {
+	commit(types.SET_ELE_LOGIN, saveEleLogin(ele_login))
+}

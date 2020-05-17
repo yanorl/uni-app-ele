@@ -235,9 +235,9 @@ export default {
 	}
 
 	.screen-by {
-		height: calc(100vh - var(--window-bottom) - 200rpx);
+		height: calc(100vh - var(--window-bottom) - 200rpx - 100rpx);
 		/*  #ifdef  APP-PLUS  */
-		height: calc(100vh - var(--window-bottom) - var(--status-bar-height) - 200rpx);
+		height: calc(100vh - var(--window-bottom) - var(--status-bar-height) - 200rpx - 100rpx);
 		/*  #endif  */
 		
 		.screen-by-content {
