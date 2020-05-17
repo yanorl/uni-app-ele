@@ -2,27 +2,27 @@
 	<view class="comment-box" v-if="evaluation">
 		<!-- 商家评分 -->
 		<view class="rating-wraps" v-if="evaluation.rating">
-			<view class="rating-info">
-				<h4>{{ evaluation.rating.shop_score.toFixed(1) }}</h4>
+			<view class="rating-info" v-if="evaluation.rating.shop_score">
+				<h4>{{ score(evaluation.rating.shop_score) }}</h4>
 				<view class="shop-score">
 					<text>商家评分</text>
 					<rating :rating="evaluation.rating.shop_score" />
 				</view>
 			</view>
-			<view class="other-score">
+			<view class="other-score" v-if="evaluation.rating">
 				<view class="tp-score">
 					<view class="tp-score-item">
 						<text>味道</text>
-						<view class="tag">{{ evaluation.rating.taste_score.toFixed(1) }}</view>
+						<view class="tag" v-if="evaluation.rating.taste_score">{{ evaluation.rating.taste_score.toFixed(1) }}</view>
 					</view>
 					<view class="tp-score-item">
 						<text>包装</text>
-						<view class="tag">{{ evaluation.rating.package_score.toFixed(1) }}</view>
+						<view class="tag" v-if="evaluation.rating.package_score">{{ evaluation.rating.package_score.toFixed(1) }}</view>
 					</view>
 				</view>
 				<view class="rider-score">
 					<text>配送</text>
-					<view class="tag">{{ evaluation.rating.rider_score.toFixed(1) }}</view>
+					<view class="tag" v-if="evaluation.rating.rider_score">{{ evaluation.rating.rider_score.toFixed(1) }}</view>
 				</view>
 			</view>
 		</view>
@@ -74,6 +74,13 @@ export default {
 	},
 	created() {
 		this.getData();
+	},
+	computed:{
+		score(){
+			return function(num) {
+				return num.toFixed(1)
+			}
+		}
 	},
 	methods: {
 		getData() {

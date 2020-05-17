@@ -111,7 +111,7 @@ export default {
 			});
 		},
 		setVerifyCode(code) {
-			console.log(code)
+			// console.log(code)
 			this.verifyCode = code
 		},
 		getVerifyCode(phone) {
@@ -130,6 +130,9 @@ export default {
 					},
 					method: 'POST',
 					success: res => {
+						uni.showToast({
+							title: '746976'
+						})
 						console.log(res);
 					}
 				});
