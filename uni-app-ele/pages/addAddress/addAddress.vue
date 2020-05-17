@@ -75,7 +75,8 @@ import tabTag from '../../components/tabTag/tabTag.vue';
 import inputGroup from '../../components/inputGroup/inputGroup.vue';
 import setAddress from '../../components/setAddress/setAddress.vue';
 import interfaces from '../../utils/interfaces.js';
-import { mapMutations } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import { isLoginMixin } from '../../common/mixins.js'
 
 export default {
 	data() {
@@ -89,9 +90,13 @@ export default {
 			showSearch: false
 		};
 	},
+	mixins:[isLoginMixin],
 	onLoad(option) {
-		let params = JSON.parse(option.params);
-		console.log(params);
+	  this.isLogin();
+		
+		// console.log(option)
+		let params = JSON.parse(decodeURIComponent(option.params));
+		// console.log(params);
 		this.title = params.title;
 		this.addressInfo = params.addressInfo;
 		uni.setNavigationBarTitle({
@@ -100,15 +105,15 @@ export default {
 		const value = uni.getStorageSync('ele_login');
 		this.userId = value.userId;
 	},
+	computed:{
+	},
 	components: {
 		inputGroup,
 		tabTag,
 		setAddress
 	},
 	methods: {
-		...mapMutations({
-			setUserInfo: 'SET_USER_INFO'
-		}),
+		...mapActions(['setUserInfo']),
 		clickAddress() {
 			this.showSearch = true
 			// uni.navigateTo({
@@ -124,12 +129,12 @@ export default {
 			this.addressInfo.sex = item;
 		},
 		handleSave(e) {
-			console.log(e);
+			// console.log(e);
 			this.addressInfo.name = e.detail.value.userName;
 			this.addressInfo.phone = e.detail.value.phone;
 			this.addressInfo.address = e.detail.value.address;
 			this.addressInfo.bottom = e.detail.value.bottom;
-			console.log(this.addressInfo);
+			// console.log(this.addressInfo);
 			if (!this.addressInfo.name) {
 				this.errors = {
 					name: '请输入联系人'
@@ -169,6 +174,7 @@ export default {
 				url: interfaces.addAddress + '/' + this.userId,
 				method: 'post',
 				data: this.addressInfo,
+				token: true,
 				success: res => {
 					this.setUserInfo(this.addressInfo);
 					uni.navigateTo({

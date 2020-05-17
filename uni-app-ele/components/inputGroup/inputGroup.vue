@@ -1,10 +1,18 @@
 <template>
-	<view class="text_group" >
+	<view class="text_group">
 		<!-- 组件结构 -->
 		<!-- 组件容器 -->
-		<view class="input_group" :class="{ 'is-invalid': error, 'border': border }">
+		<view class="input_group" :class="{ 'is-invalid': error, border: border }">
 			<!-- 输入框 -->
-			<input :type="type"  :placeholder="placeholder" :name="name" @input="onKeyInput" :value="value"/>
+			
+			<!-- #ifndef MP-WEIXIN-->
+			<input class="input" :type="type" :placeholder="placeholder" :name="name" @input="onKeyInput" :value="value" />
+			<!-- #endif -->
+			
+			<!-- #ifdef MP-WEIXIN -->
+			<input class="input" :type="type" :placeholder="placeholder" :name="name" @input="onKeyInput" :value="value" v-model="value" />
+			<!-- #endif -->
+
 			<!-- 输入框后面的按钮 -->
 			<button v-if="btnTitle" :disabled="disabled" @click="handelPhone">{{ btnTitle }}</button>
 		</view>
@@ -18,7 +26,7 @@ export default {
 	data() {
 		return {
 			inputValue: ''
-		}
+		};
 	},
 	behaviors: ['uni://form-field'],
 	props: {
@@ -37,13 +45,13 @@ export default {
 		disabled: Boolean,
 		error: String
 	},
-	methods:{
+	methods: {
 		onKeyInput(e) {
-			this.inputValue = e.target.value
-			this.$emit('modelInput', this.inputValue)
+			this.inputValue = e.target.value;
+			this.$emit('modelInput', this.inputValue);
 		},
 		handelPhone() {
-			this.$emit('btnClick', this.inputValue)
+			this.$emit('btnClick', this.inputValue);
 		}
 	}
 };
@@ -58,10 +66,10 @@ export default {
 	justify-content: space-between;
 	align-items: center;
 	font-size: 24rpx;
-	&.border{
+	&.border {
 		border: 1px solid #ccc;
 	}
-	input {
+	.input {
 		flex: 1;
 		outline: none;
 		font-size: 24rpx;

@@ -1,8 +1,11 @@
+import store from '../store/index.js'
+
 module.exports = (param) => {
 	var url = param.url;
 	var method = param.method;
 	var header = param.header || {};
 	var data = param.data || {};
+	var token = param.token;
 
 	//请求的方式： GET POST
 	if (method) {
@@ -14,6 +17,22 @@ module.exports = (param) => {
 		}
 	}
 
+	// token
+		if (token && store.state.ele_login) {
+			header.token = store.state.ele_login.userId
+			// 二次验证
+			if (!header.token) {
+				uni.showToast({
+					title: '请先登录',
+					icon: 'none'
+				});
+				return uni.navigateTo({
+					url: '/pages/login/login.vue'
+				});
+			}
+		}
+		
+		
 	// 发起请求 加载动画
 	if (!param.hideLoading) {
 		uni.showLoading({
